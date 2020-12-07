@@ -1,0 +1,19 @@
+---
+description: Changes dashboard theme depending of time
+alias: dashboard_theme_change
+id: 23614043-60eb-4851-9d8c-ae9c5a6d5c19
+
+trigger:
+  - platform: homeassistant
+    event: start
+  - platform: state
+    entity_id: sun.sun
+action:
+  - service_template: frontend.set_theme
+    data_template:
+      name: >
+        {% if states.sun.sun.state == "above_horizon" %}
+          default
+        {% else %}
+          slate
+        {% endif %}

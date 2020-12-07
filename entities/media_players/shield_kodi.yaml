@@ -1,0 +1,4 @@
+---
+# Kodi on Shield Livingroom
+platform: kodi
+host: !secret shield_host

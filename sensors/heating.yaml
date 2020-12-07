@@ -1,0 +1,98 @@
+- platform: history_stats
+  name: Temps chauffage Salon Aujourd'hui
+  entity_id: switch.chauffage_salon
+  state: 'on'
+  type: time
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+- platform: history_stats
+  name: Temps chauffage Cuisine Aujourd'hui
+  entity_id: switch.chauffage_cuisine
+  state: 'on'
+  type: time
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+- platform: history_stats
+  name: Temps chauffage Salle de bain Aujourd'hui
+  entity_id: switch.chauffage_salle_de_bain
+  state: 'on'
+  type: time
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+- platform: history_stats
+  name: Temps chauffage Chambre Cave Aujourd'hui
+  entity_id: switch.chauffage_chambre_cave
+  state: 'on'
+  type: time
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+- platform: history_stats
+  name: Temps chauffage Chambre RDC Aujourd'hui
+  entity_id: switch.chauffage_chambre_rdc
+  state: 'on'
+  type: time
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+- platform: history_stats
+  name: Temps chauffage Chambre 1er Aujourd'hui
+  entity_id: switch.chauffage_chambre_1er
+  state: 'on'
+  type: time
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+- platform: history_stats
+  name: Temps chauffage Chambre Florian Aujourd'hui
+  entity_id: switch.chauffage_chambre_florian
+  state: 'on'
+  type: time
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+- platform: history_stats
+  name: Temps chauffage Chambre Toit Aujourd'hui
+  entity_id: switch.chauffage_chambre_toit
+  state: 'on'
+  type: time
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+- platform: history_stats
+  name: Temps chauffage Entrée Aujourd'hui
+  entity_id: switch.chauffage_entree
+  state: 'on'
+  type: time
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+- platform: history_stats
+  name: Temps chauffage Mezzanine Aujourd'hui
+  entity_id: switch.chauffage_mezzanine
+  state: 'on'
+  type: time
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+- platform: history_stats
+  name: Temps chauffage Escalier Cave Aujourd'hui
+  entity_id: switch.chauffage_escalier_cave
+  state: 'on'
+  type: time
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+- platform: history_stats
+  name: Temps chauffage Escalier RDC Aujourd'hui
+  entity_id: switch.chauffage_escalier_rdc
+  state: 'on'
+  type: time
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+- platform: history_stats
+  name: Temps chauffage Escalier 1er Aujourd'hui
+  entity_id: switch.chauffage_escalier_1er
+  state: 'on'
+  type: time
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'
+- platform: history_stats
+  name: Temps chauffage Buanderie Aujourd'hui
+  entity_id: switch.chauffage_buanderie
+  state: 'on'
+  type: time
+  start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+  end: '{{ now() }}'

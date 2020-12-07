@@ -1,0 +1,6 @@
+---
+# Nuki lock at main entrance
+
+platform: nuki
+host: !secret nuki_main_entrance_host
+token: !secret nuki_main_entrance_token

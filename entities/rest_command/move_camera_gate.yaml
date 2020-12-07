@@ -1,0 +1,4 @@
+---
+# Move the camera to point to the gate
+#
+url: !secret camera_position_gate_url

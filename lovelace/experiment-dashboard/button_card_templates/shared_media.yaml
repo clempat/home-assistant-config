@@ -1,0 +1,23 @@
+shared_media:
+  tap_action:
+    action: >
+      [[[ if (entity.state === 'off' || entity.state === 'idle' || entity.state === 'standby') {
+      return 'none'; } else { return 'call-service'; } ]]]
+    service: media_player.media_play_pause
+    service_data:
+      entity_id: '[[[ return entity.entity_id ]]]'
+  double_tap_action:
+    action: call-service
+    service: >
+      [[[ if (entity.state === 'off' || entity.state === 'idle' || entity.state === 'standby') {
+      return 'media_player.turn_on'; } else { return 'media_player.turn_off'; } ]]]
+    service_data:
+      entity_id: '[[[ return entity.entity_id ]]]'
+  styles:
+    card:
+      [color: "[[[ if (entity.state === 'off' || entity.state === 'idle' || entity.state === 'standby' || 
+      entity.state === 'unknown' || entity.state === 'unavailable') { return 'rgba(255, 255, 255, 0.3)'; }
+      if ((entity.state != 'off' && entity.state != 'idle' && entity.state != 'standby') && (entity.attributes.entity_picture == null)) {
+      return 'rgba(0, 0, 0, 0.6)'; } else { return '#efefef'; } ]]]", 
+      text-shadow: "[[[ if (entity.attributes.entity_picture == null) return 'none'; 
+      else return '1px 1px 5px rgba(18, 22, 23, 0.9)' ; ]]]"]

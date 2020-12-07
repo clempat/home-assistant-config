@@ -1,0 +1,17 @@
+---
+description: Notify when there is Tatort in the evening
+alias: notify_tatort_tonight
+id: 7f8c45af-e474-48e7-90b4-c7932eef667e
+trigger:
+  platform: time
+  at: "11:00:00"
+condition:
+  condition: template
+  value_template: '{{ now().fromisoformat(state_attr("sensor.tatort", "date")).date() == now().date() }}'
+action:
+  event: notify.tatort_telegram
+  event_data_template:
+    title: '{{states("sensor.tatort")}}'
+    url: '{{state_attr("sensor.tatort", "url")}}'
+    description: '{{state_attr("sensor.tatort", "description")}}'
+    time: '{{now().fromisoformat(state_attr("sensor.tatort", "date")).strftime("%H:%M")}}'

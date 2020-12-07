@@ -1,0 +1,120 @@
+---
+alias: Mettre à jours les thermostats
+sequence:
+  - service: climate.set_temperature
+    data_template:
+      entity_id:
+        - climate.chambre_1er
+        - climate.chambre_florian
+      temperature: >
+        {% if is_state('input_select.heating_mode', 'Normal') %}
+          {{ states('input_number.target_preset_kid_bedrooms')}}
+        {% elif is_state('input_select.heating_mode', 'Malade') %}
+          20
+        {% elif is_state('input_select.heating_mode', 'Home Office') %}
+          {{ states('input_number.target_preset_kid_bedrooms') }}
+        {% elif is_state('input_select.heating_mode', 'En vacance') %}
+          17
+        {% elif is_state('input_select.heating_mode', 'Été') %}
+          19
+        {% endif %}
+  - service: climate.set_temperature
+    data_template:
+      entity_id: climate.chambre_toit
+      temperature: >
+        {% if is_state('input_select.heating_mode', 'Normal') %}
+          {{ states('input_number.target_preset_bedrooms') }}
+        {% elif is_state('input_select.heating_mode', 'Malade') %}
+          20
+        {% elif is_state('input_select.heating_mode', 'Home Office') %}
+          {{ states('input_number.target_preset_bedrooms') }}
+        {% elif is_state('input_select.heating_mode', 'En vacance') %}
+          17
+        {% elif is_state('input_select.heating_mode', 'Été') %}
+          19
+        {% endif %}
+  - service: climate.set_temperature
+    data_template:
+      entity_id:
+        - climate.salon
+        - climate.cuisine
+      temperature: >
+        {% if is_state('input_select.heating_mode', 'Normal') %}
+          {{ states('input_number.target_preset_common_rooms') }}
+        {% elif is_state('input_select.heating_mode', 'Malade') %}
+          21.5
+        {% elif is_state('input_select.heating_mode', 'Home Office') %}
+          21
+        {% elif is_state('input_select.heating_mode', 'En vacance') %}
+          17
+        {% elif is_state('input_select.heating_mode', 'Été') %}
+          19
+        {% endif %}
+  - service: climate.set_temperature
+    data_template:
+      entity_id: climate.salle_de_bain
+      temperature: >
+        {% if is_state('input_select.heating_mode', 'Normal') %}
+          {{ states('input_number.target_preset_bathrooms') }}
+        {% elif is_state('input_select.heating_mode', 'Malade') %}
+          22
+        {% elif is_state('input_select.heating_mode', 'Home Office') %}
+          {{ states('input_number.target_preset_bathrooms') }}
+        {% elif is_state('input_select.heating_mode', 'En vacance') %}
+          17
+        {% elif is_state('input_select.heating_mode', 'Été') %}
+          19
+        {% endif %}
+  - service: climate.set_temperature
+    data_template:
+      entity_id: climate.buanderie
+      temperature: >
+        {% 
+          if is_state('input_select.guest_mode', 'Cave') or 
+          is_state('input_select.heating_mode', 'Été') 
+        %}
+          {{ states('input_number.target_preset_bathrooms') }}
+        {% elif is_state('input_select.heating_mode', 'En vacance') %}
+          17
+        {% else %}
+          19
+        {% endif %}
+  - service: climate.set_temperature
+    data_template:
+      entity_id:
+        - climate.escalier
+        - climate.mezzanine
+        - climate.entree
+      temperature: "{{ states('input_number.target_preset_corridors') }}"
+  - service: climate.set_temperature
+    data_template:
+      entity_id: climate.chambre_cave
+      temperature: >
+        {% 
+          if is_state('input_select.bedroom_cellar_mode', 'Chambre') %} or
+          is_state('input_select.heating_mode', 'Été') 
+        %}
+          {{ states('input_number.target_preset_bedrooms') }}
+        {% elif is_state('input_select.bedroom_cellar_mode', 'Bureau') %}
+          {{ states('input_number.target_preset_office') }}
+        {% elif is_state('input_select.heating_mode', 'En vacance') %}
+          17
+        {% else %}
+          18
+        {% endif %}
+
+  - service: climate.set_temperature
+    data_template:
+      entity_id: climate.chambre_rdc
+      temperature: >
+        {% if is_state('input_select.bedroom_ground_floor_mode', 'Chambre') %}
+          {{ states('input_number.target_preset_bedrooms') }}
+        {% elif is_state('input_select.bedroom_ground_floor_mode', 'Bureau') %}
+          {{ states('input_number.target_preset_office') }}
+        {% elif is_state('input_select.heating_mode', 'En vacance') %}
+          17
+        {% elif is_state('input_select.heating_mode', 'Été') %}
+          19
+        {% else %}
+          18
+        {% endif %}

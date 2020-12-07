@@ -1,0 +1,14 @@
+---
+description: Switch light profile to night when all in bed
+alias: light_profile_night
+id: 26cfc067-c511-4afb-9227-35ff77d2ef75
+
+trigger:
+  platform: state
+  entity_id: input_boolean.sleeping_mode
+  to: "on"
+action:
+  service: input_select.select_option
+  data:
+    entity_id: input_select.light_profile
+    option: Nuit

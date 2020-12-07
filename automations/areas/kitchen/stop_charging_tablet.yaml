@@ -1,0 +1,14 @@
+---
+  description: Stop charging the Tablet when battery more than 90%
+  alias: stop_charging_tablet.yaml
+  id: f9c4ddba-02ed-4968-9913-2ec69b77ebaa
+
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.ipad_de_clement_battery_level_2
+    above: 90
+
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.plug_kitchen_ipad

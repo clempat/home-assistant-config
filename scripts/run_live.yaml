@@ -1,0 +1,18 @@
+---
+# This script will save light scene before activating the live one
+
+alias: Lancer le live
+sequence:
+  - service: scene.create
+    data:
+      scene_id: office_backup
+      snapshot_entities:
+        - switch.wall_switch_bedroom_cellar_bed
+        - switch.wall_switch_bedroom_cellar_desk
+        - switch.light_video
+        - switch.light_video_2
+        - light.alert_live
+        - light.hue_bedroom_cellar
+  - service: scene.turn_on
+    data:
+      entity_id: scene.office_webcam

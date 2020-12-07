@@ -1,0 +1,35 @@
+---
+description: Turn on ceiling light on motion in Kitchen (night or tv)
+alias: kitchen_turn_on_ceiling_motion
+trigger:
+  platform: state
+  entity_id: binary_sensor.x_motion_kitchen_floor
+  from: "off"
+  to: "on"
+condition:
+  condition: and
+  conditions:
+    - condition: numeric_state
+      entity_id: sensor.x_motion_kitchen_floor_light_level
+      below: 15
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_boolean.sleeping_mode
+          state: "on"
+        - condition: state
+          entity_id: binary_sensor.playing_on_tv
+          state: "on"
+        - condition: not
+          conditions:
+            - condition: state
+              entity_id: remote.harmony_hub
+              state: "off"
+            - condition: state
+              entity_id: remote.harmony_hub
+              state: "unavailable"
+action:
+  service: light.turn_on
+  entity_id: light.kitchen_ceiling
+  data:
+    brightness: 100

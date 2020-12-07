@@ -1,0 +1,87 @@
+# Weather platform
+- platform: deutsche_bahn
+  from: Berlin Attilastr.
+  to: Berlin Nordbahnhof
+  only_direct: true
+
+- platform: deutsche_bahn
+  from: Berlin Nordbahnhof
+  to: Berlin Attilastr.
+  only_direct: true
+
+- platform: deutsche_bahn
+  from: Berlin Südende
+  to: Berlin Nordbahnhof
+  only_direct: true
+
+- platform: deutsche_bahn
+  from: Berlin Nordbahnhof
+  to: Berlin Südende
+  only_direct: true
+
+- platform: deutsche_bahn
+  from: Berlin Attilastr.
+  to: Berlin Anhalter Bf
+  only_direct: true
+
+- platform: deutsche_bahn
+  from: Berlin Anhalter Bf
+  to: Berlin Attilastr.
+  only_direct: true
+
+- platform: deutsche_bahn
+  from: Berlin Südende
+  to: Berlin Anhalter Bf
+  only_direct: true
+
+- platform: deutsche_bahn
+  from: Berlin Anhalter Bf
+  to: Berlin Südende
+  only_direct: true
+
+- platform: template
+  sensors:
+    attilastr:
+      friendly_name: S2
+      value_template: >
+        {{ states('sensor.berlin_attilastr_to_berlin_nordbahnhof') }},
+        {{ state_attr('sensor.berlin_attilastr_to_berlin_nordbahnhof', 'next') }},
+        {{ state_attr('sensor.berlin_attilastr_to_berlin_nordbahnhof', 'next_on') }}
+    sudende:
+      friendly_name: S25/S26
+      value_template: >
+        {{ states('sensor.berlin_sudende_to_berlin_nordbahnhof') }},
+        {{ state_attr('sensor.berlin_sudende_to_berlin_nordbahnhof', 'next') }},
+        {{ state_attr('sensor.berlin_sudende_to_berlin_nordbahnhof', 'next_on') }}
+
+- platform: rest
+  name: Home Assistant Released Version
+  json_attributes:
+    - body
+    - html_url
+  resource: https://api.github.com/repos/home-assistant/home-assistant/releases/latest
+  username: !secret github_username
+  password: !secret github_access_token
+  authentication: basic
+  value_template: "{{ value_json.tag_name }}"
+  headers:
+    Accept: application/vnd.github.v3+json
+    Content-Type: application/json
+    User-Agent: Home Assistant REST sensor
+
+- platform: version
+
+- platform: darksky
+  api_key: !secret darksky_api_key
+  name: meteo
+  monitored_conditions:
+    - summary
+    - precip_intensity
+    - precip_probability
+    - temperature
+    - wind_speed
+    - cloud_cover
+    - humidity
+    - uv_index
+    - moon_phase
+  language: fr

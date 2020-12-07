@@ -1,0 +1,13 @@
+---
+# Proxy to zoom on the gate
+
+name: gate
+platform: proxy
+entity_id: camera.garden
+image_left: 1176
+image_quality: 100
+max_image_width: 717
+max_image_height: 653
+max_stream_width: 717
+max_stream_height: 653
+mode: crop

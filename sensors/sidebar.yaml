@@ -1,0 +1,78 @@
+---
+- platform: template
+  sensors:
+    sidebar_greeting:
+      value_template: >
+        {% set time = now().hour %}
+        {% if time <= 1 %} Bonne Nuit {{'\U0001F611'}}
+        {% elif time <= 3 %} Bonne Nuit {{'\U0001F62A'}}
+        {% elif time <= 5 %} Bonne Nuit {{'\U0001F634'}}
+        {% elif time <= 7 %} Bonjour {{'\U0001F4A9'}}
+        {% elif time <= 9 %} Bonjour {{'\u2615\uFE0F'}}
+        {% elif time <= 10 %} Bonjour {{'\U0001F642'}}
+        {% elif time <= 13 %} Bonne Journée {{'\U0001F60A'}}
+        {% elif time <= 15 %} Bonne Journée {{'\U0001F60E'}}
+        {% elif time <= 17 %} Bonne Journée {{'\U0001F44B\U0001F3FB'}}
+        {% elif time <= 19 %} Bonsoir {{'\U0001F44B\U0001F3FB'}}
+        {% elif time <= 22 %} Bonsoir {{'\U0001F60C'}}
+        {% elif time <= 23 %} Bonsoir {{'\U0001F974'}}
+        {% else %} Salut {{'\U0001F974'}}
+        {% endif %}
+    sidebar_vacuum:
+      value_template: >
+        {% set entity_id = 'vacuum.xiaomi_vacuum_cleaner' %}
+        {% if is_state(entity_id, 'cleaning') %} Nettoyage en cours
+        {% elif is_state(entity_id, 'returning') %} Retour à la base
+        {% endif %}
+    sidebar_weather:
+      value_template: >
+        {% set temperature = states('sensor.meteo_temperature') %}
+        {% set precip = states('sensor.meteo_precip_probability') | round %}
+        {% if not is_state('sensor.meteo_temperature', 'unknown') %}
+          {% if temperature | float <= 0.0 %}
+            Température de {{ temperature }}°C
+            {{ precip }}% Risque de neige {{'\u2744\uFE0F'}}
+          {% elif temperature | float > 0.0 %} 
+          Température de {{ temperature}}°C 
+            {{ precip }}% Risque de pluie {{ '\u2614\uFE0F' if precip > 30 }}
+          {% endif %}
+        {% else %}
+          Impossible de charger les informations météo
+        {% endif %}
+    sidebar_day:
+      icon_template: mdi:calendar
+      value_template: >
+        {% set days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'] %}
+        {{ days[now().weekday()] }}
+    sidebar_date:
+      icon_template: mdi:calendar
+      value_template: >
+        {% set months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 
+        'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'] %}
+        {{ strptime(states('sensor.date'), '%Y-%m-%d').day }} {{ months[now().month-1] }}
+    sidebar_s2:
+      icon_template: mdi:train
+      value_template: >
+        {% set entity_id = 'sensor.berlin_attilastr_to_berlin_nordbahnhof' %}
+
+        S2 (->Nord): {{ state_attr(entity_id, 'departure') }}
+        {%- if state_attr(entity_id, 'delay') > 0 -%}
+          +{{ state_attr(entity_id, 'delay') }}
+        {%- endif -%}
+        {{-", "-}}
+        {{- state_attr(entity_id, 'next') -}}
+        {{-", "-}}
+        {{- state_attr(entity_id, 'next_on') -}}
+    sidebar_s25:
+      icon_template: mdi:train
+      value_template: >
+        {% set entity_id = 'sensor.berlin_sudende_to_berlin_nordbahnhof' %}
+
+        S25 (->Nord): {{ state_attr(entity_id, 'departure') }}
+        {%- if state_attr(entity_id, 'delay') > 0 -%}
+          +{{ state_attr(entity_id, 'delay') }}
+        {%- endif -%}
+        {{-", "-}}
+        {{- state_attr(entity_id, 'next') -}}
+        {{-", "-}}
+        {{- state_attr(entity_id, 'next_on') -}}

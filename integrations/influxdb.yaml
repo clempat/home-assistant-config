@@ -1,0 +1,33 @@
+---
+# Influx for long time data
+#
+# https://github.com/hassio-addons/addon-influxdb
+# https://github.com/hassio-addons/addon-grafana
+# https://www.home-assistant.io/integrations/influxdb/
+#
+
+influxdb:
+  host: !secret influx_host
+  username: !secret influx_ha_username
+  password: !secret influx_ha_password
+  default_measurement: state
+  database: !secret influx_ha_database
+  tags_attributes:
+    - friendly_name
+  exclude:
+    entities:
+      - sensor.date
+      - sensor.date_time
+      - sensor.time
+      - sensor.time_date
+    entity_globs:
+      - sensor.sidebar_*
+      - sensor.seventeentrack_*
+      - sensor.berlin_*
+  include:
+    domains:
+      - climate
+      - sensor
+      - input_number
+      - switch
+      - binary_sensor

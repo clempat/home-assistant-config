@@ -1,0 +1,17 @@
+---
+description: Set the light progile to day the morning
+alias: light_profile_morning_weekend
+id: c471a467-786b-490a-b120-eaf6e4bdeaf6
+
+trigger:
+  - platform: state
+    entity_id: input_boolean.sleeping_mode
+    to: "off"
+  - platform: sun
+    event: sunrise
+    offset: "00:30:00"
+action:
+  service: input_select.select_option
+  data:
+    entity_id: input_select.light_profile
+    option: Jour

@@ -1,0 +1,5 @@
+# Disco light Zwave
+---
+platform: switch
+name: livingroom_disco_light
+entity_id: switch.disco_light_switch_switch

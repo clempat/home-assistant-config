@@ -1,0 +1,8 @@
+---
+name: all_ios
+platform: group
+services:
+  - service: mobile_app_clement
+  - service: mobile_app_iphone_von_melanie
+  - service: mobile_app_ipad_de_clement
+  - service: mobile_app_ipad_de_clement_2

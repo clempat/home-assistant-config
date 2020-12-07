@@ -1,0 +1,4 @@
+---
+# Move the Camera to default position
+#
+url: !secret camera_position_default_url

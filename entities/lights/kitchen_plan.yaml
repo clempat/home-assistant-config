@@ -1,0 +1,6 @@
+---
+# This is a Zigbee switch for the kitchen plan
+
+platform: switch
+name: kitchen_plan
+entity_id: switch.plug_kitchen_plan

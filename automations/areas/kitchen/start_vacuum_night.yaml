@@ -1,0 +1,15 @@
+---
+description: Start Vacuum at night
+alias: start_vacuum_night
+id: 81d0b976-0893-4d4b-b46e-f2abfabe9b46
+
+trigger:
+  platform: state
+  entity_id: input_boolean.sleeping_mode
+  to: "on"
+  for:
+    minutes: 30
+
+action:
+  service: script.turn_on
+  entity_id: script.vacuum_kitchen

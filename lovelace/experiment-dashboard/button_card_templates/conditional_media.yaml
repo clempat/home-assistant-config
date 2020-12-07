@@ -1,0 +1,50 @@
+conditional_media:
+  template: ['base', 'shared_media']
+  state_display: >
+    [[[ if (entity.attributes.media_title === 'Nothing playing' || entity.attributes.media_title === 'No title' && entity.state === 'paused' ) { return 'Inget spelas'; }
+    if (entity.attributes.media_title === 'No title' && entity.state === 'playing') { return 'Ingen titel'; }
+    else { return entity.attributes.media_title; } ]]]
+  custom_fields:
+    media_image: >
+      <svg viewBox="0 0 50 50" />
+    blur: >
+      [[[ if (entity.attributes.entity_picture != null) {
+      return '<svg viewBox="0 0 50 50" />'; } ]]]
+    overlay: >
+      [[[ if (entity.state != 'off' && entity.state != 'idle' && entity.state != 'standby' && entity.state != 'unavailable') {
+      return '<svg viewBox="0 0 50 50" />'; } ]]]
+    play_pause: >
+      [[[ const style = `<style>.scale-up { animation: scale-up 0.3s; cubic-bezier(.05,.5,.3,1) 1; transform-origin: center center; }
+      @keyframes scale-up { 0% { opacity: 0; transform: scale(0); } 100% { opacity: 1; transform: scale(1); } }</style>`;
+      if (entity.state === 'playing') { return `<svg viewBox="0 0 166 166">${style}<path class="scale-up" d="M0 0h59.9v166H0zm106.1 0H166v166h-59.9z"/></svg>`; }
+      if (entity.state === 'paused') { return `<svg viewBox="0 0 166 166">${style}<path class="scale-up" d="M0 0l166 83L0 166z"/></svg>`; } ]]]
+  styles:
+    custom_fields:
+      media_image:
+        [background-image:
+        "[[[ return entity.attributes.entity_picture == null ? 'linear-gradient(0deg, rgba(115, 115, 115, 0.2) 0%, rgba(115, 115, 115, 0.2) 100%)' 
+        : 'linear-gradient(0deg, rgba(13,17,19,0.9) 0%, rgba(13,17,19,0) 50%), url(' + entity.attributes.entity_picture + ')'; ]]]", 
+        background-size: cover, top: 0%, left: 0%, width: 100%, position: absolute]
+      blur:
+        [background-image:
+        "[[[ return entity.attributes.entity_picture == null ? 'none' : 'url(' + entity.attributes.entity_picture + ')'; ]]]", 
+        background-size: cover, top: 0%, left: 0%, width: 100%, filter: blur(4px), clip-path: inset(16vw 0 0 0), position: absolute]
+      overlay:
+        [background:
+        "[[[ return entity.attributes.entity_picture == null ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.4)'; ]]]", 
+        background-size: cover, z-index: 0, top: 16vw, left: 0%, width: 100%, opacity: 1, position: absolute]
+      play_pause:
+        [filter: 
+        "[[[ return entity.attributes.entity_picture == null ? 'none' : 'drop-shadow(0 0 1.3vw rgba(0,0,0,0.7))'; ]]]", 
+        fill: '#dedede', top: 0, right: 0, bottom: 0, left: 0, margin: auto, width: 21%, height: 21%, position: absolute]
+      icon:
+        [fill:
+        "[[[ if (entity.state === 'off' || entity.state === 'idle' || entity.state === 'standby' || 
+        entity.state === 'unknown' || entity.state === 'unavailable') return '#9da0a2'; 
+        else return 'rgba(255, 255, 255, 0.8)'; ]]]", 
+        top: 5.35%, left: 5.35%, width: 2.95vw, position: absolute]
+    name:
+      [top: 79.8%, left: 5.3%, position: absolute, line-height: 2vw, z-index: 10]
+    state:
+      [top: 87.5%, left: 5.3%, position: absolute, line-height: 2vw, z-index: 10, 
+      white-space: nowrap, overflow: hidden, text-overflow: ellipsis, max-width: 90%]

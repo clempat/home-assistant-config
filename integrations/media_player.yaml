@@ -1,0 +1,6 @@
+---
+# Media Player Integration
+# Interacts with media players on your network.
+#
+
+media_player: !include_dir_list ../entities/media_players

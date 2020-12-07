@@ -1,0 +1,14 @@
+---
+description: Turn On light off motion in mezzanine
+alias: mezzanine_turn_off_light_motion
+id: e29a860c-216c-4f58-8aec-2c50a16c9e61
+trigger:
+  platform: state
+  entity_id: binary_sensor.x_motion_stairs_mezzanine
+  to: "off"
+  for:
+    minutes: 1
+    seconds: 30
+action:
+  service: light.turn_off
+  entity_id: light.mezzanine_floor

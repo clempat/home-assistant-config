@@ -1,0 +1,14 @@
+---
+# This group all windows sensor of my home
+name: Fenêtres
+icon: mdi:window-open
+entities:
+  - binary_sensor.open_livingroom
+  - binary_sensor.open_kitchen
+  - binary_sensor.open_office
+  - binary_sensor.open_bedroom
+  - binary_sensor.open_bedroom_florian
+  - binary_sensor.open_entrance
+  - binary_sensor.open_bedroom_roof
+  - binary_sensor.open_bathroom
+  - binary_sensor.open_cellar_room

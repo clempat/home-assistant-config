@@ -1,0 +1,11 @@
+platform: template
+sensors:
+  motion_stairs_ground_floor:
+    friendly_name: "Escalier RDC"
+    device_class: motion
+    value_template: >
+      {{ 
+        is_state('binary_sensor.x_motion_stairs_ground_floor', 'on') 
+        or is_state('binary_sensor.x_motion_stairs_ground_floor_up', 'on') 
+        or is_state('binary_sensor.x_motion_stairs_ground_floor_down', 'on') 
+      }}

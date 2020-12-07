@@ -1,0 +1,19 @@
+---
+  description: Notify when did not charge bike battery today
+  alias: notification_battery_bike
+  id: da1d956e-e9d2-4116-9154-616ccceb3f53
+  
+  trigger:
+    - platform: time
+      at: "20:45"
+
+  condition:
+  - condition: numeric_state
+    entity_id: sensor.battery_bike_changed_last_48h
+    below: 1
+
+  action:
+    - service: notify.telegram
+      data:
+        title: "\U0001F6B2 *Battery Vélo*"
+        message: "Il semblerait que le vélo n'a pas été branché les dernières 48h."

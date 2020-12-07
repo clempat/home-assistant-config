@@ -1,0 +1,15 @@
+---
+description: Open the gate after IOS action
+alias: open_gate_ios
+id: f4ce4665-b9ef-4779-8aed-e54d6f8d30fe
+trigger:
+  - platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: OPEN_DOOR
+  - platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: OPEN_DOOR
+action:
+  service: script.open_gate

@@ -1,0 +1,8 @@
+---
+platform: group
+name: all
+entities:
+  - cover.florian_bedroom_cover_level
+  - cover.bedroom_first_floor
+  - cover.sofa_cover_level
+  - cover.living_room_cover_terrasse_level

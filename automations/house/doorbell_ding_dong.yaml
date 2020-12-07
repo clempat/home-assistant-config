@@ -1,0 +1,11 @@
+---
+description: Start Doorbell script when button pushed
+alias: doorbell_ding_dong
+id: e99051ee-7a81-433e-be93-b0d58a35b705
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.doorbell
+    to: "on"
+action:
+  - service: script.notify_doorbell

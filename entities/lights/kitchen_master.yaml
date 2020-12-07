@@ -1,0 +1,5 @@
+platform: group
+name: kitchen_master
+entities:
+  - light.kitchen
+  - light.kitchen_ceiling_kids

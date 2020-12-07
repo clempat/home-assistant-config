@@ -1,0 +1,17 @@
+---
+# This is a sensor which will indicate if I am playing something on the living room tv
+# This should be other than spotify
+platform: template
+sensors:
+  playing_on_tv:
+    friendly_name: Regarde TV
+    value_template: >
+      {{ 
+        state_attr('media_player.nvidia_shield', 'source') != "Spotify" and
+        state_attr('media_player.nvidia_shield', 'source') != "Google Cast" and
+        (
+          is_state('media_player.nvidia_shield', 'playing')
+          or is_state('media_player.shield', 'playing')
+          or is_state('media_player.kodi', 'playing') 
+        )
+      }}

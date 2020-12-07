@@ -1,0 +1,24 @@
+---
+description: Turn on Hyperion
+alias: livingroom_turn_on_hyperion
+id: a5efff4a-068b-43d1-9c7d-6e45be22d297
+trigger:
+  - platform: state
+    entity_id: media_player.nvidia_shield
+    to: "idle"
+    for:
+      minutes: 1
+  - platform: state
+    entity_id: remote.harmony_hub
+    from: "off"
+condition:
+  condition: state
+  entity_id: switch.hdmi_hyperion
+  state: "off"
+action:
+  - service: switch.turn_on
+    entity_id: switch.hdmi_hyperion
+  - service: light.turn_on
+    entity_id: light.hyperion
+    data:
+      effect: Cinema dim lights

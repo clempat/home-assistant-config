@@ -1,0 +1,18 @@
+---
+description: Eject CD Audio
+alias: livingroom_cd_audio_eject
+id: e483e517-84c7-4cbb-9f2a-2fee692801c0
+
+trigger:
+  platform: event
+  event_type: deconz_event
+  event_data:
+    id: tradfri_remote_control
+    event: 2002
+action:
+  - service: remote.send_command
+    data:
+      entity_id: remote.harmony_hub
+      command: Eject
+      device: 63016539
+

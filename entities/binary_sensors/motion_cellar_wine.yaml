@@ -1,0 +1,11 @@
+---
+  platform: template
+  sensors:
+    motion_cellar_wine:
+      friendly_name: "Cave à vin"
+      device_class: motion
+      value_template: >
+        {{
+          is_state('binary_sensor.ikea_motion_cellar_wine_roof', 'on')
+          or is_state('binary_sensor.ikea_motion_cellar_wine', 'on')
+        }}

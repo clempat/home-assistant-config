@@ -1,0 +1,8 @@
+# Fritzbox network presence
+
+platform: fritz
+host: !secret gw_host
+username: !secret fritz_username
+password: !secret fritz_password
+new_device_defaults:
+  track_new_devices: false

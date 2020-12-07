@@ -1,0 +1,7 @@
+---
+# My Nvidia Shield
+
+platform: androidtv
+name: Nvidia Shield
+host: !secret shield_host
+adb_server_ip: !secret ha_vm_host

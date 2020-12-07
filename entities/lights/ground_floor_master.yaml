@@ -1,0 +1,8 @@
+---
+platform: group
+name: ground_floor_master
+entities:
+  - light.kitchen_master
+  - light.livingroom_master
+  - light.kitchen_plan
+  - light.hyperion

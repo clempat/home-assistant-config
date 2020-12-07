@@ -1,0 +1,8 @@
+---
+platform: template
+sensors:
+  presence_aldona:
+    friendly_name: Aldona
+    value_template: >
+      {{  is_state('calendar.aldona', 'on') or  is_state('calendar.aldona_maison', 'on') }}
+    device_class: presence

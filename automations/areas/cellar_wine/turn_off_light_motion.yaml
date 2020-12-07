@@ -1,0 +1,15 @@
+---
+description: Turn off light when no motion
+alias: cellar_wine_turn_off_light_motion
+id: 65a578a2-a58b-42c1-8b32-d1d2f0e1aae3
+
+trigger:
+  platform: state
+  entity_id: binary_sensor.motion_cellar_wine
+  to: "off"
+  for:
+    minutes: 1
+    seconds: 30
+action:
+  service: light.turn_off
+  entity_id: light.cellar_wine

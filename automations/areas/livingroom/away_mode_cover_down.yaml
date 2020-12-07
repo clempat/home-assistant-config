@@ -1,0 +1,24 @@
+---
+description: "Close cover when away mode activated"
+alias: "livingroom_away_mode_cover_down"
+id: 6d2181b0-e734-4247-b762-ec4bcc36e4fc
+
+trigger:
+  - platform: state
+    entity_id: sun.sun
+    to: "below_horizon"
+
+
+condition:
+  - condition: state
+    entity_id: input_boolean.vacation_mode
+    state: "on"
+
+action:
+  - service: scene.turn_on
+    data:
+      entity_id: scene.cover_night_all
+  - service: notify.telegram_clement
+    data:
+      title: "Home assistant "
+      message: "Tous les volets se sont correctements fermé."

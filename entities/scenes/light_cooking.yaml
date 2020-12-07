@@ -1,0 +1,11 @@
+name: light_cooking
+entities:
+  light.kitchen_table:
+    state: on
+    brightness: 202
+    color_temp: 403
+  light.kitchen_ceiling:
+    state: on
+    brightness: 202
+    color_temp: 333
+  switch.shenzhen_neo_electronics_co_ltd_power_plug_12a_switch_2: on

@@ -1,0 +1,15 @@
+name: light_diner
+entities:
+  light.tradfri_bulb_2:
+    state: on
+    brightness: 70
+    color_temp: 403
+  light.kitchen_ceiling:
+    state: on
+    brightness: 30
+    color_temp: 403
+  light.kitchen_ceiling_kids:
+    state: on
+    brightness: 30
+    color_temp: 403
+  switch.shenzhen_neo_electronics_co_ltd_power_plug_12a_switch_2: off

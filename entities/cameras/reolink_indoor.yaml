@@ -1,0 +1,8 @@
+---
+# New Reolink indoor camera
+
+name: reolink_indoor
+platform: generic
+still_image_url: !secret reolink_indoor_image_url
+stream_source: !secret reolink_indoor_stream_source
+verify_ssl: false

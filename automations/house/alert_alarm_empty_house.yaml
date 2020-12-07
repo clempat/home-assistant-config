@@ -1,0 +1,30 @@
+---
+description: "Alert when motion or door or window if nobody home"
+id: aa69d5ad-405f-4bfd-988c-62f0c4c4bbdd
+alias: "alert_alarm_empty_house"
+
+trigger:
+  - platform: state
+    to: 'on'
+    entity_id: binary_sensor.motion_all
+  - platform: state
+    to: 'on'
+    entity_id: binary_sensor.open_any
+
+condition:
+  - condition: state
+    entity_id: binary_sensor.presence_any
+    state:  'false'
+action:
+  - service: notify.telegram
+    data_template:
+      title: "\U0001f6a8 *Alerte présence.*"
+      message: >
+        Nous avons détectés des signes de présences anormales.
+        
+        Fenêtres/Portes ouvertes:
+        {%for s in states.binary_sensor if s.entity_id.startswith('binary_sensor.open_') and s.state == 'on' %}{{s.name}}{%if not loop.last%},{%endif%}{%endfor%}
+
+        Détection de mouvements:
+        {%for s in states.binary_sensor if s.entity_id.startswith('binary_sensor.motion_') and s.state == 'on' %}{{s.name}}{%if not loop.last%},{%endif%}{%endfor%}
+      

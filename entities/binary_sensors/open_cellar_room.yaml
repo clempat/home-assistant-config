@@ -1,0 +1,11 @@
+---
+platform: template
+sensors:
+  open_cellar_room:
+    friendly_name: Bureau Cave
+    device_class: window
+    value_template: >
+      {{ 
+        is_state('binary_sensor.x_window_cellar_smallroom_right', 'on')
+        or is_state('binary_sensor.x_window_cellar_smallroom_left', 'on')
+      }}

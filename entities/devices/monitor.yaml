@@ -1,0 +1,21 @@
+# This is blea tracker called monitor
+# This run on 2 Raspberry pi Home and Kitchen. Maybe will replace with room assistant
+# https://github.com/andrewjfreyer/monitor
+
+platform: mqtt
+devices:
+  # Not using NUT anymore
+  # clement_nut_kitchen: "monitor/kitchen/E7:15:4D:CF:3E:46/device_tracker"
+  # melanie_nut_kitchen: "monitor/kitchen/F1:1A:E4:EF:62:C7/device_tracker"
+  clement_iphone_kitchen: "monitor/kitchen/F0:98:9D:08:34:96/device_tracker"
+  clement_watch_kitchen: "monitor/kitchen/E4:E0:A6:90:61:5A/device_tracker"
+  # Not using NUT anymore
+  # clement_nut_home: "monitor/home/E7:15:4D:CF:3E:46/device_tracker"
+  # melanie_nut_home: "monitor/home/F1:1A:E4:EF:62:C7/device_tracker"
+  clement_iphone_home: "monitor/home/F0:98:9D:08:34:96/device_tracker"
+  clement_watch_home: "monitor/home/E4:E0:A6:90:61:5A/device_tracker"
+  # Following was deleted, need to add something on hyperion
+  # clement_nut_salon: "monitor/salon/E7:15:4D:CF:3E:46/device_tracker"
+  # melanie_nut_salon: "monitor/salon/F1:1A:E4:EF:62:C7/device_tracker"
+  # clement_iphone_salon: "monitor/salon/F0:98:9D:08:34:96/device_tracker"
+  # clement_watch_salon: "monitor/salon/E4:E0:A6:90:61:5A/device_tracker"

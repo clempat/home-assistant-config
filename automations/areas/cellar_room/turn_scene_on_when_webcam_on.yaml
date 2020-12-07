@@ -1,0 +1,16 @@
+alias: turn_scene_on_when_webcam_on
+description: Turn the right scene when the webcam is on
+id: ce440dbf-c7a9-418c-8d4c-8c3014e18e25
+
+trigger:
+  - platform: state
+    entity_id: 
+      - binary_sensor.macbook_pro_2_hd_web_camera_camera
+      - binary_sensor.macbook_pro_2_hd_web_camera_2
+      - binary_sensor.macbook_pro_2_cam_link_4k_camera
+      - binary_sensor.macbook_pro_2_cam_link_4k_2
+      - binary_sensor.macbook_pro_2_cam_link_4k_camera_2
+    from: "off"
+    to: "on"
+action:
+  service: script.run_live

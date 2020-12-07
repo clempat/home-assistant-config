@@ -1,0 +1,15 @@
+template: ['base', 'shared_media']
+styles:
+  custom_fields:
+    icon:
+      [opacity: "[[[ return entity.attributes.entity_picture == null ? 1 : 0; ]]]", 
+      top: 11.5%, left: 11.5%, width: 2.9vw, position: absolute, fill: '#9da0a2']
+  card:
+    [background-color: none, background-size: cover,
+    background-image: 
+    "[[[ if (entity.state === 'off' || entity.state === 'idle' || entity.state === 'standby' || 
+    entity.state === 'unknown' || entity.state === 'unavailable') {
+    return 'linear-gradient(0deg, rgba(115, 115, 115, 0.2) 0%, rgba(115, 115, 115, 0.2) 100%)'; }
+    if ((entity.state != 'off' && entity.state != 'idle' && entity.state != 'standby') && (entity.attributes.entity_picture == null)) {
+    return 'linear-gradient(0deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%)'; }
+    else { return 'linear-gradient(0deg, rgba(0,0,0,.8) 0%, rgba(0,0,0,0) 100%), url(' + entity.attributes.entity_picture + ')'; } ]]]"]

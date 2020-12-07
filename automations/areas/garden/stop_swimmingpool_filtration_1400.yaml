@@ -1,0 +1,10 @@
+---
+description: Turn on Swimming pool filtration at 08:00
+alias: garden.start_swimmingpool_filtration_0800
+id:  abfc9348-4995-4a6b-8181-eb3a07d7d542
+trigger:
+  platform: time
+  at: "14:00:00"
+action:
+  service: switch.turn_off
+  entity_id: switch.livingroom_plug_swimmingpool_filtration_switch

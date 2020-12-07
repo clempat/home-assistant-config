@@ -1,0 +1,9 @@
+---
+  type: image
+  image: local/sidebar.png
+  tap_action:
+    action: none
+  hold_action:
+    action: none
+  style:
+    {pointer-events: none, border-right: '1.5px solid rgba(58,69,73,0.2)'}

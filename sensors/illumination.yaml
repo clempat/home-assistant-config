@@ -1,0 +1,20 @@
+- platform: min_max
+  name: Illumination Escalier (min)
+  type: min
+  entity_ids:
+    - sensor.illumination_rdc_up
+    - sensor.illumination_158d0001fa3d70
+
+- platform: min_max
+  name: Illumination Entrée (min)
+  type: min
+  entity_ids:
+    - sensor.illumination_entrance1
+    - sensor.illumination_entrance2
+
+- platform: min_max
+  name: Illumination Cave (min)
+  type: min
+  entity_ids:
+    - sensor.illumination_rdc_down
+    - sensor.illumination_rdc_up

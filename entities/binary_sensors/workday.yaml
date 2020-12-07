@@ -1,0 +1,7 @@
+---
+# Workday Sensor
+# https://www.home-assistant.io/integrations/workday/
+
+platform: workday
+country: DE
+province: BE

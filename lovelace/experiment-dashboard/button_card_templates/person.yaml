@@ -1,0 +1,26 @@
+person:
+  template: ['base']
+  show_entity_picture: true
+  state_display: >
+    [[[ return entity.state === 'home' ? 'Oui' : 'Non'; ]]]
+  state:
+    - value: 'home'
+      styles:
+        card: [background-color: 'rgba(255, 255, 255, 0.8)']
+        name: [color: 'rgba(0, 0, 0, 0.6)']
+        state: [color: 'rgba(0, 0, 0, 0.6)']
+  styles:
+    entity_picture: 
+      [clip-path: circle(50% at center), top: 7.5%, left: 11.2%, width: 3vw, position: absolute]
+  custom_fields:
+    circle: >
+      [[[ function time(c) {
+      var s = (c / 1000); var m = (c / (1000 * 60)); var h = (c / (1000 * 60 * 60)); var d = (c / (1000 * 60 * 60 * 24));
+      if (s < 60) { return parseInt(s) + 's'; } else if (m < 60) { return parseInt(m) + 'm'; }
+      else if (h < 24) { return parseInt(h) + 'h'; } else { return parseInt(d) + 'd'; }
+      }
+      const last_changed = time(Date.now() - Date.parse(states[entity.entity_id].last_changed));
+      const stroke_color = entity.state === 'home' ? '#b2b2b2' : '#313638'; 
+      const fill_color = entity.state === 'home' ? 'none' : '#FFFFFF08';
+      return `<svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="20.5" stroke="${stroke_color}" stroke-width="1.5" fill="${fill_color}" />
+      <text x="50%" y="54%" fill="#8d8e90" font-size="14" text-anchor="middle" alignment-baseline="middle">${last_changed}</text></svg>`; ]]]

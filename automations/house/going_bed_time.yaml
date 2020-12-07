@@ -1,0 +1,32 @@
+---
+description: Turn on sleeping mode when detect bed time
+alias: going_bed_time
+trigger:
+  - platform: state
+    entity_id: light.ground_floor_master
+    to: "off"
+    for:
+      minutes: 5
+  - platform: state
+    entity_id: light.cellar_bedroom
+    to: "off"
+    for:
+      minutes: 5
+condition:
+  condition: and
+  conditions:
+    - condition: state
+      entity_id: light.cellar_bedroom
+      state: "off"
+    - condition: state
+      entity_id: light.ground_floor_master
+      state: "off"
+    - condition: time
+      after: "20:30:00"
+      before: "03:00:00"
+    - condition: state
+      entity_id: sun.sun
+      state: below_horizon
+action:
+  - service: input_boolean.turn_on
+    entity_id: input_boolean.sleeping_mode

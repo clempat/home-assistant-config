@@ -1,0 +1,13 @@
+---
+description: Notify when Home Assistant starts
+alias: ha_start_notification
+id: c2314cc2-b5e1-409d-b316-c9a45f9f266d
+
+trigger:
+  - platform: homeassistant
+    event: start
+action:
+  - service: notify.telegram_clement
+    data:
+      title: "\U0001F680 *Home assistant*"
+      message: "Home assistant is now running..."

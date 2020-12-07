@@ -1,0 +1,3 @@
+name: telegram_melanie
+platform: telegram
+chat_id: !secret telegram_melanie_id_chat_id

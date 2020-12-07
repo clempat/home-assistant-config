@@ -1,0 +1,11 @@
+- platform: darksky
+  name: Meteo
+  api_key: !secret darksky_api_key
+  forecast:
+  - 0
+  hourly_forecast:
+  - 0
+  monitored_conditions:
+  - precip_probability
+  - temperature_high
+  - cloud_cover

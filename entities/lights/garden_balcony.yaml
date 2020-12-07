@@ -1,0 +1,5 @@
+---
+
+  platform: switch
+  name: garden_balcony
+  entity_id: switch.plug_xmas_light_balcony

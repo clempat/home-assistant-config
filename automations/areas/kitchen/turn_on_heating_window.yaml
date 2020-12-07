@@ -1,0 +1,12 @@
+---
+description: Turn On Heating when windows is closed
+alias: kitchen_turn_on_heating_window
+id: 991db2b4-06c3-42f0-b0df-4f2deccc512b
+trigger:
+  platform: state
+  entity_id: binary_sensor.open_kitchen
+  to: "off"
+action:
+  - service: climate.turn_on
+    data:
+      entity_id: climate.cuisine

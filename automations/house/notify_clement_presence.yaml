@@ -1,0 +1,18 @@
+---
+description: Notify when clement is home or leave
+alias: notify_clement_presence
+id: 1f43c616-26e2-478e-9c13-558e7a2cc96d
+
+trigger:
+  - platform: state
+    entity_id: person.clement_patout
+action:
+  - service: notify.telegram_clement
+    data_template:
+      title: Présence Clément.
+      message: >
+        {% if is_state('person.clement_patout', 'home') %}
+          Clément vient de rentrer !
+        {% else %}
+          Clément vient de partir !
+        {% endif %}

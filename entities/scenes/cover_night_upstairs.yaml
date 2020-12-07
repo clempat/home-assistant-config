@@ -1,0 +1,5 @@
+name: cover_night_upstairs
+entities:
+  cover.first_floor:
+    state: open
+    current_position: 13

@@ -1,0 +1,17 @@
+---
+description: Auto turn off Harmony 3 hours after CD
+alias: cd_audio_turn_off
+id: 440c914e-91d6-4591-9a36-b5940e790c5f
+
+trigger:
+  platform: state
+  entity_id: remote.harmony_hub
+  to: "on"
+  for:
+    hours: 3
+condition:
+  condition: template
+  value_template: '{{ trigger.to_state.attributes.current_activity == "CD audio" }}'
+action:
+  - service: remote.turn_off
+    entity_id: remote.harmony_hub

@@ -1,0 +1,9 @@
+name: Clément
+id: clement
+user_id: !secret clement_user_id
+device_trackers:
+  - device_tracker.clement_watch_kitchen
+  - device_tracker.clement_iphone_kitchen
+  - device_tracker.clement_watch_home
+  - device_tracker.clement_iphone_home
+  - device_tracker.clement_keys

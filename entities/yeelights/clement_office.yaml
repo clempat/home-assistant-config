@@ -1,0 +1,9 @@
+---
+# Light for stairs at the first floor
+# This is the one going to the second floor on wall
+#
+
+!secret yeelight_clement_office_host:
+  name: clement_office
+  use_music_mode: false
+  save_on_change: false

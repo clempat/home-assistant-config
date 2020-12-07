@@ -1,0 +1,7 @@
+---
+
+platform: group
+name: Gateway Xiaomi
+entities:
+  - light.gateway_light_7811dce13512
+  - light.gateway_light_7811dcb22bac

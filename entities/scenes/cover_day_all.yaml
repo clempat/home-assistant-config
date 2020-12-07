@@ -1,0 +1,5 @@
+name: cover_day_all
+entities:
+  cover.all:
+    state: open
+    current_position: 100

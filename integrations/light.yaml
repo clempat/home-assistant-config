@@ -1,0 +1,7 @@
+---
+# Light Integration
+# This integration allows you to track and control various light bulbs.
+# Read the integration documentation for your particular light hardware to learn how to enable it.
+#
+# https://www.home-assistant.io/integrations/light
+light: !include_dir_list ../entities/lights/

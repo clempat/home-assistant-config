@@ -1,0 +1,11 @@
+---
+  alias: Assistant Bonne Nuit
+  description: Script to be run when I say good night to any assistant
+  sequence:
+    - service: scene.turn_on
+      entity_id: scene.cover_night_upstairs
+    - condition: state
+      entity_id: sun.sun
+      state: "below_horizon"
+    - service: cover.close_cover
+      entity_id: cover.ground_floor

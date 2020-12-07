@@ -1,0 +1,5 @@
+---
+
+platform: switch
+name: garden_stripe
+entity_id: switch.garden_light_stripe

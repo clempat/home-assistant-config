@@ -1,0 +1,6 @@
+name: Melanie
+id: melanie
+user_id: !secret melanie_user_id
+device_trackers:
+  - device_tracker.iphone_von_melanie
+  - device_tracker.melanie_keys

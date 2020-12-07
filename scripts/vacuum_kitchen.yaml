@@ -1,0 +1,8 @@
+---
+alias: Aspirer la cuisine (zone)
+sequence:
+  - service: xiaomi_miio.vacuum_clean_zone
+    data:
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      zone: [[24469, 25014, 30169, 27714]]
+      repeats: 3

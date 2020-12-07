@@ -1,0 +1,21 @@
+---
+description: Notify all IOS when doorbell
+alias: notify_doorbell_ios
+id: 5cf0a703-d76e-4137-8a03-341e3ab8cb39
+
+trigger:
+  platform: state
+  entity_id: binary_sensor.doorbell
+  to: "on"
+
+action:
+  service: notify.all_ios
+  data:
+    title: "🔔 Sonnette"
+    message: "Quelqu'un est au portail !"
+    data:
+      attachment:
+        content-type: jpeg
+      push:
+        category: camera
+      entity_id: camera.gate

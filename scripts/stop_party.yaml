@@ -1,0 +1,11 @@
+---
+alias: livingroom_stop_party
+sequence:
+  - service: scene.turn_on
+    entity_id: scene.light_cozy_livingroom
+  - service: media_player.turn_off
+    entity_id: media_player.nvidia_shield
+  - service: light.turn_on
+    entity_id: light.livingroom_ceiling
+  - service: light.turn_off
+    entity_id: light.livingroom_disco_light

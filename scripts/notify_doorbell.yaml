@@ -1,0 +1,6 @@
+---
+# This script is a sequence to run when someone ring the bell
+alias: Notifier la sonette
+sequence:
+  - service: script.run_sncf_on_gateways
+  - service: script.display_doorbell

@@ -1,0 +1,7 @@
+name: cover_night_all
+entities:
+  cover.first_floor:
+    state: open
+    current_position: 13
+  cover.living_room_cover_terrasse_level: closed
+  cover.sofa_cover_level: closed

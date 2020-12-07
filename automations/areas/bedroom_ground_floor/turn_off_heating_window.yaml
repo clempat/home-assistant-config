@@ -1,0 +1,12 @@
+---
+description: Turn Off Heating when windows is open
+alias: bedroom_ground_floor_turn_off_heating_window
+id: 90753f00-2c00-4d8c-9ef6-d50e8c9481f0
+trigger:
+  platform: state
+  entity_id: binary_sensor.x_window_bedroom_ground_floor
+  to: "on"
+action:
+  - service: climate.turn_off
+    data:
+      entity_id: climate.chambre_rdc

@@ -1,0 +1,16 @@
+---
+description: Prepare Denon when starting Shield
+alias: livingroom_prepare_denon_shield
+trigger:
+  - platform: state
+    entity_id: media_player.nvidia_shield
+    from: "off"
+action:
+  - service: remote.send_command
+    data:
+      entity_id: remote.harmony_hub
+      command:
+        - PowerOn
+        - InputCbl/Sat
+      device: 62158828
+      delay_secs: 0.6

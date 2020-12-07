@@ -1,0 +1,14 @@
+---
+alias: stairs_ground_floor_turn_off_light_motion
+description: Turn light off when motion on ground floor
+id: 88fe0cd1-0a1a-4939-a55a-128a7452ad77
+trigger:
+  platform: state
+  entity_id: binary_sensor.motion_stairs_ground_floor
+  to: "off"
+  for:
+    minutes: 1
+    seconds: 30
+action:
+  service: light.turn_off
+  entity_id: light.stairs_ground_floor

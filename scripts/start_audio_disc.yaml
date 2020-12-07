@@ -1,0 +1,12 @@
+alias: Démarrer CD audio Salon
+sequence:
+  - service: remote.turn_on
+    entity_id: remote.harmony_hub
+    data:
+      activity: 39693224
+  - service: remote.send_command
+    entity_id: remote.harmony_hub
+    data:
+      command:
+        - Eject
+      device: 63016539

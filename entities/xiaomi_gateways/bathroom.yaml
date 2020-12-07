@@ -1,0 +1,5 @@
+---
+# This is the xiaomi gateway located in the bathroom
+
+mac: !secret xiaomi_gateway_bathroom_mac
+key: !secret xiaomi_gateway_bathroom_key

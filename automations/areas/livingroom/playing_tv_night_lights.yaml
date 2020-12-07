@@ -1,0 +1,25 @@
+---
+description: Switch on TV scene on watching tv
+alias: livingroom_playing_tv_night_lights
+id: 7cc1e0bb-0197-4a80-9ad1-6ffdb8b0586b
+trigger:
+  platform: state
+  entity_id: binary_sensor.playing_on_tv
+  to: "on"
+  for:
+    seconds: 5
+condition:
+  condition: or
+  conditions:
+    - condition: state
+      entity_id: sun.sun
+      state: below_horizon
+    - condition: time
+      after: "20:00:00"
+action:
+  - service: scene.turn_on
+    entity_id: scene.light_watching_tv
+  - service: light.turn_on
+    entity_id: light.hyperion
+    data:
+      effect: HDMI

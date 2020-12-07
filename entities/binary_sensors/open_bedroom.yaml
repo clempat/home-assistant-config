@@ -1,0 +1,12 @@
+---
+platform: template
+sensors:
+  open_bedroom:
+    friendly_name: Chambre Mina & Clara
+    device_class: window
+    value_template: >
+      {{ 
+        is_state('binary_sensor.x_window_mina_clara_bedroom_left', 'on')
+        or is_state('binary_sensor.x_window_mina_clara_bedroom_mid', 'on')
+        or is_state('binary_sensor.x_window_girls_bedroom_door', 'on')
+      }}

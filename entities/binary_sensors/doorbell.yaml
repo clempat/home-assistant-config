@@ -1,0 +1,8 @@
+---
+# My MQTT doorbel
+platform: mqtt
+name: doorbell
+availability_topic: "doorbell/status"
+state_topic: doorbell/button
+payload_available: "online"
+payload_not_available: "offline"

@@ -1,0 +1,23 @@
+alias: Lancer sncf sur les gateway Xiaomi
+sequence:
+  - condition: or
+    conditions:
+      - condition: state
+        entity_id: input_select.dnd_mode
+        state: "Aucun"
+      - condition: state
+        entity_id: input_select.dnd_mode
+        state: "Etage"
+  - service: xiaomi_aqara.play_ringtone
+    data:
+      gw_mac: !secret xiaomi_gateway_kitchen_mac
+      ringtone_id: 10003
+      ringtone_vol: 60
+  - condition: state
+    entity_id: input_select.dnd_mode
+    state: "Aucun"
+  - service: xiaomi_aqara.play_ringtone
+    data:
+      gw_mac: !secret xiaomi_gateway_bathroom_mac
+      ringtone_id: 10002
+      ringtone_vol: 60

@@ -1,0 +1,9 @@
+---
+# Temperature Target for any adult Bedroom
+name: Température Target Chambres
+min: 0
+max: 25
+step: 0.5
+mode: box
+unit_of_measurement: °C
+icon: mdi:thermostat

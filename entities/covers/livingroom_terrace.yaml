@@ -1,0 +1,16 @@
+# ---
+# platform: template
+# name: livingroom_terrace
+# open_cover:
+#   service: script.open_cover_terrace
+# close_cover:
+#   service: cover.close_cover
+#   entity_id: cover.livingroom_terrace
+# stop_cover:
+#   service: cover.stop_cover
+#   entity_id: cover.livingroom_terrace
+# set_cover_position:
+#   service: cover.set_cover_position
+#   entity_id: cover.livingroom_terrace
+# value_template: "{{ states.cover.livingroom_terrace.attributes.current_position < 15 }}"
+# position_template: "{{ states.cover.livingroom_terrace.attributes.current_position }}"

@@ -1,0 +1,19 @@
+---
+alias: stairs_ground_floor_turn_on_light_motion
+description: Turn light on when motion on ground floor
+id: 9c5e893b-d5ef-4e1b-bbca-b65a371f50df
+trigger:
+  platform: state
+  entity_id: binary_sensor.motion_stairs_ground_floor
+  from: "off"
+  to: "on"
+action:
+  service: light.turn_on
+  entity_id: light.stairs_ground_floor
+  data_template:
+    profile: >
+      {% if is_state('input_select.light_profile', 'Nuit') %}
+        night
+      {% else %}
+        energize
+      {% endif %}

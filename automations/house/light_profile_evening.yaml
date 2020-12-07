@@ -1,0 +1,17 @@
+---
+description: Switch light profile to evening on time
+alias: light_profile_evening
+id: ec16a27f-e182-4091-82a1-965fb818cd80
+
+trigger:
+  platform: time
+  at: "22:00"
+condition:
+  condition: state
+  entity_id: input_select.light_profile
+  state: Jour
+action:
+  service: input_select.select_option
+  data:
+    entity_id: input_select.light_profile
+    option: Soir

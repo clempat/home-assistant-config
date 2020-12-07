@@ -1,0 +1,28 @@
+---
+  title: Main
+  path: main
+  icon: mdi:house
+  panel: true
+  theme: tablet
+  cards:
+    - type: picture-elements
+      class: pict
+      image: /local/background.png
+      elements: !include_dir_list ../cards/main
+      style: |
+        /** Target the sidebar content element **/
+        #root > .element:nth-child(3), #root > .element:nth-child(2) {
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 21%;
+          transform: translate(0,0);
+        }
+        #root > .element:nth-child(3){
+          display: flex;
+          justify-content: center;
+          align-items: center; 
+        }
+        ha-card {
+          border-radius: 0;
+        }

@@ -1,0 +1,14 @@
+alias: Prendre photo du portail et envoyer sur Telegram
+sequence:
+  - service: camera.snapshot
+    data:
+      entity_id: camera.gate
+      filename: /tmp/door.jpg
+  - service: notify.telegram
+    data:
+      title: Photo du Portail
+      message: Photo actuel du portail
+      data:
+        photo:
+          - file: /tmp/door.jpg
+            caption: Portail

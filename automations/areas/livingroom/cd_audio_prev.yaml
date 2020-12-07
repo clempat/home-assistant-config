@@ -1,0 +1,18 @@
+---
+description: Put Previous song CD Audio
+alias: livingroom_cd_audio_play_pause
+id: 7234e640-440d-47f0-b790-97a7f2493ecb
+
+trigger:
+  platform: event
+  event_type: deconz_event
+  event_data:
+    id: tradfri_remote_control
+    event: 4002
+action:
+  - service: remote.send_command
+    data:
+      entity_id: remote.harmony_hub
+      command: ChapterPrev
+      device: 63016539
+

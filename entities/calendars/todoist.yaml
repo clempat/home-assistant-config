@@ -1,0 +1,2 @@
+platform: todoist
+token: !secret todoist_token

@@ -1,0 +1,12 @@
+---
+description: Turn Off Heating when entrance is open
+alias: entrance_turn_off_heating_window
+id: 45c93a4c-980a-42db-b4ca-c5d1f87def16
+trigger:
+  platform: state
+  entity_id: binary_sensor.x_door_main_entrance
+  to: "on"
+action:
+  - service: climate.turn_off
+    data:
+      entity_id: climate.entree

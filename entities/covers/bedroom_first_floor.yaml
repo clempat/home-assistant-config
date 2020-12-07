@@ -1,0 +1,6 @@
+---
+platform: group
+name: bedroom_first_floor
+entities:
+  - cover.master_bedroom_cover_left_level # window
+  - cover.master_bedroom_cover_right_level # door

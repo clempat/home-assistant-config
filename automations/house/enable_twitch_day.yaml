@@ -1,0 +1,13 @@
+---
+  description: "will enable Twitch for the day"
+  id: c9f6ede9-9fe0-493c-89a4-e91dabbbda0a
+  alias: enable_twitch_day
+  
+  trigger:
+    - platform: time
+      at: "08:00:00"
+  
+  action:
+    - service: adguard.remove_url
+      data:
+        url: "https://raw.githubusercontent.com/clempat/Social-media-Blocklists/master/adguard-twitch.txt"

@@ -1,0 +1,18 @@
+---
+description: Put Next song CD Audio
+alias: livingroom_cd_audio_next
+id: ed9ae4b6-ff8d-4eee-81d5-9e7a5589073c
+
+trigger:
+  platform: event
+  event_type: deconz_event
+  event_data:
+    id: tradfri_remote_control
+    event: 5002
+action:
+  - service: remote.send_command
+    data:
+      entity_id: remote.harmony_hub
+      command: ChapterNext
+      device: 63016539
+

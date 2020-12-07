@@ -1,0 +1,12 @@
+---
+description: Turn Off Heating when windows is open
+alias: kitchen_turn_off_heating_window
+id: 52b6ede3-3a33-4b10-802c-5a3883735703
+trigger:
+  platform: state
+  entity_id: binary_sensor.open_kitchen
+  to: "on"
+action:
+  - service: climate.turn_off
+    data:
+      entity_id: climate.cuisine

@@ -1,0 +1,11 @@
+---
+platform: template
+sensors:
+  open_livingroom:
+    friendly_name: Salon
+    device_class: window
+    value_template: >
+      {{ 
+        is_state('binary_sensor.x_door_livingroom_terrace', 'on')
+        or is_state('binary_sensor.x_window_livingroom_sofa', 'on')
+      }}

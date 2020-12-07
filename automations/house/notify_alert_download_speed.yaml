@@ -1,0 +1,14 @@
+---
+  description: Send telegram when download is below 50
+  alias: notify_alert_download_speed
+  id: 45c0c780-da48-44f9-a748-a7b40afe6f0e
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.speedtest_download
+    below: 50
+  action:
+    service: notify.telegram_clement
+    data:
+      title: "\U000026A0 *Download Faible*"
+      message: "Internet est faible: *{{ states('sensor.speedtest_download') }}* Mbit/s"
+  

@@ -1,0 +1,17 @@
+name: party
+entities:
+  light.livingroom_ceiling: off
+  light.livingroom_sofa:
+    state: on
+    brightness: 76
+    effect: colorloop
+  light.living_room_sofa_side:
+    state: off
+  light.hyperion:
+    state: on
+    effect: Sparks Color
+  light.livingroom_disco_light:
+    state: on
+  media_player.nvidia_shield:
+    state: playing
+    source: Spotify

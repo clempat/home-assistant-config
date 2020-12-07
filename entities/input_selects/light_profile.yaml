@@ -1,0 +1,7 @@
+---
+name: Profile Lumières
+icon: mdi:lightbulb
+options:
+  - Jour
+  - Soir
+  - Nuit

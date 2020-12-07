@@ -1,0 +1,24 @@
+---
+description: "Close cover when away mode activated"
+alias: "bedroom_away_mode_cover_down"
+id: 8d95ba67-6ed5-484a-98ac-210d9d356782
+
+trigger:
+  - platform: time
+    at: "19:00:00"
+
+condition:
+  - condition: state
+    entity_id: input_boolean.vacation_mode
+    state: "on"
+
+action:
+  - delay: >
+      00:{{ (range(10, 30)|random|int) }}:{{ (range(10, 59)|random|int) }}
+  - service: scene.turn_on
+    data:
+      entity_id: scene.cover_night_upstairs
+  - service: notify.telegram_clement
+    data:
+      title: "Home assistant "
+      message: "Les volets des chambres se sont correctements fermé."

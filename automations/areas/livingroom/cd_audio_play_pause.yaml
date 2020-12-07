@@ -1,0 +1,36 @@
+---
+description: Play Pause CD in livingroom
+alias: livingroom_play_pause_cd
+id: d6d58cb2-f519-400a-bd9e-576367767a65
+
+trigger:
+  platform: event
+  event_type: deconz_event
+  event_data:
+    id: tradfri_remote_control
+    event: 1002
+condition:
+  condition: template
+  value_template: >-
+    {{ is_state_attr('remote.harmony_hub', 'current_activity', 'CD audio') }}
+action:
+  - service: remote.send_command
+    data_template:
+      command: >-
+        {% if is_state('input_boolean.livingroom_playing_cd', 'off') %}
+          Play
+        {% else %}
+          Pause
+        {% endif %}
+      entity_id: remote.harmony_hub
+      device: 63016539
+  - service_template: >-
+      {% if is_state('input_boolean.livingroom_playing_cd', 'off') %}
+        input_boolean.turn_on
+      {% else %}
+        input_boolean.turn_off
+      {% endif %}
+    data:
+      entity_id: input_boolean.livingroom_playing_cd
+
+

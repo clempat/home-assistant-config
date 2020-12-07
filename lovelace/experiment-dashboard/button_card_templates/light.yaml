@@ -1,0 +1,65 @@
+light:
+  template: ['base']
+  custom_fields:
+    circle: >
+      [[[ if (entity.state === 'on' && entity.attributes.brightness) {
+      const brightness = Math.round(entity.attributes.brightness / 2.54);
+      const radius = 20.5; const circumference = radius * 2 * Math.PI; 
+      return `<svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="${radius}" stroke="#b2b2b2" stroke-width="1.5" fill="none" style="
+      transform: rotate(-90deg); transform-origin: 50% 50%; stroke-dasharray: ${circumference}; stroke-dashoffset: ${circumference - brightness / 100 * circumference};" />
+      <text x="50%" y="54%" fill="#8d8e90" font-size="14" text-anchor="middle" alignment-baseline="middle">${brightness}<tspan font-size="10">%</tspan></text></svg>`; } ]]]
+  hold_action:
+    action: call-service
+    service: browser_mod.popup
+    service_data:
+      title: '[[[ return entity.attributes.friendly_name ]]]'
+      deviceID: this
+      card:
+        type: entities
+        entities:
+          - type: custom:light-popup-card
+            entity: '[[[ return entity.entity_id ]]]'
+            icon: none
+            fullscreen: false
+            brightnessWidth: 130px
+            brightnessHeight: 360px
+            borderRadius: 1.7em
+            sliderColor: '#c7c7c7'
+            sliderTrackColor: rgba(25, 25, 25, 0.9)
+            actionSize: 4.5em
+            actionsInARow: 2
+            actions:
+              - service: light.turn_on
+                service_data:
+                  entity_id: '[[[ return entity.entity_id ]]]'
+                  color_temp: 153
+                color: "#d8d9e1"
+              - service: light.turn_on
+                service_data:
+                  entity_id: '[[[ return entity.entity_id ]]]'
+                  color_temp: 326
+                color: "#d5b08d"
+              - service: light.turn_on
+                service_data:
+                  entity_id: '[[[ return entity.entity_id ]]]'
+                  color_temp: 500
+                color: "#ce944b"
+              - service: browser_mod.popup
+                service_data:
+                  title: '[[[ return entity.attributes.friendly_name ]]]'
+                  deviceID: this
+                  card:
+                    type: entities
+                    show_header_toggle: false
+                    entities:
+                      - entity: '[[[ return entity.entity_id ]]]'
+                        secondary_info: last-changed
+                      - type: custom:light-entity-card
+                        entity: '[[[ return entity.entity_id ]]]'
+                        brightness: false
+                        color_temp: true
+                        full_width_sliders: true
+                        hide_header: true
+                        show_slider_percent: true
+                        smooth_color_wheel: true
+                        consolidate_entities: true

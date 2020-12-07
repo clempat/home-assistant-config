@@ -1,0 +1,9 @@
+---
+# This group all heatings of my stairs
+
+name: Chauffage Escalier
+icon: mdi:radiator
+entities:
+  - switch.chauffage_escalier_1er
+  - switch.chauffage_escalier_cave
+  - switch.chauffage_escalier_rdc

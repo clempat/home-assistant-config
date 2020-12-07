@@ -1,0 +1,14 @@
+---
+alias: stairs_cellar_turn_off_light_motion
+description: Turn off Stairs cellar light on motion
+id: 99c9c2c0-5d8f-4a0c-b2de-45c6d22c62cb
+trigger:
+  platform: state
+  entity_id: binary_sensor.motion_stairs_cellar
+  to: "off"
+  for:
+    minutes: 1
+    seconds: 30
+action:
+  service: light.turn_off
+  entity_id: light.floor_cellar

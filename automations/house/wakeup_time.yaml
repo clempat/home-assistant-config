@@ -1,0 +1,14 @@
+---
+description: Turn off input boolean sleeping mode at 07:00
+alias: wakeup_time
+id: 643b5e54-645a-4bec-bf24-b266454797b6
+trigger:
+  platform: time
+  at: "07:00"
+condition:
+  condition: state
+  entity_id: input_boolean.sleeping_mode
+  state: "on"
+action:
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.sleeping_mode

@@ -1,0 +1,6 @@
+---
+# Input Select Integration
+#
+# https://www.home-assistant.io/integrations/input_select
+
+input_select: !include_dir_named ../entities/input_selects

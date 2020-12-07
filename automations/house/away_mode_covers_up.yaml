@@ -1,0 +1,24 @@
+---
+description: "Open all covers when away mode activated"
+alias: "house_away_mode_cover_up"
+id: f2b7ecf6-c7f8-42eb-9b9f-a32c0b90586e
+
+trigger:
+  - platform: time
+    at: "07:00:00"
+
+condition:
+  - condition: state
+    entity_id: input_boolean.vacation_mode
+    state: "on"
+
+action:
+  - delay: >
+      00:{{ (range(10, 59)|random|int) }}:{{ (range(10, 59)|random|int) }}
+  - service: scene.turn_on
+    data:
+      entity_id: scene.cover_day_all
+  - service: notify.telegram_clement
+    data:
+      title: "Home assistant "
+      message: "Tous les volets se sont correctement ouverts"

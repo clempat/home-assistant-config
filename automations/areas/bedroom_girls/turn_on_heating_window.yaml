@@ -1,0 +1,12 @@
+---
+description: Turn on Heating when heating close 
+alias: bedroom_girls.turn_on_heating_window
+id: 190a1848-6554-43eb-a77d-698c8672f79e
+trigger:
+  platform: state
+  entity_id: binary_sensor.open_bedroom
+  to: "off"
+action:
+  - service: climate.turn_on
+    data:
+      entity_id: climate.chambre_1er

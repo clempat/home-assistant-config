@@ -1,0 +1,12 @@
+---
+description: Open the gate when clicking on the button in my office
+alias: cellar_room_open_gate_switch
+id: 2260ee9b-3624-4040-9766-4d1d828d4b50
+trigger:
+  platform: event
+  event_type: deconz_event
+  event_data:
+    id: x_door_switch
+    event: 1002
+action:
+  service: script.open_gate

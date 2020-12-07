@@ -1,0 +1,15 @@
+---
+description: Toggle light in bedroom roof with bed switch
+alias: toggle_light_wall_switch
+id: 25a60ebb-63d6-4a6b-bd84-09d78caa77f9
+
+trigger:
+  platform: event
+  event_type: deconz_event
+  event_data:
+    id: x_switch_livingroom
+    event: 1002
+
+action:
+  service: switch.toggle
+  entity_id: switch.wall_switch_bedroom_roof

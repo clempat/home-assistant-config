@@ -1,0 +1,6 @@
+---
+name: telegram
+platform: group
+services:
+  - service: telegram_clement
+  - service: telegram_melanie

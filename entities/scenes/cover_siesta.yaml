@@ -1,0 +1,5 @@
+name: cover_siesta
+entities:
+  cover.first_floor:
+    state: open
+    current_position: 30

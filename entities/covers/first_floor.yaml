@@ -1,0 +1,6 @@
+---
+platform: group
+name: first_floor
+entities:
+  - cover.florian_bedroom_cover_level
+  - cover.bedroom_first_floor

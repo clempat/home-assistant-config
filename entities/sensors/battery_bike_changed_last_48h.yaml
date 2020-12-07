@@ -1,0 +1,9 @@
+---
+  platform: history_stats
+  name: battery_bike_changed_last_48h
+  entity_id: binary_sensor.bike_battery
+  state: 'on'
+  type: count
+  duration:
+    hours: 48
+  end: '{{ now() }}'

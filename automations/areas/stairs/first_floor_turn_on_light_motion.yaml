@@ -1,0 +1,23 @@
+---
+alias: stairs_first_floor_turn_on_light_motion
+description: Turn On light on first floor stairs if motion
+id: 555713dc-cb0c-49fb-a48c-a87f8d4236ae
+trigger:
+  platform: state
+  entity_id: binary_sensor.motion_stairs_first_floor
+  from: "off"
+  to: "on"
+condition:
+  condition: numeric_state
+  entity_id: sensor.x_motion_stairs_first_floor_light_level
+  below: 50
+action:
+  service: light.turn_on
+  entity_id: light.stairs_first_floor
+  data_template:
+    profile: >-
+      {% if is_state('input_select.light_profile', 'Soir') or is_state('input_select.light_profile', 'Nuit') %}
+        night
+      {% else %}
+        energize
+      {% endif %}

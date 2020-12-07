@@ -1,0 +1,5 @@
+# Tile is used to track people keys to know if they are home or not
+
+platform: tile
+username: !secret tile_email
+password: !secret tile_password

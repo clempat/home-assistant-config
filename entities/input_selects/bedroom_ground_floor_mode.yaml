@@ -1,0 +1,5 @@
+name: Mode Chambre RDC
+options:
+  - Vide
+  - Chambre
+  - Bureau

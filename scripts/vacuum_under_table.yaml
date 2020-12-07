@@ -1,0 +1,8 @@
+---
+alias: Aspirer sous la table
+sequence:
+  - service: xiaomi_miio.vacuum_clean_zone
+    data:
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      zone: [[24510, 25189, 26660, 26939]]
+      repeats: 3

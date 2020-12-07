@@ -1,0 +1,12 @@
+---
+description: Turn on heating when door is closed
+alias: entrance_turn_on_heating_window
+id: 64ee43c5-3ae3-43d7-8706-1ae7884321fe
+trigger:
+  platform: state
+  entity_id: binary_sensor.x_door_main_entrance
+  to: "off"
+action:
+  - service: climate.turn_on
+    data:
+      entity_id: climate.entree

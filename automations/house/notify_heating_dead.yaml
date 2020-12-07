@@ -1,0 +1,14 @@
+---
+# For the moment will use one heating availibility
+description: Send telegram when doorbell die
+alias: notify_doorbell_dead
+id: 32d6752e-ebc3-4d17-a03c-aa6cd8dc3934
+trigger:
+  platform: state
+  entity_id: switch.chaufface_cuisine
+  to: unavailable
+action:
+  service: notify.telegram_clement
+  data:
+    title: "\000026680000FR0F *Problème Chauffage*"
+    message: "Il y a un problème avec la connection du chauffage !"

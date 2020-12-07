@@ -1,0 +1,18 @@
+---
+description: Switch off Guest wifi when no guest
+alias: 55951781-2ab7-44a1-8c9f-bbb35d9dde3d
+id: switch_off_guest_wifi
+
+trigger:
+- platform: state
+  entity_id: binary_sensor.guests
+  from:  "on"
+  to:  "off"
+
+action:
+- service: switch.turn_off
+  entity_id:
+    - switch.fritzbox_6591_cable_kdg_guest_wifi
+    - switch.fritzbox_fritz_repeater_2400_guest_wifi
+    - switch.fritzbox_fritz_wlan_repeater_1750e_guest_wifi
+    - switch.fritzbox_fritz_wlan_repeater_1750e_guest_wifi_2

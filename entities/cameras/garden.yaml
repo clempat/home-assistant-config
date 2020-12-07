@@ -1,0 +1,8 @@
+---
+# Current outdoor camera for the gate
+
+name: garden
+platform: generic
+still_image_url: !secret garden_image_url
+stream_source: !secret garden_rtcp_stream
+verify_ssl: false

@@ -1,0 +1,14 @@
+---
+alias: stairs_first_floor_turn_off_light_motion
+description: Turn Off light on first floor stairs if motion
+id: 1b0287e8-281a-435f-b149-9675b8a814d3
+trigger:
+  platform: state
+  entity_id: binary_sensor.motion_stairs_first_floor
+  to: "off"
+  for:
+    minutes: 1
+    seconds: 30
+action:
+  service: light.turn_off
+  entity_id: light.stairs_first_floor

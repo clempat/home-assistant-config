@@ -1,0 +1,10 @@
+---
+name: Camera Doorbell
+identifier: camera
+actions:
+  - identifier: "OPEN_DOOR"
+    title: Ouvre le portail
+    activationMode: "background"
+    authenticationRequired: true
+    destructive: true
+    behavior: "default"

@@ -1,0 +1,19 @@
+---
+alias: stairs_cellar_turn_on_light_motion
+description: Turn on Stairs cellar light on motion
+id: 9073615f-0663-4151-abd9-4d5b3c988b5d
+trigger:
+  platform: state
+  entity_id: binary_sensor.motion_stairs_cellar
+  from: "off"
+  to: "on"
+action:
+  service: light.turn_on
+  entity_id: light.floor_cellar
+  data_template:
+    profile: >
+      {% if is_state('input_select.light_profile', 'Nuit') %}
+        night
+      {% else %}
+        energize
+      {% endif %}

@@ -1,0 +1,14 @@
+---
+# This automation is there because my cover cannot detect
+# if something is blocking it.
+description: Stop the terrace cover if something in between
+alias: livingroom_cover_terrace_block
+id: 94d5fc09-4e3a-44e3-8558-f234eb3ec59b
+trigger:
+  platform: numeric_state
+  entity_id: sensor.fibaro_system_fgrm222_roller_shutter_controller_2_power_5
+  value_template: "{{ state.attributes.power_consumption }}"
+  above: 200
+action:
+  service: cover.stop_cover
+  entity_id: cover.livingroom_terrace

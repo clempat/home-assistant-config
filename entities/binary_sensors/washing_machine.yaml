@@ -1,0 +1,14 @@
+platform: template
+sensors:
+  washing_machine:
+    icon_template: >-
+      {% if states('sensor.washing_machine_switch_electric_w') | int > 5 %}
+        mdi:washing-machine
+      {% else %}
+        mdi:washing-machine-off
+      {% endif %}
+    friendly_name: Machine à laver
+    delay_off:
+      minutes: 2
+    value_template: >-
+      {{  states('sensor.washing_machine_switch_electric_w') | int > 5 }}

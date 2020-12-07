@@ -1,0 +1,15 @@
+---
+description: Send telegram when doorbell die
+alias: notify_doorbell_dead
+id: 808cb457-ba8e-42df-8033-51eb37af8832
+trigger:
+  platform: state
+  entity_id: binary_sensor.doorbell
+  to: unavailable
+  for:
+    minutes: 1
+action:
+  service: notify.telegram_clement
+  data:
+    title: "\U0001F515 *Problème Sonnette*"
+    message: "Il y a un problème avec la connection de la sonnette !"

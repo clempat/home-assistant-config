@@ -1,0 +1,14 @@
+---
+  description: Start charging the Tablet when battery less than 20%
+  alias: start_charging_tablet.yaml
+  id: 5e74ce41-3429-44f7-a871-a41d482627a8
+
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.ipad_de_clement_battery_level_2
+    below: 20
+
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.plug_kitchen_ipad

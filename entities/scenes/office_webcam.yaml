@@ -1,0 +1,9 @@
+name: office_webcam
+entities:
+  switch.wall_switch_bedroom_cellar_bed: off
+  switch.wall_switch_bedroom_cellar_desk: on
+  switch.light_video: on
+  switch.light_video_2: on
+  light.alert_live:
+    state: on
+    hs_color: [0, 100]

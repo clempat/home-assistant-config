@@ -1,0 +1,13 @@
+---
+description: Notify when home assistant shutdown
+alias: ha_stop_notification
+id: fbb4dc6f-ee31-4374-9aa6-5b5bed1e42df
+
+trigger:
+  - platform: homeassistant
+    event: shutdown
+action:
+  - service: notify.telegram_clement
+    data:
+      title: "\U0001F680 *Home assistant*"
+      message: "Home assistant is shutting down..."

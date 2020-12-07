@@ -1,0 +1,8 @@
+---
+platform: group
+name: livingroom_master
+entities:
+  - light.living_room_sofa
+  - light.livingroom_ceiling
+  - light.livingroom_sofa_side
+  - light.hdmi_hyperion

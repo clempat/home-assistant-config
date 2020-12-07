@@ -1,0 +1,5 @@
+---
+# This is the xiaomi gateway located in the kitchen
+
+mac: !secret xiaomi_gateway_kitchen_mac
+key: !secret xiaomi_gateway_kitchen_key

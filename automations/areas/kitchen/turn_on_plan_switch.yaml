@@ -1,0 +1,14 @@
+---
+description: Turn on kitchen plan when click on switch
+alias: kitchen_turn_on_plan_switch
+id: 447255e3-94fb-43ed-98fa-01a2b7669ac3
+
+trigger:
+  platform: event
+  event_type: deconz_event
+  event_data:
+    id: x_switch_kitchen_plan
+    event: 1002
+action:
+  service: switch.toggle
+  entity_id: switch.plug_kitchen_plan

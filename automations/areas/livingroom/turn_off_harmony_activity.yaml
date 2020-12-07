@@ -1,0 +1,15 @@
+---
+description: Turn off Harmony when nothing playing on Shield
+alias: turn_off_harmony_activity
+id: 4d4f9f6d-65cf-4f02-afbe-a553fcf33563
+
+trigger:
+  platform: state
+  entity_id: media_player.nvidia_shield
+  to: 'off'
+condition:
+  condition: template
+  value_template: '{{ states.remote.harmony_hub.attributes.current_activity != "CD audio" }}'
+action:
+  - service: remote.turn_off
+    entity_id: remote.harmony_hub

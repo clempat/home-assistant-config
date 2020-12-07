@@ -1,0 +1,14 @@
+---
+description: Notify when house is empty
+alias: notify_when_house_empty
+id: ade5ad12-3725-4823-bfa0-d9c59156700d
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.presence_any
+    to: "off"
+action:
+  - service: notify.telegram_clement
+    data:
+      title: Présence
+      message: La maison est vide !

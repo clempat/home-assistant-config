@@ -1,0 +1,34 @@
+---
+# This script is a sequence to run when someone ring the bell
+alias: Indiquer la sonette pendant une minute
+sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.gateway_xiaomi
+      brightness: 244
+      hs_color: [0, 100]
+  - service: script.notify_picture_gate
+  - service: browser_mod.popup
+    data:
+      title: Sonnette
+      card:
+        type: picture-entity
+        entity: camera.gate
+        camera_view: live
+        tap_action:
+          action: call-service
+          service: script.open_gate
+      large: true
+  - service: notify.telegram
+    data:
+      title: PORTAIL Maulbronner
+      message: Quelqu'un vient de sonner !
+      data:
+        inline_keyboard:
+          - "Ouvrir le Portail:/open_gate"
+  - delay:
+      minutes: 1
+  - service: browser_mod.close_popup
+  - service: light.turn_off
+    data:
+      entity_id: light.gateway_xiaomi

@@ -1,0 +1,14 @@
+---
+  description: Send telegram when upload is below 
+  alias: notify_alert_upload
+  id: 1b752df7-5bb2-429d-b383-5d9a74dcb5c8
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.speedtest_upload
+    below: 10
+  action:
+    service: notify.telegram_clement
+    data:
+      title: "\U000026A0 *Upload Faible*"
+      message: "Internet est faible: *{{ states('sensor.speedtest_upload') }}* Mbit/s"
+  

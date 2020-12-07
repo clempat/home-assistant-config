@@ -1,0 +1,65 @@
+person.clement:
+  entity_picture: https://fr.gravatar.com/userimage/38954729/3660ca860c3abca76661f544c6b4deb0.png?size=200
+person.melanie:
+  entity_picture: https://www.kcw-online.de/thumbs/team/melanie-patout/melanie-021-sw_final-640x426.jpg
+group.presence_clement:
+  entity_picture: https://fr.gravatar.com/userimage/38954729/3660ca860c3abca76661f544c6b4deb0.png?size=200
+group.presence_melanie:
+  entity_picture: https://www.kcw-online.de/thumbs/team/melanie-patout/melanie-021-sw_final-640x426.jpg
+sensor.clement_status:
+  entity_picture: https://fr.gravatar.com/userimage/38954729/3660ca860c3abca76661f544c6b4deb0.png?size=200
+sensor.melanie_status:
+  entity_picture: https://www.kcw-online.de/thumbs/team/melanie-patout/melanie-021-sw_final-640x426.jpg
+
+sensor.attilastr:
+  icon: mdi:train
+sensor.sudende:
+  icon: mdi:train
+
+# Sondes Températures
+sensor.temperature_158d00020b51d6:
+  friendly_name: "Température chambre Toit"
+sensor.temperature_158d00022cb8e4:
+  friendly_name: "Température Chambre Florian"
+sensor.temperature_158d00023290ae:
+  friendly_name: "Température Couloir"
+sensor.temperature_158d000232368b:
+  friendly_name: "Température Chambre 1er"
+sensor.temperature_158d0002387954:
+  friendly_name: "Température Salle de bain"
+sensor.temperature_158d000273c5a4:
+  friendly_name: "Température Mezzanine"
+sensor.temperature_158d0002477b9d:
+  friendly_name: "Température Buanderie"
+sensor.temperature_158d0002480274:
+  friendly_name: "Température Salon"
+sensor.temperature_158d000247d1f9:
+  friendly_name: "Température Cuisine 1"
+sensor.temperature_158d0002d7ec48:
+  friendly_name: "Température Cuisine 2"
+sensor.temperature_158d0002478a5d:
+  friendly_name: "Température Chambre Cave"
+sensor.temperature_158d000273cbc1:
+  friendly_name: "Température Canapé Salon"
+sensor.temperature_158d0001f4eb65:
+  friendly_name: "Température Chambre RDC"
+sensor.temperature_158d0002f7c2e6:
+  friendly_name: "Température Entrée"
+sensor.temperature_158d0002f7c18f:
+  friendly_name: "Température Chambre Toit 2"
+light.tradfri_bulb_2:
+  friendly_name: "Table Cuisine"
+binary_sensor.door_window_sensor_158d00032b8a6f:
+  friendly_name: Fenêtre Chambre (2)
+binary_sensor.x_livingroom_window:
+  friendly_name: Fenêtre Salon
+binary_sensor.door_window_sensor_158d0002fd410b:
+  friendly_name: Fenêtre Toit (1)
+binary_sensor.door_window_sensor_158d00031b356f:
+  friendly_name: Fenêtre Toit (2)
+binary_sensor.door_window_sensor_158d00026edf00:
+  friendly_name: Fenêtre Chambre Florian (2)
+person.clement_patout:
+  entity_picture: "/local/clement_patout.jpg"
+person.melanie_patout:
+  entity_picture: "/local/melanie_patout.jpg"

@@ -1,0 +1,13 @@
+---
+description: Send telegram when doorbell back alive
+alias: notify_doorbell_alive
+id: 417491b5-8db4-442d-b8f9-61e308abd61d
+trigger:
+  platform: state
+  entity_id: binary_sensor.doorbell
+  from: unavailable
+action:
+  service: notify.telegram_clement
+  data:
+    title: "\U0001F514 *Sonnette en vie*"
+    message: "Sonnette re-fonctionne"

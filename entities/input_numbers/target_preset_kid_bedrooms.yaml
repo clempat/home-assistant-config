@@ -1,0 +1,9 @@
+---
+# Target Temperature for kids bedroom
+name: Température Target Chambre enfants
+min: 0
+max: 25
+step: 0.5
+mode: box
+unit_of_measurement: °C
+icon: mdi:thermostat

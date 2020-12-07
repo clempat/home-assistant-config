@@ -1,0 +1,6 @@
+---
+# This is a Zigbee switch
+
+platform: switch
+name: hdmi_hyperion
+entity_id: switch.hdmi_hyperion

@@ -1,0 +1,6 @@
+---
+platform: group
+name: ground_floor
+entities:
+  - cover.sofa_cover_level
+  - cover.living_room_cover_terrasse_level

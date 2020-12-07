@@ -1,0 +1,76 @@
+# All my heating is on a special raspbery pi with node-red and mqtt
+
+- name: Chauffage Salon
+  command_topic: heating/livingroom/set
+  state_topic: heating/livingroom/state
+  <<: &heating_common
+    platform: mqtt
+    availability_topic: heating/LWT
+    payload_available: "online"
+    payload_not_available: "offline"
+    retain: true
+
+- name: Chauffage Cuisine
+  command_topic: heating/kitchen/set
+  state_topic: heating/kitchen/state
+  <<: *heating_common
+
+- name: Chauffage Salle de bain
+  command_topic: heating/bathroom/set
+  state_topic: heating/bathroom/state
+  <<: *heating_common
+
+- name: Chauffage Chambre Cave
+  command_topic: heating/bedroom0/set
+  state_topic: heating/bedroom0/state
+  <<: *heating_common
+
+- name: Chauffage Chambre RDC
+  command_topic: heating/bedroom1/set
+  state_topic: heating/bedroom1/state
+  <<: *heating_common
+
+- name: Chauffage Chambre 1er
+  command_topic: heating/bedroom2/set
+  state_topic: heating/bedroom2/state
+  <<: *heating_common
+
+- name: Chauffage Chambre Florian
+  command_topic: heating/bedroom3/set
+  state_topic: heating/bedroom3/state
+  <<: *heating_common
+
+- name: Chauffage Chambre Toit
+  command_topic: heating/bedroom4/set
+  state_topic: heating/bedroom4/state
+  <<: *heating_common
+
+- name: Chauffage Entrée
+  command_topic: heating/entrance/set
+  state_topic: heating/entrance/state
+  <<: *heating_common
+
+- name: Chauffage Mezzanine
+  command_topic: heating/mezzanine/set
+  state_topic: heating/mezzanine/state
+  <<: *heating_common
+
+- name: Chauffage Escalier Cave
+  command_topic: heating/stairs0/set
+  state_topic: heating/stairs0/state
+  <<: *heating_common
+
+- name: Chauffage Escalier RDC
+  command_topic: heating/stairs1/set
+  state_topic: heating/stairs1/state
+  <<: *heating_common
+
+- name: Chauffage Escalier 1er
+  command_topic: heating/stairs2/set
+  state_topic: heating/stairs2/state
+  <<: *heating_common
+
+- name: Chauffage Buanderie
+  command_topic: heating/laundryroom/set
+  state_topic: heating/laundryroom/state
+  <<: *heating_common

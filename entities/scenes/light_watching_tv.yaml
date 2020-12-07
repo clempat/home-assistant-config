@@ -1,0 +1,15 @@
+name: light_watching_tv
+entities:
+  light.livingroom_ceiling: off
+  light.livingroom_sofa_links:
+    state: on
+    brightness: 76
+    hs_color: [245.075, 78.824]
+  light.livingroom_sofa_right:
+    state: on
+    brightness: 76
+    hs_color: [161.489, 36.863]
+  light.livingroom_sofa_side: off
+  light.hyperion:
+    state: on
+    effect: HDMI

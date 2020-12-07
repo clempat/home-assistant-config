@@ -1,0 +1,15 @@
+alias: Open Gate Telegram
+description: Will open the gate when clicking button
+id: 5352efd5-2190-4fd7-9877-01b43ec02a0a
+
+trigger:
+  platform: event
+  event_type: telegram_command
+  event_data:
+    command: "/open_gate"
+
+action:
+  - service: script.open_gate
+  - service: notify.telegram
+    data:
+      message: "Ouverture de la porte..."

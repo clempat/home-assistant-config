@@ -1,0 +1,24 @@
+---
+description: Turn On light on motion in mezzanine
+alias: mezzanine_turn_on_light_motion
+id: 03842a7c-9c51-44e7-b5c2-804b7a10b638
+
+trigger:
+  platform: state
+  entity_id: binary_sensor.x_motion_stairs_mezzanine
+  from: "off"
+  to: "on"
+condition:
+  condition: numeric_state
+  entity_id: sensor.x_motion_stairs_mezzanine_light_level
+  below: 15
+action:
+  service: light.turn_on
+  entity_id: light.mezzanine_floor
+  data_template:
+    profile: >
+      {% if is_state('input_select.light_profile', 'Nuit') %}
+        night
+      {% else %}
+        energize
+      {% endif %}

@@ -1,0 +1,6 @@
+---
+platform: group
+name: stairs_first_floor
+entities:
+  - light.stairs_first_floor_up
+  - light.stairs

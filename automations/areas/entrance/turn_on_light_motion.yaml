@@ -1,0 +1,12 @@
+---
+description: Turn on light in entrance when motion detected
+alias: entrance_turn_on_light_motion
+id: a0f95378-eb61-40df-83ea-596ead6f4cab
+trigger:
+  platform: state
+  entity_id: binary_sensor.motion_entrance
+  from: "off"
+  to: "on"
+action:
+  service: light.turn_on
+  entity_id: light.entrance

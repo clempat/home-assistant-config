@@ -1,0 +1,14 @@
+---
+alias: turn_off_washing_machine_full
+description: Turn off Washing machine full when door is open or washing machine restart
+id: 65249100-81ef-4f2a-be55-cc0b9b566b59
+trigger:
+  - platform: state
+    entity_id: binary_sensor.washing_machine
+    to: "on"
+  - platform: state
+    entity_id: binary_sensor.x_door_washing_machine
+    to: "on"
+action:
+  service: input_boolean.turn_off
+  entity_id: input_boolean.washing_machine_full

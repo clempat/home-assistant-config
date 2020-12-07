@@ -1,0 +1,14 @@
+alias: Prendre photo du jardin et envoyer sur Telegram
+sequence:
+  - service: camera.snapshot
+    data:
+      entity_id: camera.garden
+      filename: /tmp/door.jpg
+  - service: notify.telegram
+    data:
+      title: Photo du jardin
+      message: Photo actuel du jardin
+      data:
+        photo:
+          - file: /tmp/door.jpg
+            caption: Jardin

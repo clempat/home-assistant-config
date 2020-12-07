@@ -1,0 +1,12 @@
+---
+description: Turn on kitchen light when click on switch left
+alias: kitchen_turn_on_light_switch
+trigger:
+  platform: event
+  event_type: deconz_event
+  event_data:
+    id: transmitter_2_gang
+    event: 1002
+action: 
+  service: light.toggle
+  entity_id: light.kitchen_master

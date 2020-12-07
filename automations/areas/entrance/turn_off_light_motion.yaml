@@ -1,0 +1,15 @@
+---
+description: Turn off light when no motion
+alias: entrance_turn_off_light_motion
+id: d3b210a8-771c-403f-9680-4ad596c58567
+
+trigger:
+  platform: state
+  entity_id: binary_sensor.motion_entrance
+  to: "off"
+  for:
+    minutes: 1
+    seconds: 30
+action:
+  service: light.turn_off
+  entity_id: light.entrance

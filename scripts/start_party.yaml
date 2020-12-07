@@ -1,0 +1,15 @@
+alias: livingroom_start_party
+sequence:
+  - service: scene.turn_on
+    entity_id: scene.party
+  - service: media_player.turn_on
+    entity_id:  media_player.nvidia_shield
+  - service: media_player.select_source
+    entity_id:  media_player.nvidia_shield
+    data:
+      source: Spotify
+  - service: media_player.play_media
+    entity_id:  media_player.nvidia_shield
+    data:
+      media_content_id: spotify:playlist:37i9dQZF1DWSzguhfGl55y
+      media_content_type: playlist

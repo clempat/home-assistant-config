@@ -1,0 +1,12 @@
+platform: template
+sensors:
+  bike_battery:
+    icon_template: >-
+      {% if states('sensor.bike_battery_switch_electric_w') | int > 50 %}
+        mdi:battery-charging-50
+      {% else %}
+        mdi:battery-off-outline
+      {% endif %}
+    friendly_name: Batterie Vélo
+    value_template: >-
+      {{  states('sensor.bike_battery_switch_electric_w') | int > 50 }}

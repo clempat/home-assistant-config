@@ -1,0 +1,14 @@
+---
+description: "will block Twitch the night"
+id: b3af3e5e-9771-437f-960b-739fd2f42c1f
+alias: block_twitch_night
+
+trigger:
+  - platform: time
+    at: "23:00:00"
+
+action:
+  - service: adguard.add_url
+    data:
+      name: Twitch
+      url: "https://raw.githubusercontent.com/clempat/Social-media-Blocklists/master/adguard-twitch.txt"

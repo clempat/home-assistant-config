@@ -1,0 +1,24 @@
+---
+description: Turn off ceiling light on motion in Kitchen (night or tv)
+alias: kitchen_turn_off_ceiling_motion
+trigger:
+  platform: state
+  entity_id: binary_sensor.x_motion_kitchen_floor
+  to: "off"
+  for:
+    minutes: 1
+    seconds: 30
+condition:
+  condition: and
+  conditions:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_boolean.sleeping_mode
+          state: "on"
+        - condition: state
+          entity_id: binary_sensor.playing_on_tv
+          state: "on"
+action:
+  service: light.turn_off
+  entity_id: light.kitchen_ceiling

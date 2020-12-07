@@ -1,0 +1,21 @@
+---
+  alias: switch_off_garden_decoration
+  description: Switch off Garden decoration when we sleep
+  id: a09301ab-103a-44de-a063-f0ad1eb3cadc
+
+  trigger:
+    platform: state
+    entity_id: input_boolean.sleeping_mode
+    to: 'on'
+  
+  condition:
+    - condition: state
+      entity_id: light.garden_master
+      state:  'on'
+  
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: light.garden_master
+      
+  

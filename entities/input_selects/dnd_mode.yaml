@@ -1,0 +1,7 @@
+---
+name: Ne pas déranger
+icon: mdi:alarm-off
+options:
+  - Aucun
+  - Etage
+  - Maison (Tous)

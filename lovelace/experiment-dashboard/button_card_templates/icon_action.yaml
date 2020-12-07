@@ -1,0 +1,7 @@
+
+  icon_action:
+    color: '#9da0a2'
+    styles:
+      card:
+        [background: '#FFFFFF10', border-radius: 0.6em, box-shadow: none, 
+        transition: none, width: 4em, height: 3.7em]

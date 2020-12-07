@@ -1,0 +1,12 @@
+---
+description: Turn on light in cellar wine when motion detected
+alias: cellar_wine_turn_on_light_motion
+id: c071da08-cc18-4329-8a7a-f2701cbadcba
+trigger:
+  platform: state
+  entity_id: binary_sensor.motion_cellar_wine
+  from: "off"
+  to: "on"
+action:
+  service: light.turn_on
+  entity_id: light.cellar_wine

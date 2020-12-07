@@ -1,0 +1,18 @@
+---
+description: Notify when Melanie is home or leave
+alias: notify_melanie_presence
+id: 23e3150b-a03d-4052-bcad-74dfe16fe87c
+
+trigger:
+  - platform: state
+    entity_id: person.melanie_patout
+action:
+  - service: notify.telegram_clement
+    data_template:
+      title: Présence Melanie.
+      message: >
+        {% if is_state('person.melanie_patout', 'home') %}
+          Melanie vient de rentrer !
+        {% else %}
+          Melanie vient de partir !
+        {% endif %}

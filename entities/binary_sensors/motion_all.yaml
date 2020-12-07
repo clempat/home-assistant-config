@@ -1,0 +1,14 @@
+---
+  # All motions
+  platform: template
+  sensors:
+    motion_all:
+      device_class: motion
+      friendly_name: "Mouvement Maison"
+      value_template: >
+        {{ 
+          is_state('binary_sensor.motion_stairs', 'on')
+          or is_state('binary_sensor.motion_cellar', 'on')
+          or is_state('binary_sensor.motion_entrance', 'on')
+          or is_state('binary_sensor.x_motion_kitchen_floor', on)
+        }}

@@ -1,0 +1,10 @@
+---
+# Flag to indicate if there is any Guest
+  platform: template
+  sensors:
+    guests:
+      icon_template: mdi:account
+      friendly_name: Invité(es)
+      value_template: >
+        {{  not is_state('input_select.guest_mode', 'Aucun') }}
+      device_class: presence
