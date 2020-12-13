@@ -1,0 +1,15 @@
+---
+  alias: clock_kid_second_time_weekend
+  description: Set the clock for the kids second time for the weekend
+  id: c2466a7e-3eca-4e58-9eb4-97e415f0f4c6
+
+  trigger:
+    platform: state
+    entity_id: binary_sensor.workday_sensor
+    to: 'off'
+
+  action:
+    service: input_datetime.set_datetime
+    entity_id: input_datetime.kids_second_hour
+    data:
+      time: "07:30:00"

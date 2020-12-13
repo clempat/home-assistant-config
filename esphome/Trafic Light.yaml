@@ -1,0 +1,36 @@
+esphome:
+  name: traffic_light
+  platform: ESP8266
+  board: nodemcuv2
+
+switch:
+  - platform: gpio
+    pin: D0
+    name: "LED Green"
+  - platform: gpio
+    pin: D1
+    name: "LED Orange"
+  - platform: gpio
+    pin: D2
+    name: "LED Red"
+
+wifi:
+  ssid: !secret wlan_ssid
+  password: !secret wlan_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: !secret esp_wlan_wifi_traffic_light
+    password: !secret esp_wlan_password_traffic_light
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret esp_traffic_light_password
+
+ota:
+  password: !secret esp_traffic_light_password

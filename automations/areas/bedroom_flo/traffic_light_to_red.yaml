@@ -1,0 +1,12 @@
+---
+  alias: traffic_light_red
+  description: Change the light to red
+  id: 5e1d4d58-1793-442b-abbc-6c92ab0751a7
+
+  trigger:
+    platform: time
+    at: "20:00"
+
+  action:
+    service: scene.turn_on
+    entity_id: scene.traffic_light_red

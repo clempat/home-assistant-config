@@ -1,0 +1,15 @@
+---
+  alias: traffic_light_off
+  description: Change the light to Off
+  id: 072eec7c-d6ca-4deb-a8ef-878c9805eb06
+
+  trigger:
+    platform: time
+    at: "10:00"
+
+  action:
+    service: switch.turn_off
+    entity_id: 
+      - switch.led_green
+      - switch.led_red
+      - switch.led_orange

@@ -42,7 +42,6 @@ google_calendars.yaml
 
 # ESPHome ignores
 # Future
-esphome/secrets.yaml
 esphome/**/
 
 # Ignore add-on files

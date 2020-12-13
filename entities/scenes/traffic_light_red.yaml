@@ -1,0 +1,6 @@
+---
+name: traffic_light_red
+entities:
+  switch.led_red: on
+  switch.led_green: off
+  switch.led_orange: off

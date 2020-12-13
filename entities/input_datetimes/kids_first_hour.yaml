@@ -1,0 +1,4 @@
+---
+  name: kids_first_hour
+  has_date: false
+  has_time: true

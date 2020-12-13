@@ -1,0 +1,12 @@
+---
+  alias: traffic_light_green
+  description: Change the light to green
+  id: f29399df-9167-4f80-93fa-fe61c01d3476
+
+  trigger:
+    platform: time
+    at: input_datetime.kids_second_hour
+
+  action:
+    service: scene.turn_on
+    entity_id: scene.traffic_light_green

@@ -1,0 +1,12 @@
+---
+  alias: traffic_light_orange
+  description: Change the light to Orange
+  id: d4ee0d75-46b8-4e08-8c29-55bb6947411a
+
+  trigger:
+    platform: time
+    at: input_datetime.kids_first_hour
+
+  action:
+    service: scene.turn_on
+    entity_id: scene.traffic_light_orange

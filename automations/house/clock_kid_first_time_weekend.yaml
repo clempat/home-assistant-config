@@ -1,0 +1,15 @@
+---
+  alias: clock_kid_first_time_weekend
+  description: Set the clock for the kids first time for the weekend
+  id: 0a9ae68f-71f3-4494-92e9-e7e33b6b7df9
+
+  trigger:
+    platform: state
+    entity_id: binary_sensor.workday_sensor
+    to: 'off'
+
+  action:
+    service: input_datetime.set_datetime
+    entity_id: input_datetime.kids_first_hour
+    data:
+      time: "06:30:00"
