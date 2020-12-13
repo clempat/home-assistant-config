@@ -17,3 +17,12 @@
     icon: mdi:test-tube
     show_in_sidebar: false
     filename: lovelace/experiment-dashboard/dashboard.yaml
+
+  grid-dashboard:
+    mode: yaml
+    title: Grid Dashboard
+    icon: mdi:test-tube
+    show_in_sidebar: false
+    filename: lovelace/grid-dashboard/dashboard.yaml
+  
+      

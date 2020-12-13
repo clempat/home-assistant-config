@@ -1,0 +1,9 @@
+---
+  title: Main
+  path: main
+  icon: mdi:house
+  panel: true
+  cards:
+    - type: grid
+      columns: 4
+      cards: !include_dir_list ../cards/main

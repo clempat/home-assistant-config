@@ -1,0 +1,4 @@
+---
+  type: sensor
+  entity: sensor.x_multi_stairs_first_floor_temperature
+  name: Escalier

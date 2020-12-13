@@ -1,0 +1,4 @@
+---
+  type: sensor
+  entity: sensor.x_multi_florian_bedroom_temperature
+  name: Chambre Florian

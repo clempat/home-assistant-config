@@ -1,0 +1,33 @@
+---
+  type: markdown
+  content: >
+    <font color='#6a7377'>
+      {% set s2 = 'sensor.berlin_attilastr_to_berlin_nordbahnhof' %}
+      {% if states[s2] %}
+      <p>
+        <b><ha-icon icon="mdi:train"></ha-icon> S2 (->Nord)</b>
+        {{ state_attr(s2, 'departure') }}
+        {%- if state_attr(s2, 'delay') | float > 0 -%}
+          <font color="#bf3838">+{{ state_attr(s2, 'delay') }}</font>
+        {%- endif -%}
+        {{-", "-}}
+        {{- state_attr(s2, 'next') -}}
+        {{-", "-}}
+        {{- state_attr(s2, 'next_on') -}}
+      </p>
+      {% endif %}
+      {% set s25 = 'sensor.berlin_sudende_to_berlin_nordbahnhof' %}
+      {% if states[s25] %}
+      <p>
+        <b><ha-icon icon="mdi:train"></ha-icon> S25 (->Nord)</b>
+        {{ state_attr(s25, 'departure') }}
+        {%- if state_attr(s25, 'delay') | float > 0 -%}
+          <font color="#bf3838">+{{ state_attr(s25, 'delay') }}</font>
+        {%- endif -%}
+        {{-", "-}}
+        {{- state_attr(s25, 'next') -}}
+        {{-", "-}}
+        {{- state_attr(s25, 'next_on') -}}
+      </p>
+      {% endif %}
+      </font>

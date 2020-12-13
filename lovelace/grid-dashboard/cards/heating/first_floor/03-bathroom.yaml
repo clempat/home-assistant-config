@@ -1,0 +1,4 @@
+---
+  type: sensor
+  entity: sensor.x_multi_bathroom_temperature
+  name: Salle de bain

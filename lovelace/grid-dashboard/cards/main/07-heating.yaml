@@ -1,0 +1,11 @@
+---
+  type: custom:swipe-card
+  cards: 
+    - type: grid
+      title: Rez de chaussée
+      columns: 2
+      cards: !include_dir_list ../heating/ground_floor
+    - type: grid
+      title: Etage
+      column: 2
+      cards: !include_dir_list ../heating/first_floor

@@ -1,0 +1,4 @@
+---
+  type: sensor
+  entity: sensor.x_multi_entrance_temperature
+  name: Entré

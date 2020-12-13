@@ -1,0 +1,11 @@
+---
+  type: custom:swipe-card
+  cards: 
+    - type: grid
+      title: Cuisine
+      columns: 2
+      cards: !include_dir_list ../lights/kitchen
+    - type: grid
+      title: Salon
+      column: 2
+      cards: !include_dir_list ../lights/livingroom

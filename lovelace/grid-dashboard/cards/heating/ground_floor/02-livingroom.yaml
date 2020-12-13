@@ -1,0 +1,4 @@
+---
+  type: sensor
+  entity: sensor.temperature_livingroom
+  name: Salon

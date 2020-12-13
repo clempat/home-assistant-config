@@ -1,0 +1,4 @@
+---
+  type: sensor
+  entity: sensor.temperature_office_melanie
+  name: Bureau Melanie
