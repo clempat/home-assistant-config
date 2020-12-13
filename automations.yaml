@@ -1,3 +1,6 @@
+# Deprecated: migrating to automations folder
+# Migration en cours vers le dossier Automation
+
 - alias: "[Volets] Fermer chambre 1er chaleur"
   trigger:
     platform: numeric_state
