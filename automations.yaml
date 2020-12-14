@@ -1,423 +1,363 @@
-# Deprecated: migrating to automations folder
-# Migration en cours vers le dossier Automation
-
-- alias: "[Volets] Fermer chambre 1er chaleur"
+- alias: '[Volets] Fermer chambre 1er chaleur'
   trigger:
     platform: numeric_state
     entity_id: sun.sun
-    value_template: "{{ state.attributes.azimuth }}"
+    value_template: '{{ state.attributes.azimuth }}'
     above: 140
-  condition: &hot_conditions
+  condition: &id001
     condition: and
     conditions:
-      - condition: template
-        value_template: "{{ states.sun.sun.attributes.elevation > 10 }}"
-      - condition: numeric_state
-        entity_id: sensor.meteo_cloud_coverage
-        below: 30
-      - condition: numeric_state
-        entity_id: sensor.meteo_temperature
-        above: 21
+    - condition: template
+      value_template: '{{ states.sun.sun.attributes.elevation > 10 }}'
+    - condition: numeric_state
+      entity_id: sensor.meteo_cloud_coverage
+      below: 30
+    - condition: numeric_state
+      entity_id: sensor.meteo_temperature
+      above: 21
   action:
     service: cover.set_cover_position
     entity_id: cover.chambre
     data:
       position: 35
-
-- alias: "[Volets] Fermer chambre Florian chaleur"
+  id: c0ead072442a4ae88a2892847f40e622
+- alias: '[Volets] Fermer chambre Florian chaleur'
   trigger:
     platform: numeric_state
     entity_id: sun.sun
-    value_template: "{{ state.attributes.azimuth }}"
+    value_template: '{{ state.attributes.azimuth }}'
     above: 220
-  condition: *hot_conditions
+  condition: *id001
   action:
     service: cover.set_cover_position
     entity_id: cover.cover_florian_s_bedroom_level
     data:
       position: 35
-- alias: "[Chauffage] Comfort le matin"
+  id: b88da59923044f3382d264a8da493f7a
+- alias: '[Chauffage] Comfort le matin'
   trigger:
     platform: time
-    at: "05:00:00"
+    at: 05:00:00
   action:
-    - service: input_number.set_value
-      data:
-        entity_id:
-          - input_number.target_preset_common_rooms
-          - input_number.target_preset_office
-        value: 21.5
-    - service: input_number.set_value
-      data:
-        entity_id: input_number.target_preset_bathrooms
-        value: 22
-    - service: input_number.set_value
-      data:
-        entity_id:
-          - input_number.target_preset_bedrooms
-          - input_number.target_preset_corridors
-        value: 20.5
-    - service: input_number.set_value
-      data:
-        entity_id: input_number.target_preset_kid_bedrooms
-        value: 21
-    - service: script.turn_on
-      data:
-        entity_id: script.update_thermostats
-
-- alias: "[Chauffage] Eteindre départ Kita/Travail"
+  - service: input_number.set_value
+    data:
+      entity_id:
+      - input_number.target_preset_common_rooms
+      - input_number.target_preset_office
+      value: 21.5
+  - service: input_number.set_value
+    data:
+      entity_id: input_number.target_preset_bathrooms
+      value: 22
+  - service: input_number.set_value
+    data:
+      entity_id:
+      - input_number.target_preset_bedrooms
+      - input_number.target_preset_corridors
+      value: 20.5
+  - service: input_number.set_value
+    data:
+      entity_id: input_number.target_preset_kid_bedrooms
+      value: 21
+  - service: script.turn_on
+    data:
+      entity_id: script.update_thermostats
+  id: 82fa62f5c6324e778210e5ac537b745a
+- alias: '[Chauffage] Eteindre départ Kita/Travail'
   trigger:
-    - platform: state
-      entity_id: binary_sensor.presence_any
-      to: "off"
-    - platform: time
-      at: "09:00:00"
+  - platform: state
+    entity_id: binary_sensor.presence_any
+    to: 'off'
+  - platform: time
+    at: 09:00:00
   condition:
     condition: and
     conditions:
-      - condition: time
-        after: "06:00:00"
-        before: "09:10:00"
-        weekday:
-          - mon
-          - tue
-          - wed
-          - thu
-          - fri
-      - condition: state
-        entity_id: binary_sensor.workday_sensor
-        state: "on"
+    - condition: time
+      after: 06:00:00
+      before: 09:10:00
+      weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+    - condition: state
+      entity_id: binary_sensor.workday_sensor
+      state: 'on'
   action:
-    - service: input_number.set_value
-      data:
-        entity_id:
-          - input_number.target_preset_common_rooms
-        value: 20.5
-    - service: input_number.set_value
-      data:
-        entity_id:
-          - input_number.target_preset_bathrooms
-          - input_number.target_preset_corridors
-        value: 19
-    - service: input_number.set_value
-      data:
-        entity_id:
-          - input_number.target_preset_bedrooms
-          - input_number.target_preset_kid_bedrooms
-        value: 18
-    - service: script.turn_on
-      data:
-        entity_id: script.update_thermostats
-
-- alias: "[Chauffage] 11:00 - Baisse à l'étage"
+  - service: input_number.set_value
+    data:
+      entity_id:
+      - input_number.target_preset_common_rooms
+      value: 20.5
+  - service: input_number.set_value
+    data:
+      entity_id:
+      - input_number.target_preset_bathrooms
+      - input_number.target_preset_corridors
+      value: 19
+  - service: input_number.set_value
+    data:
+      entity_id:
+      - input_number.target_preset_bedrooms
+      - input_number.target_preset_kid_bedrooms
+      value: 18
+  - service: script.turn_on
+    data:
+      entity_id: script.update_thermostats
+  id: 86503067de24414e8a9c989ee26f9e20
+- alias: '[Chauffage] 11:00 - Baisse à l''étage'
   trigger:
     platform: time
-    at: "11:00:00"
+    at: '11:00:00'
   condition:
     condition: or
     conditions:
-      - condition: state
-        entity_id: binary_sensor.workday_sensor
-        state: "off"
+    - condition: state
+      entity_id: binary_sensor.workday_sensor
+      state: 'off'
   action:
-    - service: input_number.set_value
-      data:
-        entity_id: input_number.target_preset_kid_bedrooms
-        value: 19.5
-    - service: input_number.set_value
-      data:
-        entity_id: input_number.target_preset_bedrooms
-        value: 19
-    - service: input_number.set_value
-      data:
-        entity_id: input_number.target_preset_bathrooms
-        value: 20
-    - service: script.turn_on
-      data:
-        entity_id: script.update_thermostats
-
-- alias: "[Chauffage] Monter retour de la kita"
+  - service: input_number.set_value
+    data:
+      entity_id: input_number.target_preset_kid_bedrooms
+      value: 19.5
+  - service: input_number.set_value
+    data:
+      entity_id: input_number.target_preset_bedrooms
+      value: 19
+  - service: input_number.set_value
+    data:
+      entity_id: input_number.target_preset_bathrooms
+      value: 20
+  - service: script.turn_on
+    data:
+      entity_id: script.update_thermostats
+  id: edafd22ab8ee424cb341cbc6b5841225
+- alias: '[Chauffage] Monter retour de la kita'
   trigger:
     platform: time
-    at: "15:00:00"
+    at: '15:00:00'
   condition:
     condition: state
     entity_id: binary_sensor.workday_sensor
-    state: "on"
+    state: 'on'
   action:
-    - service: input_number.set_value
-      data:
-        entity_id: input_number.target_preset_kid_bedrooms
-        value: 20
-    - service: input_number.set_value
-      data:
-        entity_id: input_number.target_preset_common_rooms
-        value: 21.5
-    - service: input_number.set_value
-      data:
-        entity_id:
-          - input_number.target_preset_corridors
-          - input_number.target_preset_office
-        value: 20
-    - service: script.turn_on
-      data:
-        entity_id: script.update_thermostats
-
-- alias: "[Chauffage] Coucher des enfants"
+  - service: input_number.set_value
+    data:
+      entity_id: input_number.target_preset_kid_bedrooms
+      value: 20
+  - service: input_number.set_value
+    data:
+      entity_id: input_number.target_preset_common_rooms
+      value: 21.5
+  - service: input_number.set_value
+    data:
+      entity_id:
+      - input_number.target_preset_corridors
+      - input_number.target_preset_office
+      value: 20
+  - service: script.turn_on
+    data:
+      entity_id: script.update_thermostats
+  id: 8bd85c63bd274ac49aafbf609213f38a
+- alias: '[Chauffage] Coucher des enfants'
   trigger:
     platform: time
-    at: "17:00:00"
+    at: '17:00:00'
   action:
-    - service: input_number.set_value
-      data:
-        entity_id: input_number.target_preset_bathrooms
-        value: 22
-    - service: input_number.set_value
-      data:
-        entity_id: input_number.target_preset_kid_bedrooms
-        value: 19
-    - service: input_number.set_value
-      data:
-        entity_id: input_number.target_preset_bedrooms
-        value: 20
-    - service: script.turn_on
-      data:
-        entity_id: script.update_thermostats
-
-- alias: "[Chauffage] Coucher du dernier"
+  - service: input_number.set_value
+    data:
+      entity_id: input_number.target_preset_bathrooms
+      value: 22
+  - service: input_number.set_value
+    data:
+      entity_id: input_number.target_preset_kid_bedrooms
+      value: 19
+  - service: input_number.set_value
+    data:
+      entity_id: input_number.target_preset_bedrooms
+      value: 20
+  - service: script.turn_on
+    data:
+      entity_id: script.update_thermostats
+  id: a6aeae5a059c46c3a39f4027987fab7b
+- alias: '[Chauffage] Coucher du dernier'
   trigger:
     platform: state
     entity_id: input_boolean.sleeping_mode
-    to: "on"
+    to: 'on'
   action:
-    - service: input_number.set_value
-      data:
-        entity_id: input_number.target_preset_bathrooms
-        value: 19
-    - service: input_number.set_value
-      data:
-        entity_id:
-          - input_number.target_preset_common_rooms
-        value: 19.5
-    - service: input_number.set_value
-      data:
-        entity_id:
-          - input_number.target_preset_corridors
-          - input_number.target_preset_office
-        value: 19
-    - service: script.turn_on
-      data:
-        entity_id: script.update_thermostats
-    - service: input_number.set_value
-      data:
-        entity_id: input_number.target_preset_bedrooms
-        value: 19
-
-- alias: "[Chauffage] Annuler modes après une journée"
+  - service: input_number.set_value
+    data:
+      entity_id: input_number.target_preset_bathrooms
+      value: 19
+  - service: input_number.set_value
+    data:
+      entity_id:
+      - input_number.target_preset_common_rooms
+      value: 19.5
+  - service: input_number.set_value
+    data:
+      entity_id:
+      - input_number.target_preset_corridors
+      - input_number.target_preset_office
+      value: 19
+  - service: script.turn_on
+    data:
+      entity_id: script.update_thermostats
+  - service: input_number.set_value
+    data:
+      entity_id: input_number.target_preset_bedrooms
+      value: 19
+  id: e9c00aa3e5194c38aabc409e5e82f63c
+- alias: '[Chauffage] Annuler modes après une journée'
   trigger:
     platform: time
-    at: "17:00:00"
+    at: '17:00:00'
   condition:
     condition: or
     conditions:
-      - condition: state
-        entity_id: input_select.heating_mode
-        state: "Malade"
-      - condition: state
-        entity_id: input_select.heating_mode
-        state: "Home Office"
+    - condition: state
+      entity_id: input_select.heating_mode
+      state: Malade
+    - condition: state
+      entity_id: input_select.heating_mode
+      state: Home Office
   action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.heating_mode
-        option: Normal
-    - service: script.turn_on
-      data:
-        entity_id: script.update_thermostats
-
-- alias: "[Chauffage] Changer le mode lorsque vacance activé"
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.heating_mode
+      option: Normal
+  - service: script.turn_on
+    data:
+      entity_id: script.update_thermostats
+  id: 75cf43a6ec1c42889668cb76e1c294ab
+- alias: '[Chauffage] Changer le mode lorsque vacance activé'
   trigger:
     platform: state
     entity_id: input_boolean.vacation_mode
-    to: "on"
+    to: 'on'
   action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.heating_mode
-        option: "En vacance"
-    - service: script.turn_on
-      data:
-        entity_id: script.update_thermostats
-
-- alias: "[Chauffage] Changer le mode lorsque vacance terminé"
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.heating_mode
+      option: En vacance
+  - service: script.turn_on
+    data:
+      entity_id: script.update_thermostats
+  id: 3e84d6c4ffe2472ab0466e50445fa1ca
+- alias: '[Chauffage] Changer le mode lorsque vacance terminé'
   trigger:
     platform: state
     entity_id: input_boolean.vacation_mode
-    to: "off"
+    to: 'off'
   action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.heating_mode
-        option: Normal
-    - service: script.turn_on
-      data:
-        entity_id: script.update_thermostats
-
-# Fenetre Ouverte
-###############
-
-# Office
-###
-- alias: "[Chauffage-bureau] Couper lorsque fenetres ouvertes"
-  trigger:
-    platform: state
-    entity_id: binary_sensor.open_office
-    to: "on"
-  action:
-    - service: climate.turn_off
-      data:
-        entity_id: climate.chambre_rdc
-
-- alias: "[Chauffage-bureau] Allumer lorsque fenêtres fermés"
-  trigger:
-    platform: state
-    entity_id: binary_sensor.open_office
-    to: "off"
-  action:
-    - service: climate.turn_on
-      data:
-        entity_id: climate.chambre_rdc
-
-# Chambre Florian
-###
-- alias: "[Chauffage-Florian] Couper lorsque fenêtres ouvertes"
-  trigger:
-    platform: state
-    entity_id: binary_sensor.open_bedroom_florian
-    to: "on"
-  action:
-    - service: climate.turn_off
-      data:
-        entity_id: climate.chambre_florian
-
-- alias: "[Chauffage-Florian] Allumer lorsque fenêtres fermés"
-  trigger:
-    platform: state
-    entity_id: binary_sensor.open_bedroom_florian
-    to: "off"
-  action:
-    - service: climate.turn_on
-      data:
-        entity_id: climate.chambre_florian
-
-- alias: "[heating] MaJ chauffage si mode change"
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.heating_mode
+      option: Normal
+  - service: script.turn_on
+    data:
+      entity_id: script.update_thermostats
+  id: 42292d9a7fbb4c9c9c9c3381eb0b2a58
+- alias: '[heating] MaJ chauffage si mode change'
   trigger:
     platform: state
     entity_id: input_select.heating_mode
   action:
-    - service: script.turn_on
-      data:
-        entity_id: script.update_thermostats
-
-# Telegram
-################
-
+  - service: script.turn_on
+    data:
+      entity_id: script.update_thermostats
+  id: 8766cb75eb9d4eddbdbdbd154c4c337a
 - id: telegram-still-home
-  alias: "[chauffage] Telegram si rester maison"
-  initial_state: on
+  alias: '[chauffage] Telegram si rester maison'
+  initial_state: true
   trigger:
     platform: time
-    at: "09:00:00"
+    at: 09:00:00
   condition:
     condition: and
     conditions:
+    - condition: state
+      entity_id: binary_sensor.workday_sensor
+      state: 'on'
+    - condition: state
+      entity_id: input_select.heating_mode
+      state: Normal
+    - condition: or
+      conditions:
       - condition: state
-        entity_id: binary_sensor.workday_sensor
-        state: "on"
+        entity_id: group.presence_clement
+        state: home
       - condition: state
-        entity_id: input_select.heating_mode
-        state: "Normal"
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: group.presence_clement
-            state: "home"
-          - condition: state
-            entity_id: group.presence_melanie
-            state: "home"
+        entity_id: group.presence_melanie
+        state: home
   action:
-    service: >-
-      {% if is_state('group.presence_clement', 'home') and is_state('group.presence_melanie', 'home') %}
-        notify.telegram
-      {% elif is_state('group.presence_clement', 'home') %}
-        notify.telegram_clement
-      {% else %}
-        notify.telegram_melanie
-      {% endif %}
+    service: "{% if is_state('group.presence_clement', 'home') and is_state('group.presence_melanie',\
+      \ 'home') %}\n  notify.telegram\n{% elif is_state('group.presence_clement',\
+      \ 'home') %}\n  notify.telegram_clement\n{% else %}\n  notify.telegram_melanie\n\
+      {% endif %}"
     data:
-      title: "\u2668 **Chauffage**"
-      message: >
-        Il semblerait que tu sois à la maison. Le chauffage est en mode *Normal*. Veux tu le changer ?
+      title: ♨ **Chauffage**
+      message: 'Il semblerait que tu sois à la maison. Le chauffage est en mode *Normal*.
+        Veux tu le changer ?
+
+        '
       data:
         inline_keyboard:
-          - "Home Office:/ho_mode"
-          - "Malade:/sick_mode"
-
+        - Home Office:/ho_mode
+        - Malade:/sick_mode
 - id: telegram-mode-sick
-  alias: "[z] Telegram activate mode sick"
-  initial_state: on
+  alias: '[z] Telegram activate mode sick'
+  initial_state: true
   trigger:
     platform: event
     event_type: telegram_callback
     event_data:
-      data: "/sick_mode"
+      data: /sick_mode
   action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.heating_mode
-        option: "Malade"
-    - service: telegram_bot.answer_callback_query
-      data_template:
-        callback_query_id: "{{ trigger.event.data.id }}"
-        message: "Ok! C'est fait."
-
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.heating_mode
+      option: Malade
+  - service: telegram_bot.answer_callback_query
+    data_template:
+      callback_query_id: '{{ trigger.event.data.id }}'
+      message: Ok! C'est fait.
 - id: telegram-mode-home-office
-  alias: "[z] Telegram activate H.O. mode"
-  initial_state: on
+  alias: '[z] Telegram activate H.O. mode'
+  initial_state: true
   trigger:
     platform: event
     event_type: telegram_callback
     event_data:
-      data: "/ho_mode"
+      data: /ho_mode
   action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.heating_mode
-        option: "Home Office"
-    - service: telegram_bot.answer_callback_query
-      data_template:
-        callback_query_id: "{{ trigger.event.data.id }}"
-        message: "Ok! C'est fait."
-
-- alias: "[z] Volet de Florian, mode ne pas déranger"
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.heating_mode
+      option: Home Office
+  - service: telegram_bot.answer_callback_query
+    data_template:
+      callback_query_id: '{{ trigger.event.data.id }}'
+      message: Ok! C'est fait.
+- alias: '[z] Volet de Florian, mode ne pas déranger'
   trigger:
-    - platform: state
-      entity_id: cover.first_floor
+  - platform: state
+    entity_id: cover.first_floor
   condition:
     condition: template
-    value_template: "{{ trigger.to_state.attributes.current_position != trigger.from_state.attributes.current_position }}"
+    value_template: '{{ trigger.to_state.attributes.current_position != trigger.from_state.attributes.current_position
+      }}'
   action:
-    - service: input_select.select_option
-      data_template:
-        entity_id: input_select.dnd_mode
-        option: >-
-          {% if trigger.to_state.attributes.current_position > 20 %}
-            Aucun
-          {% else %}
-            Etage
-          {% endif %}
-
-- alias: "[Alert] \U0001F4A6 fenêtre ouverte"
+  - service: input_select.select_option
+    data_template:
+      entity_id: input_select.dnd_mode
+      option: "{% if trigger.to_state.attributes.current_position > 20 %}\n  Aucun\n\
+        {% else %}\n  Etage\n{% endif %}"
+  id: 18f27f0e72b849e681928578cb68d9c3
+- alias: '[Alert] 💦 fenêtre ouverte'
   trigger:
     platform: numeric_state
     entity_id: sensor.meteo_precip_probability_0h
@@ -425,87 +365,92 @@
   condition:
     condition: state
     entity_id: binary_sensor.open_any
-    state: "on"
+    state: 'on'
   action:
-    - service: notify.telegram
-      data_template:
-        title: "\U0001F4A6 *Il va pleuvoir.*"
-        message: >
-          Il y a de forte chance qu'il pleuve ({{  states.sensor.meteo_precip_probability_0h.state }}%) dans la prochaine heure. Les fenêtres suivantes sont ouvertes: 
-          {%for s in states.binary_sensor if s.entity_id.startswith('binary_sensor.open_') and s.state == 'on' %}{{s.name}}{%if not loop.last%},{%endif%}{%endfor%}
+  - service: notify.telegram
+    data_template:
+      title: 💦 *Il va pleuvoir.*
+      message: 'Il y a de forte chance qu''il pleuve ({{  states.sensor.meteo_precip_probability_0h.state
+        }}%) dans la prochaine heure. Les fenêtres suivantes sont ouvertes:  {%for
+        s in states.binary_sensor if s.entity_id.startswith(''binary_sensor.open_'')
+        and s.state == ''on'' %}{{s.name}}{%if not loop.last%},{%endif%}{%endfor%}
 
-- alias: "[Alert] \U0001F6AA fenetres ouvertes"
+        '
+  id: 59ec3470966f4f6087d172fedecab351
+- alias: '[Alert] 🚪 fenetres ouvertes'
   trigger:
     platform: state
     entity_id: binary_sensor.x_door_main_entrance
-    to: "on"
+    to: 'on'
   condition:
     condition: and
     conditions:
-      - condition: time
-        after: "07:00:00"
-        before: "09:00:00"
-      - condition: state
-        entity_id: binary_sensor.motion_entrance
-        state: "on"
-        for:
-          seconds: 10
-      - condition: state
-        entity_id: binary_sensor.open_any
-        state: "on"
-      - condition: or
-        conditions:
-          - condition: template
-            value_template: "{{ as_timestamp(now()) - as_timestamp (states.automation.alert_fenetres_ouvertes.attributes.last_triggered) | int > 10 * 60 }}"
-          - condition: template
-            value_template: "{{ states.automation.alert_fenetres_ouvertes.attributes.last_triggered == none }}"
+    - condition: time
+      after: 07:00:00
+      before: 09:00:00
+    - condition: state
+      entity_id: binary_sensor.motion_entrance
+      state: 'on'
+      for:
+        seconds: 10
+    - condition: state
+      entity_id: binary_sensor.open_any
+      state: 'on'
+    - condition: or
+      conditions:
+      - condition: template
+        value_template: '{{ as_timestamp(now()) - as_timestamp (states.automation.alert_fenetres_ouvertes.attributes.last_triggered)
+          | int > 10 * 60 }}'
+      - condition: template
+        value_template: '{{ states.automation.alert_fenetres_ouvertes.attributes.last_triggered
+          == none }}'
   action:
-    - service: notify.telegram
-      data_template:
-        title: "\U0001F6AA *Tu pars?*"
-        message: >
-          Il me doit te rappeler que les fenêtres suivantes sont ouvertes: {{'\n'}}{{'\n'}}
-          {%for s in states.binary_sensor if s.entity_id.startswith('binary_sensor.open_') and s.state == 'on' %}{{'- '}}{{s.name}}{%if not loop.last%}{{'\n'}}{%endif%}{%endfor%}
+  - service: notify.telegram
+    data_template:
+      title: 🚪 *Tu pars?*
+      message: 'Il me doit te rappeler que les fenêtres suivantes sont ouvertes: {{''\n''}}{{''\n''}}
+        {%for s in states.binary_sensor if s.entity_id.startswith(''binary_sensor.open_'')
+        and s.state == ''on'' %}{{''- ''}}{{s.name}}{%if not loop.last%}{{''\n''}}{%endif%}{%endfor%}
 
-- alias: "[Alerte] \U0001F50B faibles pour sensors"
+        '
+  id: d949a14e4afe44a9aec58141f0cd8ce8
+- alias: '[Alerte] 🔋 faibles pour sensors'
   trigger:
-    - platform: time
-      at: "20:30:00"
+  - platform: time
+    at: '20:30:00'
   condition:
     condition: template
-    value_template: >
-      {% for sensor in states.sensor if sensor.attributes.battery_level is defined and sensor.attributes.battery_level | int < 15 %}
-        {% if loop.index == 1 %} {{ True }} {% endif %}
-      {%endfor%}
+    value_template: "{% for sensor in states.sensor if sensor.attributes.battery_level\
+      \ is defined and sensor.attributes.battery_level | int < 15 %}\n  {% if loop.index\
+      \ == 1 %} {{ True }} {% endif %}\n{%endfor%}\n"
   action:
-    - service: notify.telegram_clement
-      data_template:
-        title: "\U0001F50B *Batteries*"
-        message: >
-          {% for sensor in states.sensor if sensor.attributes.battery_level is defined and sensor.attributes.battery_level | int < 15 %}
-            La batterie de la sonde "{{sensor.attributes.friendly_name | replace('_', ' ') }}" est à {{ sensor.attributes.battery_level }}%!{{'\n'}}
-          {% endfor %}
-
-- alias: "[Alerte] \U0001F50B faibles pour binary sensors"
+  - service: notify.telegram_clement
+    data_template:
+      title: 🔋 *Batteries*
+      message: "{% for sensor in states.sensor if sensor.attributes.battery_level\
+        \ is defined and sensor.attributes.battery_level | int < 15 %}\n  La batterie\
+        \ de la sonde \"{{sensor.attributes.friendly_name | replace('_', ' ') }}\"\
+        \ est à {{ sensor.attributes.battery_level }}%!{{'\\n'}}\n{% endfor %}\n"
+  id: bff26c32104f484fb0db4895b12a8a62
+- alias: '[Alerte] 🔋 faibles pour binary sensors'
   trigger:
-    - platform: time
-      at: "20:30:00"
+  - platform: time
+    at: '20:30:00'
   condition:
     condition: template
-    value_template: >
-      {% for sensor in states.binary_sensor if sensor.attributes.battery_level is defined and sensor.attributes.battery_level | int < 15 %}
-        {% if loop.index == 1 %} {{ True }} {% endif %}
-      {%endfor%}
+    value_template: "{% for sensor in states.binary_sensor if sensor.attributes.battery_level\
+      \ is defined and sensor.attributes.battery_level | int < 15 %}\n  {% if loop.index\
+      \ == 1 %} {{ True }} {% endif %}\n{%endfor%}\n"
   action:
-    - service: notify.telegram_clement
-      data_template:
-        title: "\U0001F50B *Batteries*"
-        message: >
-          {% for sensor in states.binary_sensor if sensor.attributes.battery_level is defined and sensor.attributes.battery_level | int < 15 %}
-            La batterie de la sonde "{{sensor.attributes.friendly_name | replace('_', ' ') }}" est à {{ sensor.attributes.battery_level }}%!{{'\n'}}
-          {% endfor %}
-
-- alias: "[other] A table shake_air"
+  - service: notify.telegram_clement
+    data_template:
+      title: 🔋 *Batteries*
+      message: "{% for sensor in states.binary_sensor if sensor.attributes.battery_level\
+        \ is defined and sensor.attributes.battery_level | int < 15 %}\n  La batterie\
+        \ de la sonde \"{{sensor.attributes.friendly_name | replace('_', ' ') }}\"\
+        \ est à {{ sensor.attributes.battery_level }}%!{{'\\n'}}\n{% endfor %}\n"
+  id: 1d736db787d748a2af212adc9f91438a
+- alias: '[other] A table shake_air'
   trigger:
     platform: event
     event_type: xiaomi_aqara.cube_action
@@ -513,90 +458,94 @@
       entity_id: binary_sensor.cube_158d0002794905
       action_type: shake_air
   action:
-    - service: media_player.play_media
-      data_template:
-        entity_id: media_player.cuisine
-        media_content_id: yL2nWFrT8VA
-        media_content_type: music
-
-# This will simulate a presence
-- alias: "[simu] Mettre en mode cuisine entre 18:00 et 18:30"
+  - service: media_player.play_media
+    data_template:
+      entity_id: media_player.cuisine
+      media_content_id: yL2nWFrT8VA
+      media_content_type: music
+  id: 184b044b6c80410ba7b5939cb2a1057b
+- alias: '[simu] Mettre en mode cuisine entre 18:00 et 18:30'
   trigger:
-    - platform: time
-      at: "17:50:00"
+  - platform: time
+    at: '17:50:00'
   condition:
-    - condition: and
-      conditions:
-        - condition: state
-          entity_id: input_boolean.vacation_mode
-          state: "on"
-        - condition: numeric_state
-          entity_id: sensor.illumination_158d00027520c4
-          above: 15
-  action:
-    - delay: >
-        00:{{ (range(10, 40)|random|int) }}:{{ (range(10, 59)|random|int) }}
-    - service: scene.turn_on
-      data:
-        entity_id: scene.light_cooking
-    - service: notify.telegram_clement
-      data:
-        title: "Home assistant "
-        message: "Mode cuisiner en route"
-
-- alias: "[simu] Mettre mode dinner entre 19:30 et 20:00"
-  trigger:
-    - platform: time
-      at: "19:20:00"
-  condition:
+  - condition: and
+    conditions:
     - condition: state
       entity_id: input_boolean.vacation_mode
-      state: "on"
+      state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.illumination_158d00027520c4
+      above: 15
   action:
-    - delay: >
-        00:{{ (range(10, 40)|random|int) }}:{{ (range(10, 59)|random|int) }}
-    - service: scene.turn_on
-      data:
-        entity_id: scene.dinner
-    - service: notify.telegram_clement
-      data:
-        title: "Home assistant "
-        message: "Mode diner en route"
+  - delay: '00:{{ (range(10, 40)|random|int) }}:{{ (range(10, 59)|random|int) }}
 
-- alias: "[simu] Mettre en route le mode cozy salon entre 21:00 et 21:30"
+      '
+  - service: scene.turn_on
+    data:
+      entity_id: scene.light_cooking
+  - service: notify.telegram_clement
+    data:
+      title: 'Home assistant '
+      message: Mode cuisiner en route
+  id: 6fd8cdbb018c47edb415d906e70913d3
+- alias: '[simu] Mettre mode dinner entre 19:30 et 20:00'
   trigger:
-    - platform: time
-      at: "20:50:00"
+  - platform: time
+    at: '19:20:00'
   condition:
-    - condition: state
-      entity_id: input_boolean.vacation_mode
-      state: "on"
+  - condition: state
+    entity_id: input_boolean.vacation_mode
+    state: 'on'
   action:
-    - delay: >
-        00:{{ (range(10, 30)|random|int) }}:{{ (range(10, 59)|random|int) }}
-    - service: scene.turn_on
-      data:
-        entity_id: scene.light_cozy_livingroom
-    - service: notify.telegram_clement
-      data:
-        title: "Home assistant "
-        message: "Mode cozy salon en route"
+  - delay: '00:{{ (range(10, 40)|random|int) }}:{{ (range(10, 59)|random|int) }}
 
-- alias: "[simu] Eteindre toute les lumières entre 23:30 et 00:30"
+      '
+  - service: scene.turn_on
+    data:
+      entity_id: scene.dinner
+  - service: notify.telegram_clement
+    data:
+      title: 'Home assistant '
+      message: Mode diner en route
+  id: 55b74f2ba7b14bb6830e0f26a72cc09f
+- alias: '[simu] Mettre en route le mode cozy salon entre 21:00 et 21:30'
   trigger:
-    - platform: time
-      at: "23:20:00"
+  - platform: time
+    at: '20:50:00'
   condition:
-    - condition: state
-      entity_id: input_boolean.vacation_mode
-      state: "on"
+  - condition: state
+    entity_id: input_boolean.vacation_mode
+    state: 'on'
   action:
-    - delay: >
-        00:{{ (range(10, 59)|random|int) }}:{{ (range(10, 59)|random|int) }}
-    - service: light.turn_off
-      data:
-        entity_id: light.ground_floor_master
-    - service: notify.telegram_clement
-      data:
-        title: "Home assistant "
-        message: "Mode coucher en route"
+  - delay: '00:{{ (range(10, 30)|random|int) }}:{{ (range(10, 59)|random|int) }}
+
+      '
+  - service: scene.turn_on
+    data:
+      entity_id: scene.light_cozy_livingroom
+  - service: notify.telegram_clement
+    data:
+      title: 'Home assistant '
+      message: Mode cozy salon en route
+  id: eced1d3e4b6d4f17b02eaef8abd85760
+- alias: '[simu] Eteindre toute les lumières entre 23:30 et 00:30'
+  trigger:
+  - platform: time
+    at: '23:20:00'
+  condition:
+  - condition: state
+    entity_id: input_boolean.vacation_mode
+    state: 'on'
+  action:
+  - delay: '00:{{ (range(10, 59)|random|int) }}:{{ (range(10, 59)|random|int) }}
+
+      '
+  - service: light.turn_off
+    data:
+      entity_id: light.ground_floor_master
+  - service: notify.telegram_clement
+    data:
+      title: 'Home assistant '
+      message: Mode coucher en route
+  id: 6e42a2f3c64943ebb1c1b4014ae61700

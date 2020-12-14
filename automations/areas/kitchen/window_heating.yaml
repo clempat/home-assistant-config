@@ -1,0 +1,10 @@
+---
+  id: d8ff7874-70ba-4789-8313-61d1ece2a3be
+  alias: kitchen_window_heating
+  description: Turn on/off Heating when window is open or closed
+  use_blueprint:
+    path: clempat/windows_heating.yaml
+    input:
+      windows: binary_sensor.open_kitchen
+      climate: climate.cuisine
+      is_heating_on: binary_sensor.heating_is_on

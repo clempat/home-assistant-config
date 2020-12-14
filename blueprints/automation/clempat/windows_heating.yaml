@@ -1,0 +1,50 @@
+blueprint:
+  name: Windows Heating
+  description: Will turn off the heating when any window is open and turn it back on when windows are closed
+  domain: automation
+  input:
+    windows:
+      name: Windows
+      description: Binary sensor representing all windows of a room
+      selector: 
+        entity:
+          domain: binary_sensor
+          device_class: window
+    is_heating_on:
+      default: false
+      name: Heating ON/OFF
+      description: Heating Main Switch (optional)
+      selector: 
+        entity:
+    climate:
+      name: Thermostat
+      description: Thermostats to switch off or on
+      selector:
+        entity:
+            domain: climate
+
+trigger:
+  platform: state
+  entity_id: !input windows
+
+action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: !input is_heating_on
+        state: 'on'
+      - condition: template
+        value_template: "{{ trigger.to_state.state == 'on' }}"
+      sequence:
+        - service: climate.turn_off
+          entity_id: !input climate 
+    - conditions:
+      - condition: state
+        entity_id: !input is_heating_on
+        state: 'on'
+      - condition: template
+        value_template: "{{ trigger.to_state.state == 'off' }}"
+      sequence:
+        - service: climate.turn_on
+          entity_id: !input climate
+    default: []

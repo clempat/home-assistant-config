@@ -1,0 +1,10 @@
+---
+  id: 34cdb3c9-7191-4d60-b1cf-ae96e317971c
+  alias: bedroom_ground_floor_window_heating
+  description: Turn on/off Heating when window is open or closed
+  use_blueprint:
+    path: clempat/windows_heating.yaml
+    input:
+      windows: binary_sensor.x_window_bedroom_ground_floor
+      climate: climate.chambre_rdc
+      is_heating_on: binary_sensor.heating_is_on

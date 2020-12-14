@@ -1,0 +1,10 @@
+---
+  id: 1525fec9-ca1b-444d-98bb-8290e15fa318
+  alias: bedroom_florian_window_heating
+  description: Turn on/off Heating when window is open or closed
+  use_blueprint:
+    path: clempat/windows_heating.yaml
+    input:
+      windows: binary_sensor.open_bedroom_florian
+      climate: climate.chambre_florian
+      is_heating_on: binary_sensor.heating_is_on

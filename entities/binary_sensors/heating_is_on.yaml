@@ -1,0 +1,16 @@
+platform: template
+sensors:
+  heating_is_on:
+    icon_template: >-
+      {% if is_state('input_select.heating_mode', "Été") %}
+        mdi:radiator-off
+      {% else %}
+        mdi:radiator
+      {% endif %}
+    friendly_name: Chauffage
+    value_template: >-
+      {% if is_state('input_select.heating_mode', "Été") %}
+        off
+      {% else %}
+        on
+      {% endif %}
