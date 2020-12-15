@@ -1,10 +1,9 @@
 ---
-  id: da6517dc-076f-43b0-bf30-ebab7f41e022
-  alias: bedroom_cellar_window_heating
-  description: Turn on/off Heating when window is open or closed
-  use_blueprint:
-    path: clempat/windows_heating.yaml
-    input:
-      windows: binary_sensor.open_cellar_room
-      climate: climate.chambre_cave
-      is_heating_on: binary_sensor.heating_is_on
+id: da6517dc-076f-43b0-bf30-ebab7f41e022
+alias: bedroom_cellar_window_heating
+description: Turn on/off Heating when window is open or closed
+use_blueprint:
+  path: clempat/windows_heating.yaml
+  input:
+    windows: binary_sensor.open_cellar_room
+    climate: climate.chambre_cave

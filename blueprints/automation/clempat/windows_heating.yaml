@@ -1,50 +1,66 @@
 blueprint:
-  name: Windows Heating
-  description: Will turn off the heating when any window is open and turn it back on when windows are closed
+  name: Windows - Heating
+  description: |
+    This will turn off the heating when a windows is open.
+    When the windows get closed it goes back to its previous state.
   domain: automation
   input:
     windows:
       name: Windows
       description: Binary sensor representing all windows of a room
-      selector: 
+      selector:
         entity:
           domain: binary_sensor
           device_class: window
-    is_heating_on:
-      default: false
-      name: Heating ON/OFF
-      description: Heating Main Switch (optional)
-      selector: 
-        entity:
+    delay:
+      name: Delay
+      description: Delay between the windows being closed/opened and the heating updates (seconds)
+      default: 0
+      selector:
+        number:
+          min: 0.0
+          max: 120.0
+          unit_of_measurement: seconds
+          step: 1.0
+          mode: slider
     climate:
       name: Thermostat
-      description: Thermostats to switch off or on
+      description: Thermostat attached to the room controling the heating.
       selector:
         entity:
-            domain: climate
-
+          domain: climate
+  source_url: https://gist.github.com/clempat/b2534120c51307d0c36b94e143594cba
 trigger:
   platform: state
-  entity_id: !input windows
-
+  entity_id: !input "windows"
+  for:
+    seconds: !input "delay"
 action:
+  # in order to use in template
+  - variables:
+      climate_input: !input "climate"
   - choose:
-    - conditions:
-      - condition: state
-        entity_id: !input is_heating_on
-        state: 'on'
-      - condition: template
-        value_template: "{{ trigger.to_state.state == 'on' }}"
-      sequence:
-        - service: climate.turn_off
-          entity_id: !input climate 
-    - conditions:
-      - condition: state
-        entity_id: !input is_heating_on
-        state: 'on'
-      - condition: template
-        value_template: "{{ trigger.to_state.state == 'off' }}"
-      sequence:
-        - service: climate.turn_on
-          entity_id: !input climate
-    default: []
+      - conditions:
+          - condition: template
+            value_template: '{{ trigger.to_state.state == "on" }}'
+        sequence:
+          - service: scene.create
+            data:
+              scene_id: previous_climate
+              snapshot_entities: !input "climate"
+          - service: climate.turn_off
+            entity_id: !input "climate"
+    default:
+      - service: >
+          {% if states("scene.previous_climate") != "unknown" %}
+            scene.turn_on
+          {% else %}
+            climate.turn_on
+          {% endif %}
+        data:
+          entity_id: >
+            {% if states("scene.previous_climate") != "unknown" %}
+              scene.previous_climate
+            {% else %}
+              {{climate_input}}
+            {% endif %}

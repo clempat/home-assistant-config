@@ -1,10 +1,9 @@
 ---
-  id: 1eaf15d9-1426-453f-9928-8b9234cf17ed
-  alias: entrance_window_heating
-  description: Turn on/off Heating when window is open or closed
-  use_blueprint:
-    path: clempat/windows_heating.yaml
-    input:
-      windows: binary_sensor.x_door_main_entrance
-      climate: climate.entree
-      is_heating_on: binary_sensor.heating_is_on
+id: 1eaf15d9-1426-453f-9928-8b9234cf17ed
+alias: entrance_window_heating
+description: Turn on/off Heating when window is open or closed
+use_blueprint:
+  path: clempat/windows_heating.yaml
+  input:
+    windows: binary_sensor.x_door_main_entrance
+    climate: climate.entree

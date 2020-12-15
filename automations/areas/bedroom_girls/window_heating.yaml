@@ -1,10 +1,9 @@
 ---
-  id: 192ef474-a9bb-4545-8b33-15b923413fdd
-  alias: bedroom_girls_window_heating
-  description: Turn on/off Heating when window is open or closed
-  use_blueprint:
-    path: clempat/windows_heating.yaml
-    input:
-      windows: binary_sensor.open_bedroom
-      climate: climate.chambre_1er
-      is_heating_on: binary_sensor.heating_is_on
+id: 192ef474-a9bb-4545-8b33-15b923413fdd
+alias: bedroom_girls_window_heating
+description: Turn on/off Heating when window is open or closed
+use_blueprint:
+  path: clempat/windows_heating.yaml
+  input:
+    windows: binary_sensor.open_bedroom
+    climate: climate.chambre_1er

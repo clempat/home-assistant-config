@@ -1,10 +1,9 @@
 ---
-  id: 0acd3875-234b-4cfe-86d8-dcefd380d458
-  alias: bathroom_window_heating
-  description: Turn on/off Heating when window is open or closed
-  use_blueprint:
-    path: clempat/windows_heating.yaml
-    input:
-      windows: binary_sensor.open_bathroom
-      climate: climate.salle_de_bain
-      is_heating_on: binary_sensor.heating_is_on
+id: 0acd3875-234b-4cfe-86d8-dcefd380d458
+alias: bathroom_window_heating
+description: Turn on/off Heating when window is open or closed
+use_blueprint:
+  path: clempat/windows_heating.yaml
+  input:
+    windows: binary_sensor.open_bathroom
+    climate: climate.salle_de_bain

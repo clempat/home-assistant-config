@@ -1,10 +1,9 @@
 ---
-  id: e070e811-7a43-430c-a38c-0e019cf36d8f
-  alias: livingroom_window_heating
-  description: Turn on/off Heating when window is open or closed
-  use_blueprint:
-    path: clempat/windows_heating.yaml
-    input:
-      windows: binary_sensor.open_livingroom
-      climate: climate.salon
-      is_heating_on: binary_sensor.heating_is_on
+id: e070e811-7a43-430c-a38c-0e019cf36d8f
+alias: livingroom_window_heating
+description: Turn on/off Heating when window is open or closed
+use_blueprint:
+  path: clempat/windows_heating.yaml
+  input:
+    windows: binary_sensor.open_livingroom
+    climate: climate.salon
