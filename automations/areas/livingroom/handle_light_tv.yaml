@@ -1,0 +1,11 @@
+---
+
+id: a39eaac9-1eda-4c6c-92d5-a40ee5b6143e
+alias: handle_light_tv
+description: "Scene switcher when media is playing in livingroom"
+use_blueprint:
+  path: clempat/media_scene_switcher.yaml
+  input:
+    media_player: media_player.nvidia_shield
+    app_to_exclude: Spotify, Google Cast
+    playing_scene: scene.light_watching_tv

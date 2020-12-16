@@ -1,0 +1,162 @@
+blueprint:
+  name: Scene switcher when media is playing
+  description: |
+    This allow you to change a scene when it is playing, paused or stopped.
+    There is the possibility to excludes apps
+    The scene trigger only when at least one light of the scene is on
+  domain: automation
+
+  input:
+    media_player:
+      name: Media Player
+      description: Media Player to track
+      selector:
+        entity:
+          domain: media_player
+    app_to_exclude:
+      name: Apps to exclude
+      default: ""
+      description: |
+        Liste of App to exclude (ex: Spotify,Google Cast). This is optional
+    playing_scene:
+      name: Playing Scene
+      description: |
+        The scene to turn on when playing.
+      selector:
+        entity:
+          domain: scene
+    paused_scene:
+      name: Paused Scene
+      default: false
+      description: |
+        The scene to turn on when in paused.
+        If not indicated the automation will come to old lights state
+      selector:
+        entity:
+          domain: scene
+    standby_scene:
+      name: Standby Scene
+      default: false
+      description: |
+        The scene to turn on when in standby.
+        If not indicated the automation will come to old lights state
+      selector:
+        entity:
+          domain: scene
+    idle_scene:
+      name: Idle Scene
+      default: false
+      description: |
+        The scene to turn on when in idle.
+        If not indicated the automation will come to old lights state
+      selector:
+        entity:
+          domain: scene
+    off_scene:
+      name: Off Scene
+      default: false
+      description: |
+        The scene to turn on when in off.
+        If not indicated the automation will come to old lights state
+      selector:
+        entity:
+          domain: scene
+
+variables:
+  app_to_exclude_input: !input "app_to_exclude"
+  app_to_exclude_sanitized: "{{ app_to_exclude_input.split(',') | map('trim') | list }}"
+  playing_scene_input: !input "playing_scene"
+  idle_scene_input: !input "idle_scene"
+  paused_scene_input: !input "paused_scene"
+  off_scene_input: !input "off_scene"
+  standby_scene_input: !input "standby_scene"
+  
+trigger:
+  platform: state
+  entity_id: !input media_player
+    
+action:
+  - variables:
+      main_lights: "{{ state_attr(playing_scene_input, 'entity_id') }}"
+      current_app_name: "{{ trigger.to_state.attributes.app_name }}"
+      is_excluded_app: "{{ app_to_exclude_sanitized | select('eq', current_app_name) | list | count > 0 }}"
+      has_light_on: "{{ expand(main_lights) | selectattr('state','eq','on') | list | count > 0 }}"
+  
+  - choose:
+    # Switch on
+    - conditions:
+      - "{{ trigger.from_state.state == 'off' }}"
+      sequence:
+        - service: scene.create
+          data:
+            scene_id: media_scene_switcher_previous_lights_state
+            snapshot_entities: "{{ main_lights }}"
+
+    # Playing
+    - conditions:
+        - "{{ trigger.to_state.state == 'playing' }}"
+        - "{{ trigger.from_state.state != 'playing' }}"
+        - "{{ not is_excluded_app }}"
+        - "{{ has_light_on }}"
+      sequence:
+        - service: scene.turn_on
+          data:
+            entity_id: !input "playing_scene"
+
+    # Paused
+    - conditions:
+        - "{{ trigger.to_state.state == 'paused' }}"
+        - "{{ trigger.from_state.state != 'paused' }}"
+        - "{{ not is_excluded_app }}"
+        - "{{ paused_scene_input }}"
+        - "{{ has_light_on }}"
+      sequence:
+        - service: scene.turn_on
+          data:
+            entity_id: !input "paused_scene"
+
+    # Idle
+    - conditions:
+        - "{{ trigger.to_state.state == 'idle' }}"
+        - "{{ not is_excluded_app }}"
+        - "{{ idle_scene_input }}"
+        - "{{ has_light_on }}"
+      sequence:
+        - service: scene.turn_on
+          data:
+            entity_id: !input "idle_scene"
+
+    # Standby
+    - conditions:
+        - "{{ trigger.to_state.state == 'standby' }}"
+        - "{{ not is_excluded_app }}"
+        - "{{ standby_scene_input }}"
+        - "{{ has_light_on }}"
+      sequence:
+        - service: scene.turn_on
+          data:
+            entity_id: !input "standby_scene"
+
+    # Standby
+    - conditions:
+        - "{{ trigger.to_state.state == 'off' }}"
+        - "{{ not is_excluded_app }}"
+        - "{{ off_scene_input }}"
+        - "{{ has_light_on }}"
+      sequence:
+        - service: scene.turn_on
+          data:
+            entity_id: !input "off_scene"
+
+    # any state without scene
+    - conditions:
+        - "{{ (['off', 'standby', 'idle', 'paused']) | select('eq', trigger.to_state.state) | list | count > 0 }}"
+        - "{{ not is_excluded_app }}"
+        - "{{ states('scene.previous_lights_state') != 'unknown' }}"
+        - "{{ has_light_on }}"
+      sequence:
+        - service: scene.turn_on
+          data:
+            entity_id: scene.media_scene_switcher_previous_lights_state
+
+    default: []
