@@ -39,7 +39,7 @@ action:
   # in order to use in template
   - variables:
       climate_input: !input "climate"
-      climate_object_id: "{{ states.climate.chambre_cave.object_id }}"
+      climate_object_id: "{{ states[climate_input].object_id }}"
   - choose:
       - conditions:
           - condition: template
