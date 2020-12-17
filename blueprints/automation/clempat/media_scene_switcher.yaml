@@ -70,93 +70,94 @@ variables:
   paused_scene_input: !input "paused_scene"
   off_scene_input: !input "off_scene"
   standby_scene_input: !input "standby_scene"
-  
+
 trigger:
   platform: state
   entity_id: !input media_player
-    
+
 action:
   - variables:
       main_lights: "{{ state_attr(playing_scene_input, 'entity_id') }}"
+      scene_main_lights_object_id: "{{ states[playing_scene_input].object_id }}"
       current_app_name: "{{ trigger.to_state.attributes.app_name }}"
       is_excluded_app: "{{ app_to_exclude_sanitized | select('eq', current_app_name) | list | count > 0 }}"
       has_light_on: "{{ expand(main_lights) | selectattr('state','eq','on') | list | count > 0 }}"
-  
+
   - choose:
-    # Switch on
-    - conditions:
-      - "{{ trigger.from_state.state == 'off' }}"
-      sequence:
-        - service: scene.create
-          data:
-            scene_id: media_scene_switcher_previous_lights_state
-            snapshot_entities: "{{ main_lights }}"
+      # Switch on
+      - conditions:
+          - "{{ trigger.from_state.state == 'off' }}"
+        sequence:
+          - service: scene.create
+            data_template:
+              scene_id: "media_scene_{{scene_main_lights_object_id}}_lights_previous"
+              snapshot_entities: "{{ main_lights }}"
 
-    # Playing
-    - conditions:
-        - "{{ trigger.to_state.state == 'playing' }}"
-        - "{{ trigger.from_state.state != 'playing' }}"
-        - "{{ not is_excluded_app }}"
-        - "{{ has_light_on }}"
-      sequence:
-        - service: scene.turn_on
-          data:
-            entity_id: !input "playing_scene"
+      # Playing
+      - conditions:
+          - "{{ trigger.to_state.state == 'playing' }}"
+          - "{{ trigger.from_state.state != 'playing' }}"
+          - "{{ not is_excluded_app }}"
+          - "{{ has_light_on }}"
+        sequence:
+          - service: scene.turn_on
+            data:
+              entity_id: !input "playing_scene"
 
-    # Paused
-    - conditions:
-        - "{{ trigger.to_state.state == 'paused' }}"
-        - "{{ trigger.from_state.state != 'paused' }}"
-        - "{{ not is_excluded_app }}"
-        - "{{ paused_scene_input }}"
-        - "{{ has_light_on }}"
-      sequence:
-        - service: scene.turn_on
-          data:
-            entity_id: !input "paused_scene"
+      # Paused
+      - conditions:
+          - "{{ trigger.to_state.state == 'paused' }}"
+          - "{{ trigger.from_state.state != 'paused' }}"
+          - "{{ not is_excluded_app }}"
+          - "{{ paused_scene_input }}"
+          - "{{ has_light_on }}"
+        sequence:
+          - service: scene.turn_on
+            data:
+              entity_id: !input "paused_scene"
 
-    # Idle
-    - conditions:
-        - "{{ trigger.to_state.state == 'idle' }}"
-        - "{{ not is_excluded_app }}"
-        - "{{ idle_scene_input }}"
-        - "{{ has_light_on }}"
-      sequence:
-        - service: scene.turn_on
-          data:
-            entity_id: !input "idle_scene"
+      # Idle
+      - conditions:
+          - "{{ trigger.to_state.state == 'idle' }}"
+          - "{{ not is_excluded_app }}"
+          - "{{ idle_scene_input }}"
+          - "{{ has_light_on }}"
+        sequence:
+          - service: scene.turn_on
+            data:
+              entity_id: !input "idle_scene"
 
-    # Standby
-    - conditions:
-        - "{{ trigger.to_state.state == 'standby' }}"
-        - "{{ not is_excluded_app }}"
-        - "{{ standby_scene_input }}"
-        - "{{ has_light_on }}"
-      sequence:
-        - service: scene.turn_on
-          data:
-            entity_id: !input "standby_scene"
+      # Standby
+      - conditions:
+          - "{{ trigger.to_state.state == 'standby' }}"
+          - "{{ not is_excluded_app }}"
+          - "{{ standby_scene_input }}"
+          - "{{ has_light_on }}"
+        sequence:
+          - service: scene.turn_on
+            data:
+              entity_id: !input "standby_scene"
 
-    # Standby
-    - conditions:
-        - "{{ trigger.to_state.state == 'off' }}"
-        - "{{ not is_excluded_app }}"
-        - "{{ off_scene_input }}"
-        - "{{ has_light_on }}"
-      sequence:
-        - service: scene.turn_on
-          data:
-            entity_id: !input "off_scene"
+      # Standby
+      - conditions:
+          - "{{ trigger.to_state.state == 'off' }}"
+          - "{{ not is_excluded_app }}"
+          - "{{ off_scene_input }}"
+          - "{{ has_light_on }}"
+        sequence:
+          - service: scene.turn_on
+            data:
+              entity_id: !input "off_scene"
 
-    # any state without scene
-    - conditions:
-        - "{{ (['off', 'standby', 'idle', 'paused']) | select('eq', trigger.to_state.state) | list | count > 0 }}"
-        - "{{ not is_excluded_app }}"
-        - "{{ states('scene.previous_lights_state') != 'unknown' }}"
-        - "{{ has_light_on }}"
-      sequence:
-        - service: scene.turn_on
-          data:
-            entity_id: scene.media_scene_switcher_previous_lights_state
+      # any state without scene
+      - conditions:
+          - "{{ (['off', 'standby', 'idle', 'paused']) | select('eq', trigger.to_state.state) | list | count > 0 }}"
+          - "{{ not is_excluded_app }}"
+          - "{{ states('scene.previous_lights_state') != 'unknown' }}"
+          - "{{ has_light_on }}"
+        sequence:
+          - service: scene.turn_on
+            data_template:
+              entity_id: "scene.media_scene_{{scene_main_lights_object_id}}_lights_previous"
 
     default: []

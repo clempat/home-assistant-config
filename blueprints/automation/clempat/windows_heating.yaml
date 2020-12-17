@@ -61,7 +61,7 @@ action:
         data:
           entity_id: >
             {% if states("scene.previous_climate") != "unknown" %}
-              scene.previous_climate
+              scene.prev_state_climate_{{climate_object_id}}
             {% else %}
               {{climate_input}}
             {% endif %}
