@@ -39,14 +39,15 @@ action:
   # in order to use in template
   - variables:
       climate_input: !input "climate"
+      climate_object_id: "{{ states.climate.chambre_cave.object_id }}"
   - choose:
       - conditions:
           - condition: template
             value_template: '{{ trigger.to_state.state == "on" }}'
         sequence:
           - service: scene.create
-            data:
-              scene_id: previous_climate
+            data_template:
+              scene_id: "prev_state_climate_{{climate_object_id}}"
               snapshot_entities: !input "climate"
           - service: climate.turn_off
             entity_id: !input "climate"
