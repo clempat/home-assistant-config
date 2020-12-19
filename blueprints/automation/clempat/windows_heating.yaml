@@ -40,6 +40,7 @@ action:
   - variables:
       climate_input: !input "climate"
       climate_object_id: "{{ states[climate_input].object_id }}"
+      prev_scene_id: "prev_state_climate_{{climate_object_id}}"
   - choose:
       - conditions:
           - condition: template
@@ -47,21 +48,21 @@ action:
         sequence:
           - service: scene.create
             data_template:
-              scene_id: "prev_state_climate_{{climate_object_id}}"
+              scene_id: "{{prev_scene_id}}"
               snapshot_entities: !input "climate"
           - service: climate.turn_off
             entity_id: !input "climate"
     default:
       - service: >
-          {% if states("scene.previous_climate") != "unknown" %}
+          {% if states("scene." ~ prev_scene_id) != "unknown" %}
             scene.turn_on
           {% else %}
             climate.turn_on
           {% endif %}
         data:
           entity_id: >
-            {% if states("scene.previous_climate") != "unknown" %}
-              scene.prev_state_climate_{{climate_object_id}}
+            {% if states("scene." ~ prev_scene_id) != "unknown" %}
+              scene.{{prev_scene_id}}
             {% else %}
               {{climate_input}}
             {% endif %}
