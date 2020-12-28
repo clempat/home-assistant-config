@@ -1,0 +1,53 @@
+---
+  - type: 'custom:thermostat-dark-card'
+    entity: climate.cuisine
+    name: Cuisine
+    <<: &common_options
+      step: '0.5'
+      chevron_size: '50'
+      pending: '3'
+      idle_zone: '2'
+      style: |
+        .dial_title {
+          font-size: 10px !important;
+        }
+
+  - type: 'custom:thermostat-dark-card'
+    entity: climate.salon
+    name: Salon
+    <<: *common_options
+    
+  - type: 'custom:thermostat-dark-card'
+    entity: climate.chambre_rdc
+    name: Chambre RDC
+    <<: *common_options
+    
+  - type: 'custom:thermostat-dark-card'
+    entity: climate.escalier
+    name: Escalier
+    <<: *common_options
+  
+  - type: 'custom:thermostat-dark-card'
+    entity: climate.salle_de_bain
+    name: Salle de Bain
+    <<: *common_options
+
+  - type: 'custom:thermostat-dark-card'
+    entity: climate.chambre_florian
+    name: Florian
+    <<: *common_options
+
+  - type: 'custom:thermostat-dark-card'
+    entity: climate.chambre_1er
+    name: Mina & Clara
+    <<: *common_options
+
+  - type: 'custom:thermostat-dark-card'
+    entity: climate.chambre_cave
+    name: Chambre Cave
+    <<: *common_options
+
+  - type: 'custom:thermostat-dark-card'
+    entity: climate.buanderie
+    name: Buanderie
+    <<: *common_options

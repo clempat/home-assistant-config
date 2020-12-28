@@ -1,0 +1,35 @@
+---
+  - entity: script.vacuum_under_table
+    hold_action:
+      action: more-info
+    icon: 'mdi:table-chair'
+    show_icon: false
+    tap_action:
+      action: call-service
+      service: script.turn_on
+      service_data:
+        entity_id: script.vacuum_under_table
+    type: button
+  - entity: script.vacuum_kitchen
+    hold_action:
+      action: more-info
+    icon: 'mdi:fridge-outline'
+    show_icon: false
+    tap_action:
+      action: call-service
+      service: script.turn_on
+      service_data:
+        entity_id: script.vacuum_kitchen
+    type: button
+  - entity: vacuum.xiaomi_vacuum_cleaner
+    hold_action:
+      action: more-info
+    name: Aspirer tous
+    show_icon: false
+    show_name: true
+    tap_action:
+      action: call-service
+      service: vacuum.start
+      service_data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+    type: button

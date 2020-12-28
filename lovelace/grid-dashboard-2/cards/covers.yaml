@@ -1,0 +1,43 @@
+---
+  - entity: scene.cover_night_upstairs
+    hold_action:
+      action: more-info
+    icon: 'mdi:weather-night'
+    name: Etage
+    tap_action:
+      action: call-service
+      service: scene.turn_on
+      service_data:
+        entity_id: scene.cover_night_upstairs
+    type: button
+  - entity: scene.cover_night_all
+    hold_action:
+      action: more-info
+    icon: 'mdi:weather-night'
+    name: Tous
+    tap_action:
+      action: call-service
+      service: scene.turn_on
+      service_data:
+        entity_id: scene.cover_night_all
+    type: button
+  - entity: scene.cover_siesta
+    hold_action:
+      action: more-info
+    icon: 'mdi:sleep'
+    name: Sieste
+    tap_action:
+      action: call-service
+      service: scene.turn_on
+      service_data:
+        entity_id: scene.cover_siesta
+    type: button
+  - entity: scene.cover_day_all
+    hold_action:
+      action: more-info
+    icon: 'mdi:weather-sunset-up'
+    name: tous
+    tap_action:
+      action: call-service
+      service: script.open_all_covers
+    type: button

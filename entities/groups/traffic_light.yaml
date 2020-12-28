@@ -1,0 +1,7 @@
+---
+  name: Traffic Light
+  icon: mdi:traffic-light
+  entities:
+    - switch.led_red
+    - switch.led_green
+    - switch.led_orange

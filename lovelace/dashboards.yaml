@@ -1,28 +1,34 @@
 ---
-  # This file defines the Lovalace Dashboards in my UI.
-  #
-  # I would love to split this file, however, I cannot think of a way to make
-  # this a clear split. For example, there is the Lovelace dashboard declaration
-  # that goes into the integration settings, but there is also the Lovelace
-  # dashboard definition, that is the main file for each dashboard.
-  #
-  # I choose the route to make this file the declaration, while using the
-  # dashboard folder in this directory, for the actual definition of the
-  # dashboards themselves.
-  #
-  # https://www.home-assistant.io/lovelace/dashboards-and-views/#dashboards
-  experiment-dashboard:
-    mode: yaml
-    title: Experiment Dashboard
-    icon: mdi:test-tube
-    show_in_sidebar: false
-    filename: lovelace/experiment-dashboard/dashboard.yaml
-
-  grid-dashboard:
-    mode: yaml
-    title: Grid Dashboard
-    icon: mdi:test-tube
-    show_in_sidebar: false
-    filename: lovelace/grid-dashboard/dashboard.yaml
+# This file defines the Lovalace Dashboards in my UI.
+#
+# I would love to split this file, however, I cannot think of a way to make
+# this a clear split. For example, there is the Lovelace dashboard declaration
+# that goes into the integration settings, but there is also the Lovelace
+# dashboard definition, that is the main file for each dashboard.
+#
+# I choose the route to make this file the declaration, while using the
+# dashboard folder in this directory, for the actual definition of the
+# dashboards themselves.
+#
+# https://www.home-assistant.io/lovelace/dashboards-and-views/#dashboards
+experiment-dashboard:
+  mode: yaml
+  title: Experiment Dashboard
+  icon: mdi:test-tube
+  show_in_sidebar: false
+  filename: lovelace/experiment-dashboard/dashboard.yaml
   
-      
+
+grid-dashboard:
+  mode: yaml
+  title: Grid Dashboard
+  icon: mdi:test-tube
+  show_in_sidebar: false
+  filename: lovelace/grid-dashboard/dashboard.yaml
+
+grid-dashboard-2:
+  mode: yaml
+  title: Grid Dashboard 2
+  icon: mdi:test-tube
+  show_in_sidebar: true
+  filename: lovelace/grid-dashboard-2/dashboard.yaml

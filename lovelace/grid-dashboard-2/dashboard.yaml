@@ -1,0 +1,8 @@
+---
+  # Configuration Frontend Plugins
+  kiosk_mode:
+    hide_header: false
+    hide_sidebar: false
+  
+  views: !include_dir_list ./views
+  

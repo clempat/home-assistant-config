@@ -121,7 +121,7 @@
   - service: input_number.set_value
     data:
       entity_id: input_number.target_preset_kid_bedrooms
-      value: 19.5
+      value: 20
   - service: input_number.set_value
     data:
       entity_id: input_number.target_preset_bedrooms
@@ -549,3 +549,25 @@
       title: 'Home assistant '
       message: Mode coucher en route
   id: 6e42a2f3c64943ebb1c1b4014ae61700
+- id: '1608458498136'
+  alias: Mi Magic Cube
+  description: ''
+  use_blueprint:
+    path: bergstrom/mi-magic-cube-deconz-45-actions.yaml
+    input:
+      remote: 18e62be883894b11a89d78d145f0a9f6
+      rotate_clockwise:
+      - service: media_player.volume_up
+        data: {}
+        entity_id: media_player.nvidia_shield
+      rotate_counter_clockwise:
+      - service: media_player.volume_down
+        data: {}
+        entity_id: media_player.nvidia_shield
+      cube_shake:
+      - service: media_player.shuffle_set
+        data: {}
+        entity_id: media_player.nvidia_shield
+      slide_on_one: []
+      one_side_slide: true
+      cube_one_side_slide: []

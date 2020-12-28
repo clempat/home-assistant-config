@@ -1,0 +1,108 @@
+blueprint:
+  name: deCONZ - Aqara Wireless Remote Switch Double Rocker (2 buttons)
+  description: 'Aqara Wireless Remote Switch Double Rocker control
+
+    '
+  domain: automation
+  input:
+    remote:
+      name: Remote
+      description: Aqara remote
+      selector:
+        device:
+          integration: deconz
+          manufacturer: LUMI
+          model: lumi.remote.b286acn02
+    button_left_single_press:
+      name: Left button - Single press
+      description: Action single press of left button
+      default: []
+      selector:
+        action: {}
+    button_left_double_press:
+      name: Left button - Double press
+      description: Action double press of left button
+      default: []
+      selector:
+        action: {}
+    button_left_long:
+      name: Left button - Long press
+      description: Action left button press long
+      default: []
+      selector:
+        action: {}
+    button_right_single_press:
+      name: Right button - Single press
+      description: Action single press of right button
+      default: []
+      selector:
+        action: {}
+    button_right_double_press:
+      name: Right button - Double press
+      description: Action double press of right button
+      default: []
+      selector:
+        action: {}
+    button_right_long:
+      name: Right button - Long press
+      description: Action right button press long
+      default: []
+      selector:
+        action: {}
+    both_button_single_press:
+      name: Both buttons - Single press
+      description: Action single press of both buttons
+      default: []
+      selector:
+        action: {}
+    both_button_double_press:
+      name: Both buttons - Double press
+      description: Action double press of both buttons
+      default: []
+      selector:
+        action: {}
+    both_button_long:
+      name: Both buttons - Long press
+      description: Action both buttons press long
+      default: []
+      selector:
+        action: {}
+  source_url: https://community.home-assistant.io/t/deconz-aqara-wireless-remote-switch-double-rocker-2-buttons/256123
+mode: restart
+max_exceeded: silent
+trigger:
+- platform: event
+  event_type: deconz_event
+  event_data:
+    device_id: !input 'remote'
+action:
+- variables:
+    event: '{{ trigger.event.data.event }}'
+- choose:
+  - conditions:
+    - '{{ event == 1001 }}'
+    sequence: !input 'button_left_long'
+  - conditions:
+    - '{{ event == 1002 }}'
+    sequence: !input 'button_left_single_press'
+  - conditions:
+    - '{{ event == 1004 }}'
+    sequence: !input 'button_left_double_press'
+  - conditions:
+    - '{{ event == 2001 }}'
+    sequence: !input 'button_right_long'
+  - conditions:
+    - '{{ event == 2002 }}'
+    sequence: !input 'button_right_single_press'
+  - conditions:
+    - '{{ event == 2004 }}'
+    sequence: !input 'button_right_double_press'
+  - conditions:
+    - '{{ event == 3001 }}'
+    sequence: !input 'both_button_long'
+  - conditions:
+    - '{{ event == 3002 }}'
+    sequence: !input 'both_button_single_press'
+  - conditions:
+    - '{{ event == 3004 }}'
+    sequence: !input 'both_button_double_press'

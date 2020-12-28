@@ -1,0 +1,78 @@
+---
+  - entities:
+    - entity: light.kitchen_ceiling
+      name: Plafond
+      icon: mdi:vanity-light
+      <<: &common
+        toggle: true
+        type: 'custom:slider-entity-row'
+    - entity: light.kitchen_table
+      name: Table
+      icon: mdi:ceiling-light
+      <<: *common
+    - entity: switch.plug_kitchen_plan
+      name: Plan
+      icon: mdi:light-switch
+    - entity: light.kitchen_ceiling_kids
+      icon: mdi:wall-sconce-flat
+      name: Enfants
+      <<: *common
+    title: Cuisine
+    type: entities
+  
+  - entities:
+    - entity: light.livingroom_ceiling
+      icon: mdi:spotlight
+      name: Plafond Salon
+      <<: *common
+    - entity: light.livingroom_sofa_side
+      icon: mdi:floor-lamp-dual
+      name: Coté TV
+      <<: *common
+    - entity: light.living_room_sofa
+      icon: mdi:floor-lamp
+      name: Canapé
+      <<: *common
+    - entity: light.hyperion
+      icon: mdi:television
+      name: TV
+      <<: *common
+    title: Salon
+    type: entities
+  
+  - type: button
+    name: Eteindre Tous (RDC)
+    show_state: false
+    tap_action:
+      action: call-service
+      service: light.turn_off
+      service_data:
+        entity_id: light.ground_floor_master
+  
+  - entities:
+    - entity: light.garden_master
+      icon: mdi:string-lights
+      name: Guirlande Jardin
+    title: Autre
+    type: entities
+
+  - entities:
+    - entity: light.bedroom_florian
+      icon: mdi:ceiling-light
+      name: Chambre Florian
+    - entity: light.bedroom_mina_clara
+      icon: mdi:ceiling-light
+      name: Chambre Mina&Clara
+    title: Chambres
+    type: entities
+
+  - entities:
+    - entity: light.bedroom_ground_floor
+      icon: mdi:ceiling-light
+      name: Plafond
+    - entity: light.hue_melanie_office_sofa
+      icon: mdi:outdoor-lamp
+      name: Canapé
+    title: Bureau Melanie
+    type: entities
+  

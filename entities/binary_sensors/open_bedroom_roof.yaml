@@ -1,7 +1,7 @@
 ---
 platform: template
 sensors:
-  open_bedroo_roof:
+  open_bedroom_roof:
     friendly_name: Chambre Toit
     device_class: window
     value_template: >

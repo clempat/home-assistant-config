@@ -69,12 +69,9 @@ sequence:
     data_template:
       entity_id: climate.buanderie
       temperature: >
-        {% 
-          if is_state('input_select.guest_mode', 'Cave') or 
-          is_state('input_select.heating_mode', 'Été') 
-        %}
+        {% if is_state('input_select.guest_mode', 'Cave') %}
           {{ states('input_number.target_preset_bathrooms') }}
-        {% elif is_state('input_select.heating_mode', 'En vacance') %}
+        {% elif is_state('input_select.heating_mode', 'En vacance')  %}
           17
         {% else %}
           19
@@ -91,8 +88,8 @@ sequence:
       entity_id: climate.chambre_cave
       temperature: >
         {% 
-          if is_state('input_select.bedroom_cellar_mode', 'Chambre') %} or
-          is_state('input_select.heating_mode', 'Été') 
+          if is_state('input_select.bedroom_cellar_mode', 'Chambre') or
+          is_state('input_select.guest_mode', 'Cave')
         %}
           {{ states('input_number.target_preset_bedrooms') }}
         {% elif is_state('input_select.bedroom_cellar_mode', 'Bureau') %}

@@ -1,4 +1,0 @@
----
-
-platform: hyperion
-host: !secret hyperion_ip

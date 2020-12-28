@@ -1,0 +1,101 @@
+---
+- type: horizontal-stack
+  cards:
+  - aspect_ratio: 100%
+    entity: person.clement_patout
+    image: /local/clement_patout.jpg
+    show_name: false
+    type: picture-entity
+  - aspect_ratio: 100%
+    entity: person.melanie_patout
+    image: /local/melanie_patout.jpg
+    show_name: false
+    type: picture-entity
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.guests
+        state: "on"
+    card:
+      type: picture-entity
+      show_state: false
+      entity: binary_sensor.guests
+      image: 'http://homeassistant.fritz.box:8123/local/images/guest.jpg'
+      name: Invité(es)
+
+- entity: weather.dark_sky
+  type: weather-forecast
+
+- type: markdown
+  content: >
+    {% set s2 = 'sensor.berlin_attilastr_to_berlin_nordbahnhof' %}
+    {% if states[s2] %}
+    <p>
+      <b><ha-icon icon="mdi:train"></ha-icon> S2 (->Nord)</b>
+      {{ state_attr(s2, 'departure') }}
+      {%- if state_attr(s2, 'delay') | float > 0 -%}
+        <font color="#bf3838">+{{ state_attr(s2, 'delay') }}</font>
+      {%- endif -%}
+      {{-", "-}}
+      {{- state_attr(s2, 'next') -}}
+      {{-", "-}}
+      {{- state_attr(s2, 'next_on') -}}
+    </p>
+    {% endif %}
+    {% set s25 = 'sensor.berlin_sudende_to_berlin_nordbahnhof' %}
+    {% if states[s25] %}
+    <p>
+      <b><ha-icon icon="mdi:train"></ha-icon> S25 (->Nord)</b>
+      {{ state_attr(s25, 'departure') }}
+      {%- if state_attr(s25, 'delay') | float > 0 -%}
+        <font color="#bf3838">+{{ state_attr(s25, 'delay') }}</font>
+      {%- endif -%}
+      {{-", "-}}
+      {{- state_attr(s25, 'next') -}}
+      {{-", "-}}
+      {{- state_attr(s25, 'next_on') -}}
+    </p>
+    {% endif %}
+
+- type: conditional
+  conditions:
+    - entity: input_boolean.washing_machine_full
+      state: "on"
+  card:
+    type: markdown
+    style: >
+      ha-markdown {
+        background-color: var(--error-state-color);
+      }
+      
+    content: >
+      <ha-icon icon="mdi:washing-machine-alert"></ha-icon>&nbsp;&nbsp;La machine à laver est Pleine !
+
+- type: conditional
+  conditions:
+    - entity: group.windows
+      state: "on"
+  card:
+    type: markdown
+          
+    content: >
+      <ha-icon icon="mdi:window-open"></ha-icon>&nbsp;&nbsp;Les fenêtres suivantes sont ouvertes:
+
+        {{ state_attr('group.windows', 'entity_id') | expand | selectattr('state','eq','on') | join(', ', attribute="attributes.friendly_name")  }}
+
+- type: custom:swipe-card
+  card_width: '185px'
+  start_card: 2
+  parameters:
+    effect: 'coverflow'
+    grabCursor: true
+    centeredSlides: true
+    slidesPerView: 'auto'
+    coverflowEffect:
+      rotate: 50
+      stretch: 0
+      depth: 100
+      modifier: 1
+      slideShadows : true
+    pagination:
+      type: 'bullets'
+  cards: !include ./temperatures.yaml

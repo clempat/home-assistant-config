@@ -1,0 +1,51 @@
+---
+  - type: button
+    entity: switch.led_red
+    name: Rouge
+    icon: mdi:traffic-light
+    style: |
+      ha-icon[data-state="on"] {
+        color: var(--error-color) !important;
+      }
+    tap_action:
+      action: call-service
+      service: scene.turn_on
+      service_data:
+        entity_id: scene.traffic_light_red
+  - type: button
+    style: |
+      ha-icon[data-state="on"] {
+        color: var(--warning-color) !important;
+      }
+    entity: switch.led_orange
+    name: Orange
+    icon: mdi:traffic-light
+    tap_action:
+      action: call-service
+      service: scene.turn_on
+      service_data:
+        entity_id: scene.traffic_light_orange
+  - type: button
+    style: |
+      ha-icon[data-state="on"] {
+        color: var(--success-color) !important;
+      }
+    name: Vert
+    entity: switch.led_green
+    icon: mdi:traffic-light
+    tap_action:
+      action: call-service
+      service: scene.turn_on
+      service_data:
+        entity_id: scene.traffic_light_green
+
+  - type: button
+    name: Eteindre
+    entity: group.traffic_light
+    state_color: false
+    icon: mdi:traffic-light
+    tap_action:
+      action: call-service
+      service: switch.turn_off
+      service_data:
+        entity_id: group.traffic_light

@@ -1,0 +1,18 @@
+---
+  id: a67d9b7c-5043-4bdb-b6d5-03e534c7a19f
+  alias: Lights Melanie Office Switch
+  description: ''
+  use_blueprint:
+    path: daniel.baer/deconz-aqara-wxkg02lm-smart-light-switch-wireless-double-key.yaml
+    input:
+      remote: ac99812918ae40358e39d6cf9b546cc9
+      left_button_singlepress:
+      - service: light.toggle
+        data: {}
+        entity_id: light.bedroom_ground_floor
+      
+      right_button_singlepress:
+      - service: light.toggle
+        data: {}
+        entity_id: light.hue_melanie_office_sofa
+      

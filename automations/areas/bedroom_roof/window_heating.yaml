@@ -5,5 +5,5 @@ description: Turn on/off Heating when window is open or closed
 use_blueprint:
   path: clempat/windows_heating.yaml
   input:
-    windows: binary_sensor.open_bedroo_roof
+    windows: binary_sensor.open_bedroom_roof
     climate: climate.chambre_toit

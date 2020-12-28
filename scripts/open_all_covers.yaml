@@ -1,0 +1,10 @@
+---
+  # This script is opening all cover (as groups does not work for me now)
+  
+  alias: Ouverture Volets
+  sequence:
+    - service: cover.open_cover
+      entity_id: cover.ground_floor
+    - service: cover.open_cover
+      entity_id: cover.first_floor
+  

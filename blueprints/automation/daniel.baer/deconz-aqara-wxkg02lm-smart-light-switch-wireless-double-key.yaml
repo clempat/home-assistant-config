@@ -1,0 +1,112 @@
+blueprint:
+  name: deCONZ - Aqara WXKG02LM Smart Light Switch Wireless Double Key
+  description: 'Control anything using Aqara WXKG02LM Smart Light Switch Wireless
+    Double Key
+
+    '
+  domain: automation
+  input:
+    remote:
+      name: Aqara Double Key Switch
+      description: Switch to use. Only supports Aqara WXKG02LM Smart Light Switch
+        Wireless Double Key from deCONZ.
+      selector:
+        device:
+          integration: deconz
+          manufacturer: LUMI
+    left_button_singlepress:
+      name: Left Button Single press
+      description: Action to run on press on Left Button Single press
+      default: []
+      selector:
+        action: {}
+    left_button_double:
+      name: Left Button Double press
+      description: Action to run on press on Left Button Double press
+      default: []
+      selector:
+        action: {}
+    left_button_longpress:
+      name: Left Button Long press
+      description: Action to run on press on Left Button Long press
+      default: []
+      selector:
+        action: {}
+    right_button_singlepress:
+      name: Right Button Single press
+      description: Action to run on press on Right Button Single press
+      default: []
+      selector:
+        action: {}
+    right_button_double:
+      name: Right Button Double press
+      description: Action to run on press on Right Button Double press
+      default: []
+      selector:
+        action: {}
+    right_button_longpress:
+      name: Right Button Long press
+      description: Action to run on press on Right Button Long press
+      default: []
+      selector:
+        action: {}
+    both_buttons_singlepress:
+      name: Both Buttons Single press
+      description: Action to run on press on Both Buttons Single press
+      default: []
+      selector:
+        action: {}
+    both_buttons_longpress:
+      name: Both Buttons Long press
+      description: Action to run on press on Both Buttons Long press
+      default: []
+      selector:
+        action: {}
+    both_buttons_double:
+      name: Both Buttons Double press
+      description: Action to run on press on Both Buttons Double press
+      default: []
+      selector:
+        action: {}
+  source_url: https://community.home-assistant.io/t/deconz-aqara-wxkg02lm-smart-light-switch-wireless-double-key/257809
+mode: restart
+max_exceeded: silent
+trigger:
+- platform: event
+  event_type: deconz_event
+  event_data:
+    device_id: !input 'remote'
+action:
+- variables:
+    event: '{{ trigger.event.data.event }}'
+- choose:
+  - conditions:
+    - '{{ event == 1002 }}'
+    sequence: !input 'left_button_singlepress'
+  - conditions:
+    - '{{ event == 1004 }}'
+    sequence: !input 'left_button_double'
+  - conditions:
+    - '{{ event == 1001 }}'
+    sequence: !input 'left_button_longpress'
+  - conditions:
+    - '{{ event == 1004 }}'
+    sequence: !input 'left_button_double'
+  - conditions:
+    - '{{ event == 2002 }}'
+    sequence: !input 'right_button_singlepress'
+  - conditions:
+    - '{{ event == 2004 }}'
+    sequence: !input 'right_button_double'
+  - conditions:
+    - '{{ event == 2001 }}'
+    sequence: !input 'right_button_longpress'
+  - conditions:
+    - '{{ event == 3002 }}'
+    sequence: !input 'both_buttons_singlepress'
+  - conditions:
+    - '{{ event == 3001 }}'
+    sequence: !input 'both_buttons_longpress'
+  - conditions:
+    - '{{ event == 3003 }}'
+    sequence: !input 'both_buttons_double'
