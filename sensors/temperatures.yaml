@@ -1,32 +1,42 @@
-- platform: template
-  sensors:
-    temperature_livingroom:
-      friendly_name: Température Salon (AVG)
-      unit_of_measurement: "°C"
-      value_template: >-
-        {{ ((float(states("sensor.x_multi_livingroom_fireplace_temperature")) + float(states("sensor.x_multi_livingroom_sofa_temperature"))) / 2) | round(2) }}
-    temperature_bedroom_roof:
-      friendly_name: Température Chambre Toit (Avg)
-      unit_of_measurement: "°C"
-      value_template: >-
-        {{ ((float(states("sensor.x_multi_bedroom_roof_bed_temperature")) + float(states("sensor.x_multi_bedroom_roof_temperature"))) / 2) | round(2) }}
-    temperature_roof:
-      friendly_name: Température Sous toit
-      unit_of_measurement: "°C"
-      value_template: >-
-        {{ ((float(states("sensor.temperature_bedroom_roof")) + float(states("sensor.x_multi_mezzanine_temperature"))) / 2) | round(2) }}
-    temperature_kitchen:
-      friendly_name: Température Cuisine
-      unit_of_measurement: "°C"
-      value_template: >-
-        {{ ((float(states("sensor.x_multi_kitchen_floor_temperature")) + float(states("sensor.x_multi_kitchen_temperature"))) / 2) | round(2) }}
-    temperature_bedroom_girls:
-      friendly_name: Température Chambre filles
-      unit_of_measurement: "°C"
-      value_template: >-
-        {{ ((float(states("sensor.x_multi_mina_clara_bedroom_win_temperature")) + float(states("sensor.x_multi_mina_clara_bedroom_bed_temperature"))) / 2) | round(2) }}
-    temperature_office_melanie:
-      friendly_name: Température Bureau Melanie
-      unit_of_measurement: "°C"
-      value_template: >-
-        {{ ((float(states("sensor.x_multi_bedroom_ground_floor_win_temperature")) + float(states("sensor.x_multi_bedroom_ground_floor_temperature"))) / 2) | round(2) }}
+---
+- platform: min_max
+  name: temperature_bedroom_roof
+  type: mean
+  entity_ids:
+    - sensor.x_multi_bedroom_roof_bed_temperature
+    - sensor.x_multi_bedroom_roof_temperature
+
+- platform: min_max
+  name: temperature_roof
+  type: mean
+  entity_ids:
+    - sensor.temperature_bedroom_roof
+    - sensor.x_multi_mezzanine_temperature
+
+- platform: min_max
+  name: temperature_livingroom
+  type: mean
+  entity_ids:
+    - sensor.x_multi_livingroom_fireplace_temperature
+    - sensor.x_multi_livingroom_sofa_temperature
+
+- platform: min_max
+  name: temperature_kitchen
+  type: mean
+  entity_ids:
+    - sensor.x_multi_kitchen_floor_temperature
+    - sensor.x_multi_kitchen_temperature
+
+- platform: min_max
+  name: temperature_bedroom_girls
+  type: mean
+  entity_ids:
+    - sensor.x_multi_mina_clara_bedroom_win_temperature
+    - sensor.x_multi_mina_clara_bedroom_bed_temperature
+
+- platform: min_max
+  name: temperature_office_melanie
+  type: mean
+  entity_ids:
+    - sensor.x_multi_bedroom_ground_floor_win_temperature
+    - sensor.x_multi_bedroom_ground_floor_temperature

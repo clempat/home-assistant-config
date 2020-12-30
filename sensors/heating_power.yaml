@@ -1,0 +1,58 @@
+- platform: template
+  sensors:
+    heating_livingroom_power:
+      unit_of_measurement: 'W'
+      value_template: >
+        {{ 2650 if is_state('switch.chauffage_salon', 'on') else 0 }}
+    heating_kitchen_power:
+      unit_of_measurement: 'W'
+      value_template: >
+        {{ 1300 if is_state('switch.chauffage_cuisine', 'on') else 0 }}
+    heating_bathroom_power:
+      unit_of_measurement: 'W'
+      value_template: >
+        {{ 850 if is_state('switch.chauffage_salle_de_bain', 'on') else 0 }}
+    heating_bedroom_cellar_power:
+      unit_of_measurement: 'W'
+      value_template: >
+        {{ 1000 if is_state('switch.chauffage_chambre_cave', 'on') else 0 }}
+    heating_bedroom_ground_floor_power:
+      unit_of_measurement: 'W'
+      value_template: >
+        {{ 1000 if is_state('switch.chauffage_chambre_rdc', 'on') else 0 }}
+    heating_bedroom_mina_clara_power:
+      unit_of_measurement: 'W'
+      value_template: >
+        {{ 1000 if is_state('switch.chauffage_chambre_1er', 'on') else 0 }}
+    heating_bedroom_florian_power:
+      unit_of_measurement: 'W'
+      value_template: >
+        {{ 1700 if is_state('switch.chauffage_chambre_florian', 'on') else 0 }}
+    heating_bedroom_roof_power:
+      unit_of_measurement: 'W'
+      value_template: >
+        {{ 400 if is_state('switch.chauffage_chambre_toit', 'on') else 0 }}
+    heating_entrance_power:
+      unit_of_measurement: 'W'
+      value_template: >
+        {{ 400 if is_state('switch.chauffage_entree', 'on') else 0 }}
+    heating_mezzanine_power:
+      unit_of_measurement: 'W'
+      value_template: >
+        {{ 850 if is_state('switch.chauffage_mezzanine', 'on') else 0 }}
+    heating_stairs_cellar_power:
+      unit_of_measurement: 'W'
+      value_template: >
+        {{ 1000 if is_state('switch.chauffage_escalier_cave', 'on') else 0 }}
+    heating_stairs_ground_floor_power:
+      unit_of_measurement: 'W'
+      value_template: >
+        {{ 850 if is_state('switch.chauffage_escalier_rdc', 'on') else 0 }}
+    heating_stairs_first_floor_power:
+      unit_of_measurement: 'W'
+      value_template: >
+        {{ 850 if is_state('switch.chauffage_escalier_1er', 'on') else 0 }}
+    heating_laundryroom_power:
+      unit_of_measurement: 'W'
+      value_template: >
+        {{ 650 if is_state('switch.chauffage_buanderie', 'on') else 0 }}
