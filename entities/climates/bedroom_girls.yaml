@@ -1,0 +1,5 @@
+---
+platform: generic_thermostat
+name: Chambre 1er
+heater: switch.chauffage_chambre_1er
+target_sensor: sensor.temperature_bedroom_girls

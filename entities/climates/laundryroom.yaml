@@ -1,0 +1,5 @@
+---
+platform: generic_thermostat
+name: Buanderie
+heater: switch.chauffage_buanderie
+target_sensor: sensor.x_multi_laundryroom_temperature

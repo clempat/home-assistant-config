@@ -1,3 +1,5 @@
+# This allow to switch on/off washing machine full using consumption and open state
 ---
-name: Machine Pleine
-icon: mdi:washing-machine-alert
+washing_machine_full:
+  name: Machine Pleine
+  icon: mdi:washing-machine-alert

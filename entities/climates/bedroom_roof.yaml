@@ -1,0 +1,5 @@
+---
+platform: generic_thermostat
+name: Chambre Toit
+heater: switch.chauffage_chambre_toit
+target_sensor: sensor.temperature_bedroom_roof

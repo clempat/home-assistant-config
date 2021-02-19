@@ -1,0 +1,22 @@
+---
+temperature_comfort_preset_bathrooms:
+  name: Confort Salle de bain
+  icon: mdi:home-thermometer
+temperature_comfort_preset_bedrooms:
+  name: Confort Chambres
+  icon: mdi:home-thermometer
+temperature_comfort_preset_common_rooms:
+  name: Confort Salle de vie
+  icon: mdi:home-thermometer
+temperature_comfort_preset_bedrooms_kids:
+  name: Confort Chambre Enfants
+  icon: mdi:home-thermometer
+temperature_comfort_preset_melanie_office:
+  name: Confort Bureau Melanie
+  icon: mdi:home-thermometer
+temperature_comfort_preset_clement_office:
+  name: Confort Bureau Clément
+  icon: mdi:home-thermometer
+temperature_comfort_preset_floor:
+  name: Confort Couloir
+  icon: mdi:home-thermometer

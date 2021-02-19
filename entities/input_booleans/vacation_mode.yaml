@@ -1,3 +1,4 @@
 ---
-name: En vacance
-icon: mdi:beach
+vacation_mode:
+  name: En vacance
+  icon: mdi:beach

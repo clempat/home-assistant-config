@@ -1,0 +1,16 @@
+---
+- platform: history_stats
+  name: clement_kita_today
+  entity_id: person.clement
+  state: "kita"
+  type: count
+  start: "{{ now().replace(hour=07, minute=0, second=0) }}"
+  end: "{{ now() }}"
+
+- platform: history_stats
+  name: melanie_kita_today
+  entity_id: person.melanie
+  state: "kita"
+  type: count
+  start: "{{ now().replace(hour=07, minute=0, second=0) }}"
+  end: "{{ now() }}"

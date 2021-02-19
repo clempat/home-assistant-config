@@ -1,4 +1,5 @@
 ---
-name: Rafraichir les thermostats
-initial: off
-icon: mdi:refresh
+update_thermostats:
+  name: Rafraichir les thermostats
+  initial: off
+  icon: mdi:refresh

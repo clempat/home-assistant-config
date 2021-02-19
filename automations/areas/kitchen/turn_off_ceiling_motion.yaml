@@ -3,7 +3,7 @@ description: Turn off ceiling light on motion in Kitchen (night or tv)
 alias: kitchen_turn_off_ceiling_motion
 trigger:
   platform: state
-  entity_id: binary_sensor.x_motion_kitchen_floor
+  entity_id: binary_sensor.motion_kitchen
   to: "off"
   for:
     minutes: 1
@@ -11,6 +11,9 @@ trigger:
 condition:
   condition: and
   conditions:
+    - condition: numeric_state
+      entity_id: sensor.x_motion_kitchen_floor_light_level
+      below: 15
     - condition: or
       conditions:
         - condition: state
@@ -18,6 +21,9 @@ condition:
           state: "on"
         - condition: state
           entity_id: binary_sensor.playing_on_tv
+          state: "on"
+        - condition: state
+          entity_id: remote.harmony_hub
           state: "on"
 action:
   service: light.turn_off

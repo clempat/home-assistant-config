@@ -1,0 +1,5 @@
+---
+platform: generic_thermostat
+name: Escalier
+heater: group.heating_stairs
+target_sensor: sensor.x_multi_stairs_first_floor_temperature

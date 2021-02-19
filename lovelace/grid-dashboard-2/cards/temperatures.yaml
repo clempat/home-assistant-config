@@ -1,157 +1,145 @@
 ---
-  - type: custom:mini-graph-card
-    name: Salon
-    entities: 
-      - sensor.temperature_livingroom
-    tap_action:
-      action: call-service
-      service: browser_mod.popup
-      service_data:
-        title: Chauffage Sallon
-        deviceID: this
-        card:
-          entity: climate.salon
-          type: 'custom:simple-thermostat'
-  - type: custom:mini-graph-card
-    entities: 
-      - sensor.temperature_kitchen
-    name: Cuisine
-    tap_action:
-      action: call-service
-      service: browser_mod.popup
-      service_data:
-        title: Chauffage Cuisine
-        deviceID: this
-        card:
-          entity: climate.cuisine
-          type: 'custom:simple-thermostat'
-  - type: custom:mini-graph-card
-    entities: 
-      - sensor.temperature_office_melanie
-    name: Bureau Melanie
-    tap_action:
-      action: call-service
-      service: browser_mod.popup
-      service_data:
-        title: Chauffage Bureau Melanie
-        deviceID: this
-        card:
-          entity: climate.chambre_rdc
-          type: 'custom:simple-thermostat'
-  - type: custom:mini-graph-card
-    entities: 
-      - sensor.x_multi_florian_bedroom_temperature
-    name: Chambre Florian
-    tap_action:
-      action: call-service
-      service: browser_mod.popup
-      service_data:
-        title: Chauffage chambre Florian
-        deviceID: this
-        card:
-          entity: climate.chambre_florian
-          type: 'custom:simple-thermostat'
-  - type: custom:mini-graph-card
-    entities: 
-      - sensor.temperature_bedroom_girls
-    name: Chambre Mina & Clara
-    tap_action:
-      action: call-service
-      service: browser_mod.popup
-      service_data:
-        title: Chauffage Chambre Mina & Clara
-        deviceID: this
-        card:
-          entity: climate.chambre_1er
-          type: 'custom:simple-thermostat'
-  - type: custom:mini-graph-card
-    entities: 
-      - sensor.x_multi_bathroom_temperature
-    name: Salle de bain
-    tap_action:
-      action: call-service
-      service: browser_mod.popup
-      service_data:
-        title: Chauffage Salle de bain
-        deviceID: this
-        card:
-          entity: climate.salle_de_bain
-          type: 'custom:simple-thermostat'
-  - type: custom:mini-graph-card
-    entities: 
-      - sensor.x_multi_stairs_first_floor_temperature
-    name: Escalier (1er)
-    tap_action:
-      action: call-service
-      service: browser_mod.popup
-      service_data:
-        title: Chauffage Escalier
-        deviceID: this
-        card:
-          entity: climate.escalier
-          type: 'custom:simple-thermostat'
-  - type: custom:mini-graph-card
-    entities: 
-      - sensor.temperature_bedroom_roof
-    name: Chambre Toit
-    tap_action:
-      action: call-service
-      service: browser_mod.popup
-      service_data:
-        title: Chauffage Chambre toit
-        deviceID: this
-        card:
-          entity: climate.chambre_toit
-          type: 'custom:simple-thermostat'
-  - type: custom:mini-graph-card
-    entities: 
-      - sensor.x_multi_bedroom_cellar_temperature
-    name: Chambre Cave
-    tap_action:
-      action: call-service
-      service: browser_mod.popup
-      service_data:
-        title: Chauffage Chambre Cave
-        deviceID: this
-        card:
-          entity: climate.chambre_cave
-          type: 'custom:simple-thermostat'
-  - type: custom:mini-graph-card
-    entities: 
-      - sensor.x_multi_laundryroom_temperature
-    name: Buanderie
-    tap_action:
-      action: call-service
-      service: browser_mod.popup
-      service_data:
-        title: Chauffage Buanderie
-        deviceID: this
-        card:
-          entity: climate.buanderie
-          type: 'custom:simple-thermostat'
-  - type: custom:mini-graph-card
-    entities: 
-      - sensor.x_multi_mezzanine_temperature
-    name: Mezzanine
-    tap_action:
-      action: call-service
-      service: browser_mod.popup
-      service_data:
-        title: Chauffage Mezzanine
-        deviceID: this
-        card:
-          entity: climate.mezzanine
-          type: 'custom:simple-thermostat'
-  - type: custom:mini-graph-card
-    entities: 
-      - sensor.x_multi_entrance_temperature
-    name: Entrée
-    tap_action:
-      action: call-service
-      service: browser_mod.popup
-      service_data:
-        title: Chauffage Entrée
-        deviceID: this
-        card:
-          entity: climate.entree
-          type: 'custom:simple-thermostat'
+- type: custom:mini-graph-card
+  name: Salon
+  entities:
+    - sensor.temperature_livingroom
+  tap_action:
+    action: fire-dom-event
+    browser_mod:
+      command: popup
+      title: Chauffage Sallon
+      card:
+        entity: climate.salon
+        type: "custom:simple-thermostat"
+- type: custom:mini-graph-card
+  entities:
+    - sensor.temperature_kitchen
+  name: Cuisine
+  tap_action:
+    action: fire-dom-event
+    browser_mod:
+      command: popup
+      title: Chauffage Cuisine
+      card:
+        entity: climate.cuisine
+        type: "custom:simple-thermostat"
+- type: custom:mini-graph-card
+  entities:
+    - sensor.temperature_office_melanie
+  name: Bureau Melanie
+  tap_action:
+    action: fire-dom-event
+    browser_mod:
+      command: popup
+      title: Chauffage Bureau Melanie
+      card:
+        entity: climate.chambre_rdc
+        type: "custom:simple-thermostat"
+- type: custom:mini-graph-card
+  entities:
+    - sensor.x_multi_florian_bedroom_temperature
+  name: Chambre Florian
+  tap_action:
+    action: fire-dom-event
+    browser_mod:
+      command: popup
+      title: Chauffage chambre Florian
+      card:
+        entity: climate.chambre_florian
+        type: "custom:simple-thermostat"
+- type: custom:mini-graph-card
+  entities:
+    - sensor.temperature_bedroom_girls
+  name: Chambre Mina & Clara
+  tap_action:
+    action: fire-dom-event
+    browser_mod:
+      command: popup
+      title: Chauffage Chambre Mina & Clara
+      card:
+        entity: climate.chambre_1er
+        type: "custom:simple-thermostat"
+- type: custom:mini-graph-card
+  entities:
+    - sensor.x_multi_bathroom_temperature
+  name: Salle de bain
+  tap_action:
+    action: fire-dom-event
+    browser_mod:
+      command: popup
+      title: Chauffage Salle de bain
+      card:
+        entity: climate.salle_de_bain
+        type: "custom:simple-thermostat"
+- type: custom:mini-graph-card
+  entities:
+    - sensor.x_multi_stairs_first_floor_temperature
+  name: Escalier (1er)
+  tap_action:
+    action: fire-dom-event
+    browser_mod:
+      command: popup
+      title: Chauffage Escalier
+      card:
+        entity: climate.escalier
+        type: "custom:simple-thermostat"
+- type: custom:mini-graph-card
+  entities:
+    - sensor.temperature_bedroom_roof
+  name: Chambre Toit
+  tap_action:
+    action: fire-dom-event
+    browser_mod:
+      command: popup
+      title: Chauffage Chambre toit
+      card:
+        entity: climate.chambre_toit
+        type: "custom:simple-thermostat"
+- type: custom:mini-graph-card
+  entities:
+    - sensor.x_multi_bedroom_cellar_temperature
+  name: Chambre Cave
+  tap_action:
+    action: fire-dom-event
+    browser_mod:
+      command: popup
+      title: Chauffage Chambre Cave
+      card:
+        entity: climate.chambre_cave
+        type: "custom:simple-thermostat"
+- type: custom:mini-graph-card
+  entities:
+    - sensor.x_multi_laundryroom_temperature
+  name: Buanderie
+  tap_action:
+    action: fire-dom-event
+    browser_mod:
+      command: popup
+      title: Chauffage Buanderie
+      card:
+        entity: climate.buanderie
+        type: "custom:simple-thermostat"
+- type: custom:mini-graph-card
+  entities:
+    - sensor.x_multi_mezzanine_temperature
+  name: Mezzanine
+  tap_action:
+    action: fire-dom-event
+    browser_mod:
+      command: popup
+      title: Chauffage Mezzanine
+      card:
+        entity: climate.mezzanine
+        type: "custom:simple-thermostat"
+- type: custom:mini-graph-card
+  entities:
+    - sensor.x_multi_entrance_temperature
+  name: Entrée
+  tap_action:
+    action: fire-dom-event
+    browser_mod:
+      command: popup
+      title: Chauffage Entrée
+      card:
+        entity: climate.entree
+      type: "custom:simple-thermostat"

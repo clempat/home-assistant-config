@@ -1,3 +1,4 @@
 ---
-name: Dodo
-icon: mdi:hotel
+sleeping_mode:
+  name: Dodo
+  icon: mdi:hotel

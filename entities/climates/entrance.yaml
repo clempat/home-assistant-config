@@ -1,0 +1,5 @@
+---
+platform: generic_thermostat
+name: Entrée
+heater: switch.chauffage_entree
+target_sensor: sensor.x_multi_entrance_temperature

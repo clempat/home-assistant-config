@@ -1,0 +1,24 @@
+---
+  # This script will Toggle live
+  
+  alias: Toggle Live
+  sequence:
+    - choose:
+      - conditions:
+        - condition: or
+          conditions:
+            - condition: state
+              entity_id: switch.light_video
+              state:  'off'
+            - condition: state
+              entity_id: switch.light_video_2
+              state:  'off'
+        sequence:
+          - service: script.run_live
+      - conditions:
+          - "{{ states('scene.office_backup') != 'unknow' }}"
+        sequence:
+          - service: scene.turn_on
+            data:
+              entity_id: scene.office_backup
+      default: 

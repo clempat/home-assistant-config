@@ -1,0 +1,83 @@
+blueprint:
+  name: deCONZ - Xiaomi Mijia Wireless Switch
+  description: Control anything using Xiaomi Mijia (single button) remote
+  domain: automation
+  input:
+    remote:
+      name: Remote
+      description: Button to use
+      selector:
+        device:
+          integration: deconz
+          manufacturer: LUMI
+          model: lumi.sensor_switch
+    button_press_in:
+      name: Single pressed in
+      default: []
+      selector:
+        action: {}
+    button_press_release:
+      name: Single press (release)
+      default: []
+      selector:
+        action: {}
+    button_long_press:
+      name: Long press
+      default: []
+      selector:
+        action: {}
+    button_double_press:
+      name: Double press
+      default: []
+      selector:
+        action: {}
+    button_triple_press:
+      name: Triple press
+      default: []
+      selector:
+        action: {}
+    button_quintuple_press:
+      name: Quintuple press
+      default: []
+      selector:
+        action: {}
+    button_many_presses:
+      name: Many presses
+      description: Action to run when the button is pressed more than 5 times in rapid
+        succession
+      default: []
+      selector:
+        action: {}
+  source_url: https://community.home-assistant.io/t/deconz-xiaomi-mijia-wireless-switch/255739
+mode: restart
+max_exceeded: silent
+trigger:
+- platform: event
+  event_type: deconz_event
+  event_data:
+    device_id: !input 'remote'
+action:
+- variables:
+    event: '{{ trigger.event.data.event }}'
+- choose:
+  - conditions:
+    - '{{ event == 1000 }}'
+    sequence: !input 'button_press_in'
+  - conditions:
+    - '{{ event == 1002 }}'
+    sequence: !input 'button_press_release'
+  - conditions:
+    - '{{ event == 1003 }}'
+    sequence: !input 'button_long_press'
+  - conditions:
+    - '{{ event == 1004 }}'
+    sequence: !input 'button_double_press'
+  - conditions:
+    - '{{ event == 1005 }}'
+    sequence: !input 'button_triple_press'
+  - conditions:
+    - '{{ event == 1006 }}'
+    sequence: !input 'button_quintuple_press'
+  - conditions:
+    - '{{ event == 1010 }}'
+    sequence: !input 'button_many_presses'

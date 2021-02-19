@@ -3,7 +3,7 @@ description: Turn on ceiling light on motion in Kitchen (night or tv)
 alias: kitchen_turn_on_ceiling_motion
 trigger:
   platform: state
-  entity_id: binary_sensor.x_motion_kitchen_floor
+  entity_id: binary_sensor.motion_kitchen
   from: "off"
   to: "on"
 condition:
@@ -20,14 +20,9 @@ condition:
         - condition: state
           entity_id: binary_sensor.playing_on_tv
           state: "on"
-        - condition: not
-          conditions:
-            - condition: state
-              entity_id: remote.harmony_hub
-              state: "off"
-            - condition: state
-              entity_id: remote.harmony_hub
-              state: "unavailable"
+        - condition: state
+          entity_id: remote.harmony_hub
+          state: "on"
 action:
   service: light.turn_on
   entity_id: light.kitchen_ceiling

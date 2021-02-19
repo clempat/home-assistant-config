@@ -1,0 +1,5 @@
+---
+platform: generic_thermostat
+name: Salle de bain
+heater: switch.chauffage_salle_de_bain
+target_sensor: sensor.x_multi_bathroom_temperature

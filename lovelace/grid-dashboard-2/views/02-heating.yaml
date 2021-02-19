@@ -1,0 +1,171 @@
+---
+title: Chauffage
+path: heating
+icon: mdi:radiator
+panel: true
+cards:
+  - type: grid
+    cards:
+      - type: entities
+        entities:
+          - entity: input_datetime.heating_first_hour
+            name: Première heure
+          - entity: input_datetime.heating_kids_return_time
+            name: Heure retour Kita
+          - entity: input_datetime.heating_working_time_start
+            name: Heure Début Travail
+          - entity: input_datetime.heating_working_time_end
+            name: Heure Fin Travail
+      - type: vertical-stack
+        title: Pièces Commune
+        cards:
+          - type: entities
+            entities:
+              - entity: input_boolean.temperature_comfort_preset_common_rooms
+                name: Mode Confort
+              - entity: input_number.temperature_comfort_preset_common_rooms
+                name: T. Confort
+              - entity: input_number.temperature_reduced_preset_common_rooms
+                name: T. Reduite
+          - type: "custom:simple-thermostat"
+            entity: climate.salon
+            <<: &climate_options
+              control: false
+              step_layout: row
+              step_size: "0.5"
+          - type: "custom:simple-thermostat"
+            entity: climate.cuisine
+            <<: *climate_options
+
+      - type: vertical-stack
+        title: Salles de Bain
+        cards:
+          - type: entities
+            entities:
+              - entity: input_boolean.temperature_comfort_preset_bathrooms
+                name: Mode Confort
+              - entity: input_number.temperature_comfort_preset_bathrooms
+                name: T. Confort
+              - entity: input_number.temperature_reduced_preset_bathrooms
+                name: T. Reduite
+          - type: "custom:simple-thermostat"
+            entity: climate.salle_de_bain
+            <<: *climate_options
+          - type: conditional
+            conditions:
+              - entity: input_select.guest_mode
+                state: Cave
+            card:
+              type: "custom:simple-thermostat"
+              entity: climate.buanderie
+              <<: *climate_options
+
+      - type: vertical-stack
+        title: Bureau Melanie
+        cards:
+          - type: entities
+            entities:
+              - entity: input_boolean.temperature_comfort_preset_melanie_office
+                name: Mode Confort
+              - entity: input_number.temperature_comfort_preset_melanie_office
+                name: T. Confort
+              - entity: input_number.temperature_reduced_preset_melanie_office
+                name: T. Reduite
+          - type: conditional
+            conditions:
+              - entity: input_select.guest_mode
+                state_not: Rez de chaussé
+            card:
+              type: "custom:simple-thermostat"
+              entity: climate.chambre_rdc
+              <<: *climate_options
+
+      - type: vertical-stack
+        title: Bureau Clement
+        cards:
+          - type: entities
+            entities:
+              - entity: input_boolean.temperature_comfort_preset_clement_office
+                name: Mode Confort
+              - entity: input_number.temperature_comfort_preset_clement_office
+                name: T. Confort
+              - entity: input_number.temperature_reduced_preset_clement_office
+                name: T. Reduite
+          - type: conditional
+            conditions:
+              - entity: input_select.guest_mode
+                state_not: Cave
+            card:
+              type: "custom:simple-thermostat"
+              entity: climate.chambre_cave
+              <<: *climate_options
+
+      - type: vertical-stack
+        title: Couloirs
+        cards:
+          - type: entities
+            entities:
+              - entity: input_boolean.temperature_comfort_preset_floor
+                name: Mode Confort
+              - entity: input_number.temperature_comfort_preset_floor
+                name: T. Confort
+              - entity: input_number.temperature_reduced_preset_floor
+                name: T. Reduite
+
+          - type: "custom:simple-thermostat"
+            entity: climate.entree
+            <<: *climate_options
+          - type: "custom:simple-thermostat"
+            entity: climate.escalier
+            <<: *climate_options
+          - type: "custom:simple-thermostat"
+            entity: climate.mezzanine
+            <<: *climate_options
+      - type: vertical-stack
+        title: Chambres Enfants
+        cards:
+          - type: entities
+            entities:
+              - entity: input_boolean.temperature_comfort_preset_bedrooms_kids
+                name: Mode Confort
+              - entity: input_number.temperature_comfort_preset_bedrooms_kids
+                name: T. Confort
+              - entity: input_number.temperature_reduced_preset_bedrooms_kids
+                name: T. Reduite
+          - type: "custom:simple-thermostat"
+            entity: climate.chambre_florian
+            <<: *climate_options
+          - type: "custom:simple-thermostat"
+            entity: climate.chambre_1er
+            <<: *climate_options
+
+      - type: vertical-stack
+        title: Chambres
+        cards:
+          - type: entities
+            entities:
+              - entity: input_boolean.temperature_comfort_preset_bedrooms
+                name: Mode Confort
+              - entity: input_number.temperature_comfort_preset_bedrooms
+                name: T. Confort
+              - entity: input_number.temperature_reduced_preset_bedrooms
+                name: T. Reduite
+          - type: "custom:simple-thermostat"
+            entity: climate.chambre_toit
+            <<: *climate_options
+          - type: conditional
+            conditions:
+              - entity: input_select.guest_mode
+                state: Cave
+            card:
+              type: "custom:simple-thermostat"
+              entity: climate.chambre_cave
+              <<: *climate_options
+          - type: conditional
+            conditions:
+              - entity: input_select.guest_mode
+                state: Rez de chaussé
+            card:
+              type: "custom:simple-thermostat"
+              entity: climate.chambre_rdc
+              <<: *climate_options

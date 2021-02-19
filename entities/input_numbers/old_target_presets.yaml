@@ -1,0 +1,24 @@
+target_preset_bathrooms:
+  name: Température bain
+  <<: &temperature_common_options
+    min: 0
+    max: 25
+    step: 0.5
+    mode: box
+    unit_of_measurement: °C
+    icon: mdi:thermostat
+target_preset_bedrooms:
+  name: Température Chambres
+  <<: *temperature_common_options
+target_preset_common_rooms:
+  name: Température vie
+  <<: *temperature_common_options
+target_preset_corridors:
+  name: Température Couloir
+  <<: *temperature_common_options
+target_preset_kid_bedrooms:
+  name: Température enfants
+  <<: *temperature_common_options
+target_preset_office:
+  name: Température Bureaux
+  <<: *temperature_common_options

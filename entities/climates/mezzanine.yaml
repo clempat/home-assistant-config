@@ -1,0 +1,5 @@
+---
+platform: generic_thermostat
+name: Mezzanine
+heater: switch.chauffage_mezzanine
+target_sensor: sensor.x_multi_mezzanine_temperature

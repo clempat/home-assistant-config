@@ -10,5 +10,3 @@ homeassistant:
 default_config:
 
 scene: !include scenes.yaml
-climate: !include climate.yaml
-sensor: !include_dir_merge_list sensors

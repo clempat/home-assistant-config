@@ -1,3 +1,4 @@
 ---
-name: Salon joue CD Audio
-icon: mdi:audio-video
+livingroom_playing_cd:
+  name: Salon joue CD Audio
+  icon: mdi:audio-video

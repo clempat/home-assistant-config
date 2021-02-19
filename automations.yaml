@@ -571,3 +571,23 @@
       slide_on_one: []
       one_side_slide: true
       cube_one_side_slide: []
+- id: '1610132160730'
+  alias: shield_pause_motion
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: dffc43a76f8447acbd4b480a767172cc
+    entity_id: binary_sensor.x_motion_stairs_first_floor
+    domain: binary_sensor
+  condition:
+  - condition: device
+    device_id: 64b0725c7ba8465eb5ae15f41c91c585
+    domain: media_player
+    entity_id: media_player.plex_plex_for_android_tv_shield_android_tv
+    type: is_playing
+  action:
+  - service: media_player.media_pause
+    data: {}
+    entity_id: media_player.shield
+
