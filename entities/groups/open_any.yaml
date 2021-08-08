@@ -1,6 +1,6 @@
 ---
 # This group all windows sensor of my home
-name: Fenêtres
+name: Ouverture
 icon: mdi:window-open
 entities:
   - binary_sensor.open_livingroom

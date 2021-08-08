@@ -1,0 +1,9 @@
+---
+# This group all windows sensor of my home
+name: Mouvement
+icon: mdi:motion-sensor
+entities:
+  - binary_sensor.motion_stairs
+  - binary_sensor.motion_cellar
+  - binary_sensor.x_motion_kitchen_floor
+  - binary_sensor.motion_entrance

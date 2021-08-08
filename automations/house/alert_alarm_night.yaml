@@ -9,7 +9,7 @@ trigger:
     entity_id: binary_sensor.motion_ground_floor
   - platform: state
     to: "on"
-    entity_id: binary_sensor.open_ground_floor
+    entity_id: group.open_ground_floor
 
 condition:
   - condition: state

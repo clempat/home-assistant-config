@@ -9,7 +9,7 @@ trigger:
     entity_id: binary_sensor.motion_all
   - platform: state
     to: "on"
-    entity_id: binary_sensor.open_any
+    entity_id: group.open_any
 
 condition:
   - condition: state

@@ -1,0 +1,9 @@
+---
+# This group all windows in my groundflooe
+name: Ouverture Rez-de-chaussé
+icon: mdi:window-open
+entities:
+  - binary_sensor.open_livingroom
+  - binary_sensor.open_kitchen
+  - binary_sensor.open_office
+  - binary_sensor.open_entrance

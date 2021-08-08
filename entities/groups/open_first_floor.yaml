@@ -1,0 +1,8 @@
+---
+# This group all windows sensor of my home
+name: Ouverture 1er
+icon: mdi:window-open
+entities:
+  - binary_sensor.open_bedroom
+  - binary_sensor.open_bedroom_florian
+  - binary_sensor.open_bathroom
