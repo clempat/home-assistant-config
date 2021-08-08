@@ -1,8 +1,0 @@
----
-# Light in stairs ground floor
-#
-
-!secret yeelight_stairs_ground_floor_host:
-  name: stairs_ground_floor
-  use_music_mode: false
-  save_on_change: false

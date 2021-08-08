@@ -1,0 +1,18 @@
+---
+- entities:
+  - entity: binary_sensor.motion_entrance
+    name: Entrée
+  - entity: binary_sensor.motion_stairs_ground_floor
+    name: RDC
+  - entity: binary_sensor.motion_stairs_first_floor
+    name: 1er
+  - entity: binary_sensor.motion_stairs_cellar
+    name: Cave
+  - entity: binary_sensor.motion_cellar_wine
+    name: Réserve
+  - entity: binary_sensor.ikea_motion_cellar_entrance
+    name: Cave Entrée
+  - entity: binary_sensor.x_motion_stairs_mezzanine
+    name: Mezzanine
+  - entity: binary_sensor.motion_kitchen
+  type: glance

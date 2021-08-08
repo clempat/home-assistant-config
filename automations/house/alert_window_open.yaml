@@ -1,31 +1,31 @@
 ---
-  alias: alert_window_open
-  description: "[open] Alerter lorsque fenêtre ouverte pendant plus de 15 min"
-  id: 8edeb7da-104e-4ce7-90fe-70d172ce1380
+alias: alert_window_open
+description: "[open] Alerter lorsque fenêtre ouverte pendant plus de 15 min"
+id: 8edeb7da-104e-4ce7-90fe-70d172ce1380
 
-  trigger:
-    platform: state
-    entity_id:
-      - binary_sensor.open_bathroom
-      - binary_sensor.open_bedroom_roof
-      - binary_sensor.open_bedroom
-      - binary_sensor.open_bedroom_florian
-      - binary_sensor.open_cellar_room
-      - binary_sensor.open_livingroom
-      - binary_sensor.open_kitchen
-      - binary_sensor.open_entrance
-      - binary_sensor.open_office
-    to: "on"
-    for:
-      minutes: 15
-  condition:
-    condition: numeric_state
-    entity_id: sensor.meteo_temperature
-    below: 18
-  
-  action:
-    service: notify.telegram
-    data_template:
-      title: "\u2744 *Fenêtre Ouverte*"
-      message: >
-        Une fenêtre dans "{{trigger.to_state.name}}" est ouverte depuis plus de 15 minutes
+trigger:
+  platform: state
+  entity_id:
+    - binary_sensor.open_bathroom
+    - binary_sensor.open_bedroom_roof
+    - binary_sensor.open_bedroom
+    - binary_sensor.open_bedroom_florian
+    - binary_sensor.open_cellar_room
+    - binary_sensor.open_livingroom
+    - binary_sensor.open_kitchen
+    - binary_sensor.open_entrance
+    - binary_sensor.open_office
+  to: "on"
+  for:
+    minutes: 30
+condition:
+  condition: numeric_state
+  entity_id: sensor.meteo_temperature
+  below: 18
+
+action:
+  service: notify.telegram
+  data_template:
+    title: "\u2744 *Fenêtre Ouverte*"
+    message: >
+      Une fenêtre dans "{{trigger.to_state.name}}" est ouverte depuis plus de 30 minutes

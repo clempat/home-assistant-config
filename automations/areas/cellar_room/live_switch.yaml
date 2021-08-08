@@ -1,11 +1,10 @@
 ---
-
-id: 70708039-4e02-4031-91f0-493c9131f548
+id: 7eca5e80-54b9-43fd-97e2-ad4ba3cece73
 alias: video live switch
-description: ''
+description: ""
 use_blueprint:
   path: Savjee/deconz-xiaomi-mijia-wireless-switch.yaml
   input:
     remote: 0ec14ddaf1b0b3be7f399736dab4fc0f
     button_press_release:
-    - service: script.toggle_live
+      - service: script.toggle_live

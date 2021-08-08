@@ -10,6 +10,5 @@ action:
   service: todoist.new_task
   data:
     content: 🧺 Sortir le linge de la machine à laver
-    priority: 3
     due_date_string: Aujourd'hui
     due_date_lang: fr

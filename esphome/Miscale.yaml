@@ -1,0 +1,94 @@
+esphome:
+  name: miscale
+  platform: ESP32
+  board: esp32dev
+  platformio_options: 
+    platform: espressif32
+    board: az-delivery-devkit-v4
+    board_build.mcu: esp32
+    board_build.f_cpu: 240000000L
+
+
+wifi:
+  ssid: !secret wlan_ssid
+  password: !secret wlan_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: !secret esp_wlan_wifi_miscale
+    password: !secret esp_wlan_password_miscale
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret esp_miscale_password
+
+ota:
+  password: !secret esp_miscale_password
+
+esp32_ble_tracker:
+
+sensor:
+  - platform: xiaomi_miscale2
+    mac_address: "E2:A7:EF:3E:02:BD"
+    weight:
+      name: "Xiaomi Mi Scale Weight"
+      id: weight_miscale
+      on_value:
+        then:
+          - lambda: |-
+              if (id(weight_miscale).state >= 40 && id(weight_miscale).state <= 64.99) { 
+                return id(weight_user1).publish_state(x);}
+              else if (id(weight_miscale).state >= 65 && id(weight_miscale).state <= 85) {
+                return id(weight_user2).publish_state(x);}
+              else if (id(weight_miscale).state >= 15 && id(weight_miscale).state <= 39.99) {
+                return id(weight_user3).publish_state(x);}
+    impedance:
+      name: "Xiaomi Mi Scale Impedance"
+      id: impedance_xiaomi
+      on_value:
+        then:
+          - lambda: |-
+              if (id(weight_miscale).state >= 40 && id(weight_miscale).state <= 64.99) { 
+                return id(impedance_user1).publish_state(x);}
+              else if (id(weight_miscale).state >= 65 && id(weight_miscale).state <= 85) {
+                return id(impedance_user2).publish_state(x);}
+              else if (id(weight_miscale).state >= 15 && id(weight_miscale).state <= 39.99) {
+                return id(impedance_user3).publish_state(x);}
+  - platform: template
+    name: "Weight Melanie"
+    id: weight_user1
+    unit_of_measurement: "kg"
+    icon: mdi:weight-kilogram
+    accuracy_decimals: 2
+  - platform: template
+    name: "Impedance Melanie"
+    id: impedance_user1
+    unit_of_measurement: "ohm"
+    icon: mdi:omega
+  - platform: template
+    name: "Weight Clément"
+    id: weight_user2
+    unit_of_measurement: "kg"
+    icon: mdi:weight-kilogram
+    accuracy_decimals: 2
+  - platform: template
+    name: "Impedance Clément"
+    id: impedance_user2
+    unit_of_measurement: "ohm"
+    icon: mdi:omega
+  - platform: template
+    name: "Weight Flo"
+    id: weight_user3
+    unit_of_measurement: "kg"
+    icon: mdi:weight-kilogram
+    accuracy_decimals: 2
+  - platform: template
+    name: "Impedance Flo"
+    id: impedance_user3
+    unit_of_measurement: "ohm"
+    icon: mdi:omega

@@ -1,8 +1,0 @@
----
-# Light on the kitchen ceiling near the kids kitchen
-#
-
-!secret yeelight_kitchen_ceiling_host:
-  name: kitchen_ceiling_kids
-  use_music_mode: false
-  save_on_change: false

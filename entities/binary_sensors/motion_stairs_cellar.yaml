@@ -6,6 +6,6 @@ sensors:
     device_class: motion
     value_template: >
       {{
-        is_state('binary_sensor.x_motion_stairs_ground_floor_down', 'on')
-        or is_state('binary_sensor.x_motion_floor_cellar', 'on')
+        is_state('binary_sensor.x_motion_stairs_groundfloor_down', 'on')
+        or is_state('binary_sensor.x_motion_cellar-stairs', 'on')
       }}

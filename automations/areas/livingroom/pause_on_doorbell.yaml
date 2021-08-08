@@ -1,0 +1,22 @@
+---
+id: bd47c03f-e868-4052-909a-96cc38cf0fbf
+alias: pause_on_doorbell
+description: Pause TV when doorbell
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.doorbell
+    from: "off"
+    to: "on"
+
+condition:
+  - condition: state
+    entity_id: binary_sensor.playing_on_tv
+    state: "on"
+
+action:
+  - service: remote.send_command
+    data:
+      command: Pause
+      entity_id: remote.harmony_hub
+      device: 71354662

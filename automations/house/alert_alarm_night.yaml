@@ -1,20 +1,20 @@
 ---
-description: "Alert when motion or door or window if nobody home"
-id: aa69d5ad-405f-4bfd-988c-62f0c4c4bbdd
-alias: "alert_alarm_empty_house"
+description: "Alert when motion or door or window if we sleep"
+id: 439845b5-b893-495a-ae27-765f79fe6360
+alias: "alert_alarm_night"
 
 trigger:
   - platform: state
     to: "on"
-    entity_id: binary_sensor.motion_all
+    entity_id: binary_sensor.motion_ground_floor
   - platform: state
     to: "on"
-    entity_id: binary_sensor.open_any
+    entity_id: binary_sensor.open_ground_floor
 
 condition:
   - condition: state
-    entity_id: binary_sensor.presence_any
-    state: "false"
+    entity_id: input_boolean.sleeping_mode
+    state: "true"
 action:
   - service: notify.telegram
     data_template:
@@ -39,9 +39,10 @@ action:
 
         Détection de mouvements:
         {%for s in states.binary_sensor if s.entity_id.startswith('binary_sensor.motion_') and s.state == 'on' %}{{s.name}}{%if not loop.last%},{%endif%}{%endfor%}:
-      push:
-        sound:
-          name: "default"
+      data:
+        push:
+          sound:
+            name: "default"
 
-          critical: 1
-          volume: 1.0
+            critical: 1
+            volume: 1.0

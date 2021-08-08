@@ -1,7 +1,4 @@
 ---
-# This is a sonnof switch for living room
-
-platform: mqtt
-command_topic: "cmnd/sonoff/power"
-state_topic: "stat/sonoff/POWER"
+platform: switch
 name: livingroom_ceiling
+entity_id: switch.ceiling_livingroom

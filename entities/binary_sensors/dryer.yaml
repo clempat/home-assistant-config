@@ -1,16 +1,16 @@
 ---
 # Detect if dryer running using smart plug
-  platform: template
-  sensors:
-    dryer:
-      icon_template: >-
-        {% if states('sensor.dryer_switch_electric_w') | int > 5 %}
-          mdi:washing-machine
-        {% else %}
-          mdi:washing-machine-off
-        {% endif %}
-      friendly_name: Sèche linge
-      delay_off:
-        minutes: 1
-      value_template: >
-        {{  states('sensor.dryer_switch_electric_w') | int > 5 }}
+platform: template
+sensors:
+  dryer:
+    icon_template: >-
+      {% if states('sensor.dryer_w') | int > 5 %}
+        mdi:washing-machine
+      {% else %}
+        mdi:washing-machine-off
+      {% endif %}
+    friendly_name: Sèche linge
+    delay_off:
+      minutes: 1
+    value_template: >
+      {{  states('sensor.dryer_w') | int > 5 }}

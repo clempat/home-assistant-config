@@ -28,9 +28,6 @@ cards:
     columns: 4
     cards: !include ../cards/traffic_light.yaml
 
-  - type: "custom:spotify-card"
-    device: Wohnzimmer
-
   # - type: grid
   #   title: Chauffage
   #   cards: !include ../cards/heatings.yaml

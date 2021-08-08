@@ -1,0 +1,17 @@
+---
+icon: "mdi:flower"
+title: Jardin
+path: garden
+panel: false
+badges: []
+cards:
+  - type: picture-glance
+    title: Jardin
+    entities:
+      - entity: binary_sensor.jardin_motion
+      - entity: switch.jardin_ir_lights
+      - entity: switch.jardin_recording
+      - entity: script.open_gate
+        icon: mdi:gate
+    camera_image: camera.jardin
+    camera_view: auto

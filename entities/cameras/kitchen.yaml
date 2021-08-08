@@ -1,0 +1,6 @@
+---
+# Current outdoor camera for the gate
+
+name: kitchen
+platform: ffmpeg
+input: !secret ewelink_rtsp

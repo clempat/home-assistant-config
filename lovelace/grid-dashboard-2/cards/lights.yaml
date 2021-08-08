@@ -50,13 +50,6 @@
         entity_id: light.ground_floor_master
   
   - entities:
-    - entity: light.garden_master
-      icon: mdi:string-lights
-      name: Guirlande Jardin
-    title: Autre
-    type: entities
-
-  - entities:
     - entity: light.bedroom_florian
       icon: mdi:ceiling-light
       name: Chambre Florian
@@ -75,4 +68,13 @@
       name: Canapé
     title: Bureau Melanie
     type: entities
-  
+ 
+  - entities:
+    - entity: switch.wall_switch_bedroom_cellar_bed
+      icon: mdi:ceiling-light
+      name: Lit
+    - entity: switch.wall_switch_bedroom_cellar_desk
+      icon: mdi:ceiling-light
+      name: Bureau
+    title: Bureau Clément
+    type: entities 

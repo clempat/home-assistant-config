@@ -1,24 +1,28 @@
 ---
-  # This script will Toggle live
-  
-  alias: Toggle Live
-  sequence:
-    - choose:
+# This script will Toggle live
+
+alias: Toggle Live
+sequence:
+  - choose:
       - conditions:
-        - condition: or
-          conditions:
-            - condition: state
-              entity_id: switch.light_video
-              state:  'off'
-            - condition: state
-              entity_id: switch.light_video_2
-              state:  'off'
+          - condition: state
+            entity_id: input_boolean.live
+            state: "off"
         sequence:
-          - service: script.run_live
-      - conditions:
-          - "{{ states('scene.office_backup') != 'unknow' }}"
-        sequence:
-          - service: scene.turn_on
+          - service: switch.turn_on
+            entity_id: switch.show_buro_do_not_disturb_switch
+          - service: input_boolean.turn_on
+            entity_id: input_boolean.live
+          - service: light.turn_on
+            target:
+              entity_id: light.alert_live
             data:
-              entity_id: scene.office_backup
-      default: 
+              hs_color: [0, 100]
+    default:
+      - service: switch.turn_off
+        entity_id: switch.show_buro_do_not_disturb_switch
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.live
+      - service: light.turn_off
+        data:
+          entity_id: light.alert_live

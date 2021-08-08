@@ -3,7 +3,7 @@
 
 name: gate
 platform: proxy
-entity_id: camera.garden
+entity_id: camera.jardin
 image_left: 1176
 image_quality: 100
 max_image_width: 717

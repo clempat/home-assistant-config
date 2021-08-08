@@ -15,9 +15,7 @@ condition:
 action:
   - delay: >
       00:{{ (range(10, 59)|random|int) }}:{{ (range(10, 59)|random|int) }}
-  - service: scene.turn_on
-    data:
-      entity_id: scene.cover_day_all
+  - service: script.open_all_covers
   - service: notify.telegram_clement
     data:
       title: "Home assistant "

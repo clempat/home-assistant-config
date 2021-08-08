@@ -1,0 +1,13 @@
+id: 27abd2a9-4bec-4e2a-ad2f-75a7cc6c3a54
+alias: notify_batteries
+description: 'Low battery level detection & notification for all battery sensors'
+use_blueprint:
+  path: sbyx/low-battery-level-detection-notification-for-all-battery-sensors.yaml
+  input:
+    threshold: 15
+    time: '10:00:00'
+    actions:
+    - service: notify.telegram_clement
+      data_template:
+        message: 'Batterie < 15% pour les sondes suivantes: {{sensors}}'
+        title: 🔋 *Batteries*

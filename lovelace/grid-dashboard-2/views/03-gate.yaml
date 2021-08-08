@@ -1,0 +1,22 @@
+---
+icon: 'mdi:video'
+title: Portail
+path: gate
+panel: false
+badges: []
+cards:
+  - type: picture-entity
+    entity: camera.gate
+    camera_view: live
+    name: Portail (Click pour ouvrir)
+    tap_action:
+      action: call-service
+      service: script.open_gate
+      service_data: {}
+      target: {}
+  - type: button
+    tap_action:
+      action: toggle
+    entity: script.open_gate
+    icon: 'mdi:gate'
+    show_icon: false

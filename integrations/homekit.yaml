@@ -7,11 +7,9 @@
 
 homekit:
   name: Home Assistant
-  auto_start: true
   filter:
     include_domains:
       - media_player
-      - camera
       - script
       - cover
       - sensor

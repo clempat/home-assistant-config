@@ -7,3 +7,4 @@ use_blueprint:
   input:
     windows: binary_sensor.x_window_bedroom_ground_floor
     climate: climate.chambre_rdc
+    delay: 10

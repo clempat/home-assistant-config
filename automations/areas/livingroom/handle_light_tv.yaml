@@ -9,3 +9,6 @@ use_blueprint:
     app_to_exclude: Spotify, Google Cast
     playing_scene: scene.light_watching_tv
     paused_scene: scene.light_cozy_livingroom
+    standby_scene: scene.light_cozy_livingroom
+    idle_scene: scene.light_cozy_livingroom
+    off_scene: scene.light_cozy_livingroom

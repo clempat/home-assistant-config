@@ -1,0 +1,10 @@
+---
+platform: template
+sensors:
+  motion_entrance_doorbell:
+    friendly_name: "Mouvement Portail"
+    device_class: motion
+    value_template: >
+      {{
+        is_state('binary_sensor.doorbell', 'on')
+      }}

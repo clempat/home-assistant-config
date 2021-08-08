@@ -44,7 +44,7 @@ action:
   - choose:
       - conditions:
           - condition: template
-            value_template: '{{ trigger.to_state.state == "on" }}'
+            value_template: '{{ trigger.to_state.state != trigger.from_state.state and trigger.to_state.state == "on" }}'
         sequence:
           - service: scene.create
             data_template:
@@ -53,6 +53,8 @@ action:
           - service: climate.turn_off
             entity_id: !input "climate"
     default:
+      - condition: template
+        value_template: "{{trigger.to_state.state != trigger.from_state.state}}"
       - service: >
           {% if states("scene." ~ prev_scene_id) != "unknown" %}
             scene.turn_on

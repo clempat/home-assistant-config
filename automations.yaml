@@ -414,24 +414,6 @@
 
         '
   id: d949a14e4afe44a9aec58141f0cd8ce8
-- alias: '[Alerte] 🔋 faibles pour sensors'
-  trigger:
-  - platform: time
-    at: '20:30:00'
-  condition:
-    condition: template
-    value_template: "{% for sensor in states.sensor if sensor.attributes.battery_level\
-      \ is defined and sensor.attributes.battery_level | int < 15 %}\n  {% if loop.index\
-      \ == 1 %} {{ True }} {% endif %}\n{%endfor%}\n"
-  action:
-  - service: notify.telegram_clement
-    data_template:
-      title: 🔋 *Batteries*
-      message: "{% for sensor in states.sensor if sensor.attributes.battery_level\
-        \ is defined and sensor.attributes.battery_level | int < 15 %}\n  La batterie\
-        \ de la sonde \"{{sensor.attributes.friendly_name | replace('_', ' ') }}\"\
-        \ est à {{ sensor.attributes.battery_level }}%!{{'\\n'}}\n{% endfor %}\n"
-  id: bff26c32104f484fb0db4895b12a8a62
 - alias: '[Alerte] 🔋 faibles pour binary sensors'
   trigger:
   - platform: time
@@ -590,4 +572,3 @@
   - service: media_player.media_pause
     data: {}
     entity_id: media_player.shield
-

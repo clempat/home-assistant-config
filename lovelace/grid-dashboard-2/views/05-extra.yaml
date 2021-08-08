@@ -1,0 +1,20 @@
+---
+title: Extra
+path: extra
+icon: mdi:asterisk
+# panel: true
+cards:
+  - type: grid
+    title: Feu rouge couché
+    columns: 4
+    cards: !include ../cards/traffic_light.yaml
+
+#  - type: "custom:spotify-card"
+#    device: Wohnzimmer
+  
+  - type: vertical-stack
+    cards: !include ../cards/motion.yaml
+
+  # - type: grid
+  #   title: Chauffage
+  #   cards: !include ../cards/heatings.yaml
