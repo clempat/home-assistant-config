@@ -14,3 +14,10 @@
   duration:
     hours: 48
   end: "{{ now() }}"
+- platform: history_stats
+  name: count_bike_away_since_charge
+  entity_id: device_tracker.batterie_velo
+  state: away
+  type: count
+  start: "{{ states.binary_sensor.bike_battery.last_changed }}"
+  end: "{{ now() }}"
