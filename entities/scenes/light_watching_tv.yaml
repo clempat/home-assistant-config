@@ -12,4 +12,4 @@ entities:
   light.livingroom_sofa_side: off
   light.hyperion:
     state: on
-    effect: V4L
+    effect: USB Capture

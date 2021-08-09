@@ -11,4 +11,4 @@ use_blueprint:
     paused_scene: scene.light_cozy_livingroom
     standby_scene: scene.light_cozy_livingroom
     idle_scene: scene.light_cozy_livingroom
-    off_scene: scene.light_cozy_livingroom
+    fallback_scene: scene.light_cozy_livingroom

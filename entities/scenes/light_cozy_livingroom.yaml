@@ -11,4 +11,4 @@ entities:
     hs_color: [30.207, 56.863]
   light.hyperion:
     state: on
-    effect: Cinema dim lights
+    rgbw_color: [0, 0, 0, 0]

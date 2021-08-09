@@ -27,7 +27,7 @@ blueprint:
           domain: scene
     paused_scene:
       name: Paused Scene
-      default: false
+      default:
       description: |
         The scene to turn on when in paused.
         If not indicated the automation will come to old lights state
@@ -36,7 +36,7 @@ blueprint:
           domain: scene
     standby_scene:
       name: Standby Scene
-      default: false
+      default:
       description: |
         The scene to turn on when in standby.
         If not indicated the automation will come to old lights state
@@ -45,7 +45,7 @@ blueprint:
           domain: scene
     idle_scene:
       name: Idle Scene
-      default: false
+      default:
       description: |
         The scene to turn on when in idle.
         If not indicated the automation will come to old lights state
@@ -54,22 +54,30 @@ blueprint:
           domain: scene
     off_scene:
       name: Off Scene
-      default: false
+      default:
       description: |
         The scene to turn on when in off.
         If not indicated the automation will come to old lights state
       selector:
         entity:
           domain: scene
-
+    fallback_scene:
+      name: Default Scene
+      default:
+      description: |
+        If there is no previous scene created like due to restart this scene will be activated instead of the previous lights.
+      selector:
+        entity:
+          domain: scene
 variables:
-  app_to_exclude_input: !input "app_to_exclude"
-  app_to_exclude_sanitized: "{{ app_to_exclude_input.split(',') | map('trim') | list }}"
-  playing_scene_input: !input "playing_scene"
-  idle_scene_input: !input "idle_scene"
-  paused_scene_input: !input "paused_scene"
-  off_scene_input: !input "off_scene"
-  standby_scene_input: !input "standby_scene"
+  app_to_exclude: !input "app_to_exclude"
+  app_to_exclude_sanitized: "{{ app_to_exclude.split(',') | map('trim') | list }}"
+  playing_scene: !input "playing_scene"
+  idle_scenet: !input "idle_scene"
+  paused_scene: !input "paused_scene"
+  off_scene: !input "off_scene"
+  standby_scene: !input "standby_scene"
+  fallback_scene: !input "fallback_scene"
 
 trigger:
   platform: state
@@ -77,8 +85,8 @@ trigger:
 
 action:
   - variables:
-      main_lights: "{{ state_attr(playing_scene_input, 'entity_id') }}"
-      scene_main_lights_object_id: "{{ states[playing_scene_input].object_id }}"
+      main_lights: "{{ state_attr(playing_scene, 'entity_id') }}"
+      scene_main_lights_object_id: "{{ states[playing_scene].object_id }}"
       current_app_name: "{{ trigger.to_state.attributes.app_name }}"
       is_excluded_app: "{{ app_to_exclude_sanitized | select('eq', current_app_name) | list | count > 0 }}"
       has_light_on: "{{ expand(main_lights) | selectattr('state','eq','on') | list | count > 0 }}"
@@ -109,7 +117,7 @@ action:
           - "{{ trigger.to_state.state == 'paused' }}"
           - "{{ trigger.from_state.state != 'paused' }}"
           - "{{ not is_excluded_app }}"
-          - "{{ paused_scene_input }}"
+          - "{{ paused_scene is not none }}"
           - "{{ has_light_on }}"
         sequence:
           - service: scene.turn_on
@@ -120,7 +128,7 @@ action:
       - conditions:
           - "{{ trigger.to_state.state == 'idle' }}"
           - "{{ not is_excluded_app }}"
-          - "{{ idle_scene_input }}"
+          - "{{ idle_scene is not none }}"
           - "{{ has_light_on }}"
         sequence:
           - service: scene.turn_on
@@ -131,7 +139,7 @@ action:
       - conditions:
           - "{{ trigger.to_state.state == 'standby' }}"
           - "{{ not is_excluded_app }}"
-          - "{{ standby_scene_input }}"
+          - "{{ standby_scene is not none }}"
           - "{{ has_light_on }}"
         sequence:
           - service: scene.turn_on
@@ -142,7 +150,7 @@ action:
       - conditions:
           - "{{ trigger.to_state.state == 'off' }}"
           - "{{ not is_excluded_app }}"
-          - "{{ off_scene_input }}"
+          - "{{ off_scene is not none }}"
           - "{{ has_light_on }}"
         sequence:
           - service: scene.turn_on
@@ -150,6 +158,18 @@ action:
               entity_id: !input "off_scene"
 
       # any state without scene
+      - conditions:
+          - "{{ (['off', 'standby', 'idle', 'paused']) | select('eq', trigger.to_state.state) | list | count > 0 }}"
+          - "{{ not is_excluded_app }}"
+          - "{{ has_light_on }}"
+          - "{{ fallback_scene is not none }}"
+          - condition: template
+            value_template: >
+              {{ states["scene.media_scene_"+scene_main_lights_object_id+"_lights_previous"] == None}}
+        sequence:
+          - service: scene.turn_on
+            data:
+              entity_id: !input "fallback_scene"
       - conditions:
           - "{{ (['off', 'standby', 'idle', 'paused']) | select('eq', trigger.to_state.state) | list | count > 0 }}"
           - "{{ not is_excluded_app }}"
