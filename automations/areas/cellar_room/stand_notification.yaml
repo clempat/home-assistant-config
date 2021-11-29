@@ -1,0 +1,35 @@
+---
+id: f8b10856-1652-11ec-9621-0242ac130002
+alias: stand notification
+
+trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.standdesk
+    to: "off"
+    for:
+      minutes: 45
+  - platform: state
+    entity_id:
+      - switch.wall_switch_bedroom_cellar_desk
+    to: "on"
+    for:
+      minutes: 45
+
+condition:
+  condition: and
+  conditions:
+    - condition: state
+      entity_id: switch.wall_switch_bedroom_cellar_desk
+      state: "on"
+    - condition: state
+      entity_id: binary_sensor.standdesk
+      state: "off"
+      for:
+        minutes: 45
+
+action:
+  - service: notify.telegram_clement
+    data:
+      title: "Stand"
+      message: "You sit more than 45min. Stand Up !"

@@ -1,5 +1,0 @@
----
-platform: generic_thermostat
-name: Chambre RDC
-heater: switch.chauffage_chambre_rdc
-target_sensor: sensor.temperature_office_melanie

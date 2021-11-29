@@ -1,6 +1,0 @@
----
-platform: group
-name: garden_master
-entities:
-    - light.garden_balcony
-    - light.garden_stripe

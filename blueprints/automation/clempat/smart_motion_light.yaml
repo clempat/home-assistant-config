@@ -1,0 +1,101 @@
+---
+# TODO
+# - [ ] Add the possibility for profiles
+blueprint:
+  name: Smart motion light
+  description: /
+    This Automation will light on a light depending on the motion and light sensor or using a switch.
+    It will not automatic switch off if you manually light it on.
+  domain: automation
+
+  input:
+    light:
+      name: light
+      description: The light to control
+      selector:
+        entity:
+          domain: light
+    light_sensor:
+      name: Light Sensor
+      description: The light sensor to check
+      default:
+      selector:
+        entity:
+          domain: sensor
+          device_class: illuminance
+    motion_sensor:
+      name: Motion Sensor
+      description: Motion Sensor to check
+      selector:
+        entity:
+          domain: binary_sensor
+          device_class: motion
+    light_threshold:
+      name: Light Threshold
+      description: Light Threshold
+      default: 15
+      selector:
+        number:
+    event_type:
+      name: Event Type
+      description: Event Type to listen to toggle light
+      default: "NOP"
+      selector:
+        text:
+    event_data:
+      name: Event Data
+      description: "Event Data to listen to toggle light (Ex: device_id, event)"
+      default: {}
+      selector:
+        object:
+variables:
+  light_threshold: !input "light_threshold"
+  light: !input light
+  light_sensor: !input light_sensor
+
+trigger:
+  - id: "motion"
+    platform: state
+    to: "on"
+    entity_id: !input "motion_sensor"
+  - id: "switch"
+    platform: event
+    event_type: !input event_type
+    event_data: !input event_data
+action:
+  - variables:
+      is_light_on: "{{ is_state(light, 'on') }}"
+      need_light: "{{ light_sensor is none or states[light_sensor].state | int < light_threshold }}"
+
+  - choose:
+      # Switch on if switch event
+      - conditions:
+          - "{{ trigger.id == 'switch' }}"
+          - "{{ event_type is not none }}"
+        sequence:
+          - service: light.toggle
+            entity_id: !input light
+      # Switch on if motion detected
+      - conditions:
+          - "{{ trigger.id == 'motion' }}"
+          - "{{ trigger.from_state.state != 'on' }}"
+          - "{{ trigger.to_state.state == 'on' }}"
+          - "{{ need_light and not is_light_on }}"
+        sequence:
+          - service: light.turn_on
+            entity_id: !input light
+          - wait_for_trigger:
+              - platform: event
+                id: switch
+                event_type: !input "event_type"
+                event_data: !input "event_data"
+              - platform: state
+                id: motion
+                entity_id: !input "motion_sensor"
+                to: "off"
+                for:
+                  minutes: 1
+          - condition: template
+            value_template: " {{ wait.trigger.id == 'motion' }}"
+          - service: light.turn_off
+            entity_id: !input light

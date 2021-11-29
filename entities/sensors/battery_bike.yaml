@@ -17,7 +17,7 @@
 - platform: history_stats
   name: count_bike_away_since_charge
   entity_id: device_tracker.batterie_velo
-  state: away
+  state: not_home
   type: count
   start: "{{ states.binary_sensor.bike_battery.last_changed }}"
   end: "{{ now() }}"

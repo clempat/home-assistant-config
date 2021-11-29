@@ -18,6 +18,7 @@ node-red
 themes/**/*
 
 # Specific file ignores
+*.log.*
 .config_entries.json
 .homekit.state
 .ios.conf
@@ -39,6 +40,7 @@ zwscene.xml
 authorized_keys
 *.conf
 google_calendars.yaml
+*.html
 
 # ESPHome ignores
 # Future

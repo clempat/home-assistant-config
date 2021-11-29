@@ -1,5 +1,0 @@
----
-platform: generic_thermostat
-name: Cuisine
-heater: switch.chauffage_cuisine
-target_sensor: sensor.temperature_kitchen

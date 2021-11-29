@@ -1,0 +1,15 @@
+---
+description: Toggle light with switch or motion kitchen kids
+alias: kids_light_motion
+id: fb91e616-3c81-47ac-8117-712e6d31cded
+use_blueprint:
+  path: clempat/smart_motion_light.yaml
+  input:
+    light: light.kitchen_ceiling_kids
+    light_sensor: sensor.x_motion_kitchen_floor_light_level
+    # light_threshold: 5
+    motion_sensor: binary_sensor.x_motion_kitchen_floor
+    event_type: deconz_event
+    event_data:
+      event: 1002
+      device_id: 58c90f52f6146b147732e86a9f675ba3

@@ -3,4 +3,5 @@
 alias: Notifier la sonette
 sequence:
   - service: script.run_sncf_on_gateways
+  - service: script.run_sncf_on_sonos
   - service: script.display_doorbell

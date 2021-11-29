@@ -1,0 +1,4 @@
+---
+platform: switch
+name: outside_light_behind_house
+entity_id: switch.tasmota_outside_light

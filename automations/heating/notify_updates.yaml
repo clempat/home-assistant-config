@@ -1,0 +1,47 @@
+---
+id: 36725bd9-7e39-4701-947f-530091e23916
+description: Notify with an event any changes in presets for heating
+alias: notify_updates_heating
+trigger:
+  platform: state
+  entity_id:
+    - input_number.heating_laundryroom_mode_confort
+    - input_number.heating_bedroom_girls_mode_confort
+    - input_number.heating_bedroom_cellar_mode_confort
+    - input_number.heating_florian_bedroom_mode_confort
+    - input_number.heating_office_melanie_mode_confort
+    - input_number.heating_bedroom_roof_mode_confort
+    - input_number.heating_kitchen_mode_confort
+    - input_number.heating_entrance_mode_confort
+    - input_number.heating_stairs_mode_confort
+    - input_number.heating_mezzanine_mode_confort
+    - input_number.heating_bathroom_mode_confort
+    - input_number.heating_livingroom_mode_confort
+    - input_number.heating_laundryroom_mode_eco
+    - input_number.heating_bedroom_girls_mode_eco
+    - input_number.heating_bedroom_cellar_mode_eco
+    - input_number.heating_florian_bedroom_mode_eco
+    - input_number.heating_office_melanie_mode_eco
+    - input_number.heating_bedroom_roof_mode_eco
+    - input_number.heating_kitchen_mode_eco
+    - input_number.heating_entrance_mode_eco
+    - input_number.heating_stairs_mode_eco
+    - input_number.heating_mezzanine_mode_eco
+    - input_number.heating_bathroom_mode_eco
+    - input_number.heating_livingroom_mode_eco
+    - input_select.heating_laundryroom_mode
+    - input_select.heating_bedroom_girls_mode
+    - input_select.heating_bedroom_cellar_mode
+    - input_select.heating_florian_bedroom_mode
+    - input_select.heating_office_melanie_mode
+    - input_select.heating_bedroom_roof_mode
+    - input_select.heating_kitchen_mode
+    - input_select.heating_entrance_mode
+    - input_select.heating_stairs_mode
+    - input_select.heating_mezzanine_mode
+    - input_select.heating_bathroom_mode
+    - input_select.heating_livingroom_mode
+action:
+  - event: event_updates_presets_heating
+    event_data:
+      trigger: "{{ trigger }}"

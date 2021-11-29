@@ -1,21 +1,18 @@
 ---
-  id: b06ed59c-58f6-42dd-be49-c9346bc0c9f0
-  alias: Switch Kitchen 1
-  description: ''
-  use_blueprint:
-    path: kenny.vanitterbeek/deconz-aqara-wireless-remote-switch-double-rocker-2-buttons.yaml
-    input:
-      remote: 58c90f52f6146b147732e86a9f675ba3
-      button_left_single_press:
-      - service: light.toggle
-        data: {}
-        entity_id: light.kitchen_ceiling_kids
-      button_left_long: []
-      button_right_single_press:
+id: b06ed59c-58f6-42dd-be49-c9346bc0c9f0
+alias: Switch Kitchen 1
+description: ""
+use_blueprint:
+  path: kenny.vanitterbeek/deconz-aqara-wireless-remote-switch-double-rocker-2-buttons.yaml
+  input:
+    remote: 58c90f52f6146b147732e86a9f675ba3
+    button_left_single_press: []
+    button_left_long: []
+    button_right_single_press:
       - service: light.toggle
         data: {}
         entity_id: light.kitchen_table
-      both_button_single_press:
+    both_button_single_press:
       - service: light.toggle
         data: {}
         entity_id: light.kitchen_master

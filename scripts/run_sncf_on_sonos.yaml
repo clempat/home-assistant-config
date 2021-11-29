@@ -1,0 +1,12 @@
+---
+alias: Run SNCF Jingle on all sonos
+sequence:
+  - service: media_player.play_media
+    target:
+      entity_id:
+        - media_player.sonos_one_sl
+        - media_player.sonos_roam
+        - media_player.sonos_one
+    data:
+      media_content_id: http://192.168.10.29:8123/local/sounds/sncf_new.wav
+      media_content_type: music

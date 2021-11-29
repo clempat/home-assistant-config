@@ -9,20 +9,8 @@ sequence:
             entity_id: input_boolean.live
             state: "off"
         sequence:
-          - service: switch.turn_on
-            entity_id: switch.show_buro_do_not_disturb_switch
           - service: input_boolean.turn_on
             entity_id: input_boolean.live
-          - service: light.turn_on
-            target:
-              entity_id: light.alert_live
-            data:
-              hs_color: [0, 100]
     default:
-      - service: switch.turn_off
-        entity_id: switch.show_buro_do_not_disturb_switch
       - service: input_boolean.turn_off
         entity_id: input_boolean.live
-      - service: light.turn_off
-        data:
-          entity_id: light.alert_live

@@ -1,0 +1,7 @@
+---
+platform: group
+unique_id: 90cb352a-4552-11ec-81d3-0242ac130003
+entities:
+  - media_player.sonos_one_sl
+  - media_player.sonos_roam
+  - media_player.sonos_one

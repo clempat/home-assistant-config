@@ -1,0 +1,43 @@
+---
+description: Notify information about today
+id: 009ef164-17cb-4a33-bb2b-75af1d522cea
+alias: Notify Today
+
+trigger:
+  - platform: time
+    at: "09:00"
+
+condition:
+  - condition: state
+    entity_id: binary_sensor.workday_sensor
+    state: "on"
+variables:
+  message: >
+    {%- set lunch = states.sensor.lunch.state | as_datetime | as_local %}
+    {% if states.sensor.lunch.attributes.should_clement_cook_today -%}
+        Clément Cuisine Aujourd'hui. Le repas sera prêts aux alentours de {{ lunch.strftime('%H:%M') }}.
+    {% elif states.sensor.lunch.attributes.lunches | rejectattr('available') | list | count == 0 -%}
+        Melanie Cuisine Aujourd'hui. Clément n'a pas de réunions.
+    {% else %}
+        Melanie Cuisine Aujourd'hui. {% for lunch in states.sensor.lunch.attributes.lunches -%}
+      {%- if lunch.available and not loop.first and not loop.previtem.available -%}
+        Clément à une réunion jusqu'à {{ ((loop.previtem.events | last).end.dateTime | as_datetime).strftime('%H:%M') }}.
+      {%- endif -%}
+      {%- if not lunch.available and not loop.first and loop.previtem.available -%}
+        Clément à une réunion à {{ ((lunch.events | last).end.dateTime | as_datetime).strftime('%H:%M') }}.
+      {%- endif -%}
+    {%- endfor %}
+    {%- endif -%}
+action:
+  - service: notify.telegram_melanie
+    data_template:
+      title: "\U0001f35d *Repas de ce midi*"
+      message: >
+        Bonjour Melanie,
+        {{message}}
+  - service: notify.telegram_clement
+    data_template:
+      title: "\U0001f35d *Repas de ce midi*"
+      message: >
+        Bonjour Clément,
+        {{message}}

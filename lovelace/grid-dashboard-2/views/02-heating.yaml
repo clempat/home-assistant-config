@@ -2,170 +2,159 @@
 title: Chauffage
 path: heating
 icon: mdi:radiator
-panel: true
 cards:
-  - type: grid
-    cards:
-      - type: entities
-        entities:
-          - entity: input_datetime.heating_first_hour
-            name: Première heure
-          - entity: input_datetime.heating_kids_return_time
-            name: Heure retour Kita
-          - entity: input_datetime.heating_working_time_start
-            name: Heure Début Travail
-          - entity: input_datetime.heating_working_time_end
-            name: Heure Fin Travail
-      - type: vertical-stack
-        title: Pièces Commune
-        cards:
-          - type: entities
-            entities:
-              - entity: input_boolean.temperature_comfort_preset_common_rooms
-                name: Mode Confort
-              - entity: input_number.temperature_comfort_preset_common_rooms
-                name: T. Confort
-              - entity: input_number.temperature_reduced_preset_common_rooms
-                name: T. Reduite
-          - type: "custom:simple-thermostat"
-            entity: climate.salon
-            <<: &climate_options
-              control: false
-              step_layout: row
-              step_size: "0.5"
-          - type: "custom:simple-thermostat"
-            entity: climate.cuisine
-            <<: *climate_options
-
-      - type: vertical-stack
-        title: Salles de Bain
-        cards:
-          - type: entities
-            entities:
-              - entity: input_boolean.temperature_comfort_preset_bathrooms
-                name: Mode Confort
-              - entity: input_number.temperature_comfort_preset_bathrooms
-                name: T. Confort
-              - entity: input_number.temperature_reduced_preset_bathrooms
-                name: T. Reduite
-          - type: "custom:simple-thermostat"
-            entity: climate.salle_de_bain
-            <<: *climate_options
-          - type: conditional
-            conditions:
-              - entity: input_select.guest_mode
-                state: Cave
-            card:
-              type: "custom:simple-thermostat"
-              entity: climate.buanderie
-              <<: *climate_options
-
-      - type: vertical-stack
-        title: Bureau Melanie
-        cards:
-          - type: entities
-            entities:
-              - entity: input_boolean.temperature_comfort_preset_melanie_office
-                name: Mode Confort
-              - entity: input_number.temperature_comfort_preset_melanie_office
-                name: T. Confort
-              - entity: input_number.temperature_reduced_preset_melanie_office
-                name: T. Reduite
-          - type: conditional
-            conditions:
-              - entity: input_select.guest_mode
-                state_not: Rez de chaussé
-            card:
-              type: "custom:simple-thermostat"
-              entity: climate.chambre_rdc
-              <<: *climate_options
-
-      - type: vertical-stack
-        title: Bureau Clement
-        cards:
-          - type: entities
-            entities:
-              - entity: input_boolean.temperature_comfort_preset_clement_office
-                name: Mode Confort
-              - entity: input_number.temperature_comfort_preset_clement_office
-                name: T. Confort
-              - entity: input_number.temperature_reduced_preset_clement_office
-                name: T. Reduite
-          - type: conditional
-            conditions:
-              - entity: input_select.guest_mode
-                state_not: Cave
-            card:
-              type: "custom:simple-thermostat"
-              entity: climate.chambre_cave
-              <<: *climate_options
-
-      - type: vertical-stack
-        title: Couloirs
-        cards:
-          - type: entities
-            entities:
-              - entity: input_boolean.temperature_comfort_preset_floor
-                name: Mode Confort
-              - entity: input_number.temperature_comfort_preset_floor
-                name: T. Confort
-              - entity: input_number.temperature_reduced_preset_floor
-                name: T. Reduite
-
-          - type: "custom:simple-thermostat"
-            entity: climate.entree
-            <<: *climate_options
-          - type: "custom:simple-thermostat"
-            entity: climate.escalier
-            <<: *climate_options
-          - type: "custom:simple-thermostat"
-            entity: climate.mezzanine
-            <<: *climate_options
-      - type: vertical-stack
-        title: Chambres Enfants
-        cards:
-          - type: entities
-            entities:
-              - entity: input_boolean.temperature_comfort_preset_bedrooms_kids
-                name: Mode Confort
-              - entity: input_number.temperature_comfort_preset_bedrooms_kids
-                name: T. Confort
-              - entity: input_number.temperature_reduced_preset_bedrooms_kids
-                name: T. Reduite
-          - type: "custom:simple-thermostat"
-            entity: climate.chambre_florian
-            <<: *climate_options
-          - type: "custom:simple-thermostat"
-            entity: climate.chambre_1er
-            <<: *climate_options
-
-      - type: vertical-stack
-        title: Chambres
-        cards:
-          - type: entities
-            entities:
-              - entity: input_boolean.temperature_comfort_preset_bedrooms
-                name: Mode Confort
-              - entity: input_number.temperature_comfort_preset_bedrooms
-                name: T. Confort
-              - entity: input_number.temperature_reduced_preset_bedrooms
-                name: T. Reduite
-          - type: "custom:simple-thermostat"
-            entity: climate.chambre_toit
-            <<: *climate_options
-          - type: conditional
-            conditions:
-              - entity: input_select.guest_mode
-                state: Cave
-            card:
-              type: "custom:simple-thermostat"
-              entity: climate.chambre_cave
-              <<: *climate_options
-          - type: conditional
-            conditions:
-              - entity: input_select.guest_mode
-                state: Rez de chaussé
-            card:
-              type: "custom:simple-thermostat"
-              entity: climate.chambre_rdc
-              <<: *climate_options
+  - type: entities
+    entities:
+      - entity: input_datetime.heating_kids_return_time
+        name: Heure retour Kita
+      - entity: input_datetime.heating_working_time_start
+        name: Heure Début Travail
+      - entity: input_datetime.heating_working_time_end
+        name: Heure Fin Travail
+  - type: entities
+    entities:
+      - entity: climate.chambre_florian
+      - entity: input_select.heating_florian_bedroom_mode
+      - entity: input_number.heating_florian_bedroom_mode_confort
+        name: T. Confort
+        icon: mdi:thermometer-high
+      - entity: input_number.heating_florian_bedroom_mode_eco
+        name: T. Eco
+        icon: mdi:thermometer-low
+      - entity: binary_sensor.open_bedroom_florian
+      - entity: sensor.temps_chauffage_chambre_florian_aujourd_hui
+        name: Temps de Chauffe Aujourd’hui
+    state_color: true
+    title: Chambre Florian
+  - type: entities
+    entities:
+      - entity: climate.chambre_1er
+      - entity: input_select.heating_bedroom_girls_mode
+      - entity: input_number.heating_bedroom_girls_mode_confort
+        name: T. Confort
+        icon: mdi:thermometer-high
+      - entity: input_number.heating_bedroom_girls_mode_eco
+        name: T. Eco
+        icon: mdi:thermometer-low
+      - entity: binary_sensor.open_bedroom
+      - entity: sensor.temps_chauffage_chambre_1er_aujourd_hui
+        name: Temps de Chauffe Aujourd’hui
+    state_color: true
+    title: Chambre Mina & Clara
+  - type: entities
+    entities:
+      - entity: climate.chambre_rdc
+      - entity: input_select.heating_office_melanie_mode
+      - entity: input_number.heating_office_melanie_mode_confort
+        name: T. Confort
+        icon: mdi:thermometer-high
+      - entity: input_number.heating_office_melanie_mode_eco
+        name: T. Reduit
+        icon: mdi:thermometer-low
+      - entity: binary_sensor.open_office
+      - entity: sensor.temps_chauffage_chambre_rdc_aujourd_hui
+        name: Temps de Chauffe Aujourd’hui
+    state_color: true
+    title: Bureau Melanie
+  - type: entities
+    entities:
+      - entity: climate.chambre_cave
+      - entity: input_select.heating_bedroom_cellar_mode
+      - entity: input_number.heating_bedroom_cellar_mode_confort
+        name: T. Confort
+        icon: mdi:thermometer-high
+      - entity: input_number.heating_bedroom_cellar_mode_eco
+        name: T. Reduit
+        icon: mdi:thermometer-low
+      - entity: binary_sensor.open_cellar_room
+      - entity: sensor.temps_chauffage_chambre_cave_aujourd_hui
+        name: Temps de Chauffe Aujourd’hui
+    state_color: true
+    title: Bureau Clément
+  - type: entities
+    entities:
+      - entity: climate.salon
+      - entity: input_select.heating_livingroom_mode
+      - entity: input_number.heating_livingroom_mode_confort
+        name: T. Confort
+        icon: mdi:thermometer-high
+      - entity: input_number.heating_livingroom_mode_eco
+        name: T. Reduit
+        icon: mdi:thermometer-low
+      - entity: binary_sensor.open_livingroom
+      - entity: sensor.temps_chauffage_salon_aujourd_hui
+        name: Temps de Chauffe Aujourd’hui
+    state_color: true
+    title: Salon
+  - type: entities
+    entities:
+      - entity: climate.cuisine
+      - entity: input_select.heating_kitchen_mode
+      - entity: input_number.heating_kitchen_mode_confort
+        name: T. Confort
+        icon: mdi:thermometer-high
+      - entity: input_number.heating_kitchen_mode_eco
+        name: T. Reduit
+        icon: mdi:thermometer-low
+      - entity: binary_sensor.open_kitchen
+      - entity: sensor.temps_chauffage_cuisine_aujourd_hui
+        name: Temps de Chauffe Aujourd’hui
+    state_color: true
+    title: Cuisine
+  - type: entities
+    entities:
+      - entity: climate.salle_de_bain
+      - entity: input_select.heating_bathroom_mode
+      - entity: input_number.heating_bathroom_mode_confort
+        name: T. Confort
+        icon: mdi:thermometer-high
+      - entity: input_number.heating_bathroom_mode_eco
+        name: T. Reduit
+        icon: mdi:thermometer-low
+      - entity: binary_sensor.open_bathroom
+      - entity: sensor.temps_chauffage_salle_de_bain_aujourd_hui
+        name: Temps de Chauffe Aujourd’hui
+    state_color: true
+    title: Salle de Bain
+  - type: entities
+    entities:
+      - entity: climate.escalier
+      - entity: input_select.heating_stairs_mode
+      - entity: input_number.heating_stairs_mode_confort
+        name: T. Confort
+        icon: mdi:thermometer-high
+      - entity: input_number.heating_stairs_mode_eco
+        name: T. Reduit
+        icon: mdi:thermometer-low
+      - entity: sensor.temps_chauffage_escalier_1er_aujourd_hui
+        name: Temps de Chauffe Aujourd’hui
+    state_color: true
+    title: Escalier
+  - type: entities
+    entities:
+      - entity: climate.buanderie
+      - entity: input_select.heating_laundryroom_mode
+      - entity: input_number.heating_laundryroom_mode_confort
+        name: T. Confort
+        icon: mdi:thermometer-high
+      - entity: input_number.heating_laundryroom_mode_eco
+        name: T. Reduit
+        icon: mdi:thermometer-low
+      - entity: sensor.temps_chauffage_buanderie_aujourd_hui
+        name: Temps de Chauffe Aujourd’hui
+    state_color: true
+    title: Buanderie
+  - type: entities
+    entities:
+      - entity: climate.entree
+      - entity: input_select.heating_entrance_mode
+      - entity: input_number.heating_entrance_mode_confort
+        name: T. Confort
+        icon: mdi:thermometer-high
+      - entity: input_number.heating_entrance_mode_eco
+        name: T. Reduit
+        icon: mdi:thermometer-low
+      - entity: sensor.temps_chauffage_entree_aujourd_hui
+        name: Temps de Chauffe Aujourd’hui
+    state_color: true
+    title: Entrée

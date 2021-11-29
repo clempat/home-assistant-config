@@ -1,9 +1,0 @@
----
-name: Mode Chauffage
-icon: mdi:radiator
-options:
-  - Normal
-  - Malade
-  - Home Office
-  - En vacance
-  - Été

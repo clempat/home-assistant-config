@@ -9,11 +9,29 @@ cards:
     columns: 4
     cards: !include ../cards/traffic_light.yaml
 
-#  - type: "custom:spotify-card"
-#    device: Wohnzimmer
-  
+  #  - type: "custom:spotify-card"
+  #    device: Wohnzimmer
+
   - type: vertical-stack
     cards: !include ../cards/motion.yaml
+
+  - type: custom:fold-entity-row
+    head: null
+    entity: sensor.unavailable_entities
+    entities:
+      - type: custom:hui-element
+        card_type: markdown
+        content: >
+          {%- if states('sensor.unavailable_entities')|lower not in
+          ['unknown','unavailable','none'] -%}
+            {%- if states('sensor.unavailable_entities')|int == 0 -%}
+              No unavailable entities.
+            {%- else -%}
+              {%- for entity in state_attr('sensor.unavailable_entities','entities') -%}
+              - {{ entity }}{%- if not loop.last -%}{{ '\n' }}{%- endif -%}
+              {%- endfor -%}
+            {%- endif -%}
+          {%- endif -%}
 
   # - type: grid
   #   title: Chauffage

@@ -9,8 +9,8 @@ trigger:
   to: "on"
 condition:
   condition: numeric_state
-  entity_id: sensor.x_motion_stairs_first_floor_light_level
-  below: 50
+  entity_id: sensor.lightlevel_132
+  below: 1000
 action:
   service: light.turn_on
   entity_id: light.stairs_first_floor

@@ -1,0 +1,62 @@
+# All my Generic Thermostats for my heating
+- platform: generic_thermostat
+  name: Salle de bain
+  heater: switch.chauffage_salle_de_bain
+  target_sensor: sensor.temperature_bathroom
+  <<: &common_options
+    keep_alive:
+      minutes: 10
+- platform: generic_thermostat
+  name: Chambre Cave
+  heater: switch.chauffage_chambre_cave
+  target_sensor: sensor.temperature_bedroom_cellar
+  <<: *common_options
+- platform: generic_thermostat
+  name: Chambre Florian
+  heater: switch.chauffage_chambre_florian
+  target_sensor: sensor.temperature_florian_bedroom
+  <<: *common_options
+- platform: generic_thermostat
+  name: Chambre 1er
+  heater: switch.chauffage_chambre_1er
+  target_sensor: sensor.temperature_bedroom_girls
+  <<: *common_options
+- platform: generic_thermostat
+  name: Chambre RDC
+  heater: switch.chauffage_chambre_rdc
+  target_sensor: sensor.temperature_office_melanie
+  <<: *common_options
+- platform: generic_thermostat
+  name: Chambre Toit
+  heater: switch.chauffage_chambre_toit
+  target_sensor: sensor.temperature_bedroom_roof
+  <<: *common_options
+- platform: generic_thermostat
+  name: Entrée
+  heater: switch.chauffage_entree
+  target_sensor: sensor.temperature_entrance
+  <<: *common_options
+- platform: generic_thermostat
+  name: Cuisine
+  heater: switch.chauffage_cuisine
+  target_sensor: sensor.temperature_kitchen
+  <<: *common_options
+- platform: generic_thermostat
+  name: Buanderie
+  heater: switch.chauffage_buanderie
+  target_sensor: sensor.temperature_laundryroom
+  <<: *common_options
+- platform: generic_thermostat
+  name: Salon
+  heater: switch.chauffage_salon
+  target_sensor: sensor.temperature_livingroom
+  <<: *common_options
+- platform: generic_thermostat
+  name: Mezzanine
+  heater: switch.chauffage_mezzanine
+  target_sensor: sensor.temperature_mezzanine
+  <<: *common_options
+- platform: generic_thermostat
+  name: Escalier
+  heater: group.heating_stairs
+  target_sensor: sensor.x_multi_stairs_first_floor_temperature

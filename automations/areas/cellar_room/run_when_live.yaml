@@ -1,0 +1,37 @@
+---
+id: 32c0d522-03f7-461c-835b-9e79e53a3db3
+alias: cellar_led_meeting
+description: Switch Green/Red if no meeting or meeting
+trigger:
+  - platform: state
+    entity_id: input_boolean.live
+
+action:
+  - choose:
+    - alias: "If running live"
+      conditions: >
+        {{ (trigger.id == 'state' and trigger.to_state == 'on') or is_state('input_boolean.live', 'on') }}
+      sequence:
+        - service: light.turn_on
+          entity_id: light.wled_cellar
+          data_template:
+            effect: Breathe
+            rgb_color: [255,112,64]
+        - service: light.turn_on
+          target:
+            entity_id: light.alert_live
+          data:
+            hs_color: [0, 100]
+        - service: switch.turn_on
+          entity_id: switch.show_buro_do_not_disturb_switch
+    default: 
+      - service: light.turn_on
+        entity_id: light.wled_cellar
+        data_template:
+          effect: Breathe
+          rgb_color: [26,255,0]
+      - service: light.turn_off
+        data:
+          entity_id: light.alert_live
+      - service: switch.turn_off
+        entity_id: switch.show_buro_do_not_disturb_switch

@@ -1,0 +1,41 @@
+---
+blueprint:
+  name: Preset Climate
+  description: Will update climate according to selected preset
+  domain: automation
+
+  input:
+    climate:
+      name: Climate
+      description: Climate to control
+
+      selector:
+        entity:
+          domain: climate
+
+    select:
+      name: Mode Input Select
+      description: Make sure to have select with name_of_select and number input with name_of_select_{{option}}
+
+      selector:
+        entity:
+          domain: input_select
+
+variables:
+  select_input: !input select
+  temperature_base_id: "input_number.{{ states[select_input].object_id }}"
+
+trigger:
+  - platform: state
+    entity_id: !input select
+  - platform: event
+    event_type: event_updates_presets_heating
+
+action:
+  - service: climate.set_temperature
+    target:
+      entity_id: !input climate
+
+    data:
+      temperature: >-
+        {{ states(temperature_base_id ~ "_" ~ states(select_input) | lower | replace(" ", "_")) }}

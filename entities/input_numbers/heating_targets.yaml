@@ -1,0 +1,87 @@
+---
+# This is all my presets for my heating
+heating_laundryroom_mode_confort:
+  name: Température Confort Buanderie
+  <<: &temperature_high_common_options
+    min: 0
+    max: 25
+    step: 0.5
+    mode: box
+    unit_of_measurement: °C
+    icon: mdi:thermometer-high
+heating_bedroom_girls_mode_confort:
+  name: Température Confort Chambre Filles
+  <<: *temperature_high_common_options
+heating_bedroom_cellar_mode_confort:
+  name: Température Confort Chambre Cave
+  <<: *temperature_high_common_options
+heating_florian_bedroom_mode_confort:
+  name: Température Confort Chambre Florian
+  <<: *temperature_high_common_options
+heating_office_melanie_mode_confort:
+  name: Température Confort Chambre RDC
+  <<: *temperature_high_common_options
+heating_bedroom_roof_mode_confort:
+  name: Température Confort Chambre Toit
+  <<: *temperature_high_common_options
+heating_kitchen_mode_confort:
+  name: Température Confort Cuisine
+  <<: *temperature_high_common_options
+heating_entrance_mode_confort:
+  name: Température Confort Entrée
+  <<: *temperature_high_common_options
+heating_stairs_mode_confort:
+  name: Température Confort Escalier
+  <<: *temperature_high_common_options
+heating_mezzanine_mode_confort:
+  name: Température Confort Mezzanine
+  <<: *temperature_high_common_options
+heating_bathroom_mode_confort:
+  name: Température Confort Salle de Bain
+  <<: *temperature_high_common_options
+heating_livingroom_mode_confort:
+  name: Température Confort Salon
+  <<: *temperature_high_common_options
+
+heating_laundryroom_mode_eco:
+  name: Température Reduite Buanderie
+  <<: &temperature_low_common_options
+    min: 0
+    max: 25
+    step: 0.5
+    mode: box
+    unit_of_measurement: °C
+    icon: mdi:thermometer-low
+heating_bedroom_girls_mode_eco:
+  name: Température Reduite Chambre Filles
+  <<: *temperature_low_common_options
+heating_bedroom_cellar_mode_eco:
+  name: Température Reduite Chambre Cave
+  <<: *temperature_low_common_options
+heating_florian_bedroom_mode_eco:
+  name: Température Reduite Chambre Florian
+  <<: *temperature_low_common_options
+heating_office_melanie_mode_eco:
+  name: Température Reduite Chambre RDC
+  <<: *temperature_low_common_options
+heating_bedroom_roof_mode_eco:
+  name: Température Reduite Chambre Toit
+  <<: *temperature_low_common_options
+heating_kitchen_mode_eco:
+  name: Température Reduite Cuisine
+  <<: *temperature_low_common_options
+heating_entrance_mode_eco:
+  name: Température Reduite Entrée
+  <<: *temperature_low_common_options
+heating_stairs_mode_eco:
+  name: Température Reduite Escalier
+  <<: *temperature_low_common_options
+heating_mezzanine_mode_eco:
+  name: Température Reduite Mezzanine
+  <<: *temperature_low_common_options
+heating_bathroom_mode_eco:
+  name: Température Reduite Salle de Bain
+  <<: *temperature_low_common_options
+heating_livingroom_mode_eco:
+  name: Température Reduite Salon
+  <<: *temperature_low_common_options

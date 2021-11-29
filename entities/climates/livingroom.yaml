@@ -1,5 +1,0 @@
----
-platform: generic_thermostat
-name: Salon
-heater: switch.chauffage_salon
-target_sensor: sensor.temperature_livingroom

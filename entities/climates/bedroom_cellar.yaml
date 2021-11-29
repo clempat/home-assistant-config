@@ -1,5 +1,0 @@
----
-platform: generic_thermostat
-name: Chambre Cave
-heater: switch.chauffage_chambre_cave
-target_sensor: sensor.x_multi_bedroom_cellar_temperature

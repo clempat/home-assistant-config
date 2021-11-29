@@ -1,0 +1,18 @@
+---
+description: Turn on/off TV light automation
+alias: toggle_light_automation
+trigger:
+  - id: "morning"
+    platform: time
+    at: "04:00:00"
+  - id: "afternoon"
+    platform: time
+    at: "18:15:00"
+action:
+  - service: >
+      {% if trigger.id == 'morning' %}
+        automation.turn_off
+      {% else %}
+        automation.turn_on
+      {% endif %}
+    entity_id: automation.handle_light_tv

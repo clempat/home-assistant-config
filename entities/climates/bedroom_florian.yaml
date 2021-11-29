@@ -1,5 +1,0 @@
----
-platform: generic_thermostat
-name: Chambre Florian
-heater: switch.chauffage_chambre_florian
-target_sensor: sensor.x_multi_florian_bedroom_temperature

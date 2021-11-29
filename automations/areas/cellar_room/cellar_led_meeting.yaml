@@ -1,0 +1,13 @@
+---
+id: c6c3bf18-8fdb-442d-b400-d516def3b073
+alias: auto_switch_live_meetings
+description: Auto switch the live input when meeting
+trigger:
+  - platform: state
+    id: meeting
+    entity_id: binary_sensor.running_quandoo_meeting
+
+action:
+  - service_template: input_boolean.turn_{{ trigger.to_state.state }}
+    entity_id: input_boolean.live
+

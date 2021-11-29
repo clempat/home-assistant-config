@@ -1,10 +1,11 @@
 ---
-name: Sortie Audio
-options:
-  - Cuisine
-  - Salon
-  - Cuisine + Salon
-  - JBL
-  - Cuisine + JBL
-  - Salon + JBL
-  - Cuisine + Salon + JBL
+speakers:
+  name: Sortie Audio
+  options:
+    - Cuisine
+    - Salon
+    - Cuisine + Salon
+    - JBL
+    - Cuisine + JBL
+    - Salon + JBL
+    - Cuisine + Salon + JBL

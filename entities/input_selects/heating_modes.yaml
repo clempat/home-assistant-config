@@ -1,0 +1,62 @@
+---
+heating_mode:
+  name: Mode Chauffage
+  icon: mdi:radiator
+  options:
+    - Normal
+    - Malade
+    - Home Office
+    - En vacance
+    - Été
+
+heating_laundryroom_mode:
+  name: Mode Chauffage Buanderie
+  <<: &common_heating_mode
+    icon: mdi:home-thermometer
+    options:
+      - Confort
+      - Eco
+
+heating_bedroom_girls_mode:
+  name: Mode Chauffage Chambre Filles
+  <<: *common_heating_mode
+
+heating_bedroom_cellar_mode:
+  name: Mode Chauffage Chambre Cave
+  <<: *common_heating_mode
+
+heating_florian_bedroom_mode:
+  name: Mode Chauffage Chambre Florian
+  <<: *common_heating_mode
+
+heating_office_melanie_mode:
+  name: Mode Chauffage Chambre RDC
+  <<: *common_heating_mode
+
+heating_bedroom_roof_mode:
+  name: Mode Chauffage Chambre Toit
+  <<: *common_heating_mode
+
+heating_kitchen_mode:
+  name: Mode Chauffage Cuisine
+  <<: *common_heating_mode
+
+heating_entrance_mode:
+  name: Mode Chauffage Entrée
+  <<: *common_heating_mode
+
+heating_stairs_mode:
+  name: Mode Chauffage Escalier
+  <<: *common_heating_mode
+
+heating_mezzanine_mode:
+  name: Mode Chauffage Mezzanine
+  <<: *common_heating_mode
+
+heating_bathroom_mode:
+  name: Mode Chauffage Salle de Bain
+  <<: *common_heating_mode
+
+heating_livingroom_mode:
+  name: Mode Chauffage Salon
+  <<: *common_heating_mode

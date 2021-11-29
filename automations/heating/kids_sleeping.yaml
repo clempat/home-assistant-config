@@ -1,0 +1,17 @@
+---
+alias: set_heating_kids_sleeping
+description: Shutdown heating in some rooms when kids going to bed
+id: c42d4abb-a9f6-471e-807d-13db9110ea3a
+trigger:
+  platform: time
+  at: input_datetime.kids_bedtime
+action:
+  service: input_boolean.turn_off
+  data:
+    entity_id:
+      - temperature_high_florian_bedroom
+      - temperature_high_bedroom_girls
+      - temperature_high_bedroom_roof
+      - temperature_high_laundryroom
+      - temperature_high_mezzanine
+      - temperature_high_stairs

@@ -1,0 +1,68 @@
+---
+id: 0aab23e3-2477-431d-9967-69d33e7b3434
+alias: Morning Notification
+description: Morning Notification for my Alexa
+
+trigger:
+  - platform: state
+    entity_id: switch.wall_switch_bedroom_cellar_desk
+    to: "on"
+    for:
+      seconds: 5
+
+condition:
+  condition: and
+  conditions:
+    - condition: state
+      entity_id: binary_sensor.workday_sensor
+      state: "on"
+    - condition: time
+      after: "08:00:00"
+      before: "10:00:00"
+
+action:
+  - service: notify.alexa_media_show_buro
+    data:
+      data:
+        type: tts
+      message: >-
+        {%- set lunch = states("sensor.lunch") | as_datetime | as_local %}
+        <voice name="Lea"><lang xml:lang="fr-FR">
+        Bonjour Clément,
+
+        <break time="1s"/>
+
+        {% if is_state('sensor.quandoo_meetings', '0') -%}
+          <amazon:emotion name="excited" intensity="high">Pas de meeting Aujourd'hui.</amazon:emotion>
+        {% else -%}
+          {%- for meeting in states.sensor.quandoo_meetings.attributes.events -%}
+            {%- if loop.first -%}
+              Ton premier rendez-vous est à {{ (meeting.start.dateTime | as_datetime).strftime('%-H heures %-M') | regex_replace(find=' 0', replace='') }} et s'intitule <voice name="Amy"><lang xml:lang="en-GB">{{meeting.summary | e }}</lang></voice><break time="300ms"/>
+            {%- elif loop.last -%}
+              Et enfin <voice name="Amy"><lang xml:lang="en-GB">{{meeting.summary | e }}</lang></voice> jusqu'à {{ (meeting.end.dateTime | as_datetime).strftime('%-H heures %-M') | regex_replace(find=' 0', replace='') }}<break time="300ms"/>
+            {%- else -%}
+              Puis <voice name="Amy"><lang xml:lang="en-GB">{{meeting.summary | e }}</lang></voice> à {{ (meeting.end.dateTime | as_datetime).strftime('%-H heures %-M') | regex_replace(find=' 0', replace='') }}<break time="300ms"/>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif %}
+
+        <break time="1s"/>
+
+        {% if states.sensor.lunch and states.sensor.lunch.attributes.should_clement_cook_today -%}
+            Tu Cuisine Aujourd'hui. J'envoie un message à Melanie pour un repas à {{ lunch.strftime('%-H heures %-M') | regex_replace(find=' 0', replace='') }}.
+        {%- elif states.sensor.lunch and states.sensor.lunch.attributes.lunches | rejectattr('available') | list | count == 0 -%}
+            Melanie Cuisine Aujourd'hui.
+        {%- else -%}
+            Melanie Cuisine Aujourd'hui. Je l'informe de tes réunions.
+        {%- endif %}
+
+        <break time="1s"/>
+
+        {% if is_state('sensor.unavailable_entities', '0') -%}
+          Je n'ai enregistré aucun problème avec les sondes. Tout fonctionne correctement.
+        {%- else -%}
+          J'ai noté que {{ states('sensor.unavailable_entities') }} objets ne fonctionne pas correctement.
+        {%- endif %}
+        <break time="1s"/>
+        Je te souhaites une bonne Journée !
+        </lang></voice>

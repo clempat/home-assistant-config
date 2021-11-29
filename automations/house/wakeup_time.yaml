@@ -4,7 +4,7 @@ alias: wakeup_time
 id: 643b5e54-645a-4bec-bf24-b266454797b6
 trigger:
   platform: time
-  at: "07:00"
+  at: input_datetime.first_wakeup_time
 condition:
   condition: state
   entity_id: input_boolean.sleeping_mode

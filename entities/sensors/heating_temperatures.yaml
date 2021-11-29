@@ -1,0 +1,108 @@
+---
+# All my temperatures for my heating system
+  - platform: min_max
+    name: temperature_bedroom_cellar
+    type: mean
+    entity_ids:
+      - sensor.x_multi_bedroom_cellar_temperature
+
+  - platform: min_max
+    name: temperature_bathroom
+    type: mean
+    entity_ids:
+      - sensor.x_multi_bathroom_temperature
+
+  - platform: min_max
+    name: temperature_florian_bedroom
+    type: mean
+    entity_ids:
+      - sensor.x_multi_florian_bedroom_temperature
+
+  - platform: min_max
+    name: temperature_bathroom
+    type: mean
+    entity_ids:
+      - sensor.x_multi_bathroom_temperature
+
+  - platform: min_max
+    name: temperature_bedroom_roof
+    type: mean
+    entity_ids:
+      - sensor.x_multi_bedroom_roof_bed_temperature
+      - sensor.x_multi_bedroom_roof_temperature
+
+  - platform: min_max
+    name: temperature_roof
+    type: mean
+    entity_ids:
+      - sensor.temperature_bedroom_roof
+      - sensor.x_multi_mezzanine_temperature
+
+  - platform: min_max
+    name: temperature_livingroom
+    type: mean
+    entity_ids:
+      - sensor.x_multi_livingroom_fireplace_temperature
+      - sensor.x_multi_livingroom_sofa_temperature
+      - sensor.netatmo_mon_domicile_weather_station_temperature
+
+  - platform: min_max
+    name: temperature_kitchen
+    type: mean
+    entity_ids:
+      - sensor.x_multi_kitchen_floor_temperature
+      - sensor.x_multi_kitchen_temperature
+
+  - platform: min_max
+    name: temperature_bedroom_girls
+    type: mean
+    entity_ids:
+      - sensor.x_multi_mina_clara_bedroom_win_temperature
+      - sensor.x_multi_mina_clara_bedroom_bed_temperature
+
+  - platform: min_max
+    name: temperature_office_melanie
+    type: mean
+    entity_ids:
+      - sensor.x_multi_bedroom_ground_floor_win_temperature
+      - sensor.x_multi_bedroom_ground_floor_temperature
+
+  - platform: min_max
+    name: temperature_bedroom_roof
+    type: mean
+    entity_ids:
+      - sensor.x_multi_bedroom_roof_bed_temperature
+      - sensor.x_multi_bedroom_roof_temperature
+
+  - platform: min_max
+    name: temperature_livingroom
+    type: mean
+    entity_ids:
+      - sensor.x_multi_livingroom_fireplace_temperature
+      - sensor.x_multi_livingroom_sofa_temperature
+      - sensor.netatmo_mon_domicile_weather_station_temperature
+
+  - platform: min_max
+    name: temperature_kitchen
+    type: mean
+    entity_ids:
+      - sensor.x_multi_kitchen_floor_temperature
+      - sensor.x_multi_kitchen_temperature
+
+  - platform: min_max
+    name: temperature_entrance
+    type: mean
+    entity_ids:
+      - sensor.x_multi_entrance_temperature
+
+  - platform: min_max
+    name: temperature_laundryroom
+    type: mean
+    entity_ids:
+      - sensor.x_multi_laundryroom_temperature
+
+  - platform: min_max
+    name: temperature_mezzanine
+    type: mean
+    entity_ids:
+      - sensor.x_multi_mezzanine_temperature

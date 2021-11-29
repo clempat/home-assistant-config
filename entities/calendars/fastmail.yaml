@@ -1,0 +1,6 @@
+---
+platform: caldav
+url: !secret caldav_fastmail_url
+username: !secret fastmail_user
+password: !secret fastmail_password
+calendars: !secret fastmail_calendars

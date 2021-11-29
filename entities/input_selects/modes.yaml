@@ -1,0 +1,30 @@
+---
+dnd_mode:
+  name: Ne pas déranger
+  icon: mdi:alarm-off
+  options:
+    - Aucun
+    - Etage
+    - Maison (Tous)
+
+guest_mode:
+  name: Mode invité(es)
+  icon: mdi:account
+  options:
+    - Aucun
+    - Cave
+    - Rez de chaussé
+
+bedroom_cellar_mode:
+  name: Mode Chambre Cave
+  options:
+    - Vide
+    - Chambre
+    - Bureau
+
+bedroom_ground_floor_mode:
+  name: Mode Chambre RDC
+  options:
+    - Vide
+    - Chambre
+    - Bureau

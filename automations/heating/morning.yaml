@@ -1,0 +1,25 @@
+---
+alias: set_heating_morning
+id: 5586ae5e-885a-45a6-b707-42a742617262
+description: Turning the heating back on the morning
+trigger:
+  platform: template
+  value_template: "{{ (states.input_datetime.heating_working_time_start.attributes.timestamp | int - 60 * 60 * 1.5) | timestamp_custom('%H:%M', False) == now().strftime('%s') | int | timestamp_custom('%H:%M', False) }}"
+action:
+  service: input_boolean.turn_on
+  data:
+    entity_id:
+      - temperature_high_bathroom
+      - temperature_high_bedroom_cellar
+      - temperature_high_florian_bedroom
+      - temperature_high_bedroom_girls
+      - temperature_high_office_melanie
+      - temperature_high_bedroom_roof
+      - temperature_high_entrance
+      - temperature_high_kitchen
+      - temperature_high_laundryroom
+      - temperature_high_livingroom
+      - temperature_high_mezzanine
+      - temperature_high_stairs
+
+# TODO: When kids going to kita, when kids coming back from kita, When everyone leaving the house, when not working anymore, when vacation, when sick...

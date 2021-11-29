@@ -127,6 +127,7 @@ action:
       # Idle
       - conditions:
           - "{{ trigger.to_state.state == 'idle' }}"
+          - "{{ trigger.from_state.state != 'idle' }}"
           - "{{ not is_excluded_app }}"
           - "{{ idle_scene is not none }}"
           - "{{ has_light_on }}"
@@ -138,6 +139,7 @@ action:
       # Standby
       - conditions:
           - "{{ trigger.to_state.state == 'standby' }}"
+          - "{{ trigger.from_state.state != 'standby' }}"
           - "{{ not is_excluded_app }}"
           - "{{ standby_scene is not none }}"
           - "{{ has_light_on }}"
@@ -160,6 +162,7 @@ action:
       # any state without scene
       - conditions:
           - "{{ (['off', 'standby', 'idle', 'paused']) | select('eq', trigger.to_state.state) | list | count > 0 }}"
+          - "{{ (['off', 'standby', 'idle', 'paused']) | select('eq', trigger.from.state) | list | count == 0 }}"
           - "{{ not is_excluded_app }}"
           - "{{ has_light_on }}"
           - "{{ fallback_scene is not none }}"
@@ -172,6 +175,7 @@ action:
               entity_id: !input "fallback_scene"
       - conditions:
           - "{{ (['off', 'standby', 'idle', 'paused']) | select('eq', trigger.to_state.state) | list | count > 0 }}"
+          - "{{ (['off', 'standby', 'idle', 'paused']) | select('eq', trigger.from_state.state) | list | count == 0 }}"
           - "{{ not is_excluded_app }}"
           - "{{ has_light_on }}"
         sequence:

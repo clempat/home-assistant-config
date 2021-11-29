@@ -1,30 +1,15 @@
 ---
-description: Turn on ceiling light on motion in Kitchen (night or tv)
-alias: kitchen_turn_on_ceiling_motion
-trigger:
-  platform: state
-  entity_id: binary_sensor.motion_kitchen
-  from: "off"
-  to: "on"
-condition:
-  condition: and
-  conditions:
-    - condition: numeric_state
-      entity_id: sensor.x_motion_kitchen_floor_light_level
-      below: 15
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: input_boolean.sleeping_mode
-          state: "on"
-        - condition: state
-          entity_id: binary_sensor.playing_on_tv
-          state: "on"
-        - condition: state
-          entity_id: remote.harmony_hub
-          state: "on"
-action:
-  service: light.turn_on
-  entity_id: light.kitchen_ceiling
-  data:
-    brightness: 100
+description: Toggle kitchen light on switch or motion
+alias: kitchen_motion_light
+id: c77f0ef6-3525-41bf-a030-9bfb3d66b553
+use_blueprint:
+  path: clempat/smart_motion_light.yaml
+  input:
+    light: light.kitchen_ceiling
+    light_sensor: sensor.x_motion_kitchen_light_level
+    # light_threshold: 5
+    motion_sensor: binary_sensor.motion_kitchen
+    event_type: deconz_event
+    event_data:
+      event: 1002
+      device_id: 71154849cce0d859776f75374d1641c0
